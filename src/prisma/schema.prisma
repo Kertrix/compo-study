@@ -13,3 +13,26 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Class {
+  id   String @id @default(cuid(2))
+  name String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subjects Subject[]
+}
+
+model Subject {
+  id   String @id @default(cuid(2))
+  name String @unique
+  icon String
+  slug String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  classId String
+  class   Class  @relation(fields: [classId], references: [id])
+}
