@@ -8,12 +8,12 @@ import { notFound } from "next/navigation";
 export default async function SubjectsSelectionPage({
   params,
 }: {
-  params: Promise<{ className: string }>;
+  params: Promise<{ classSlug: string }>;
 }) {
-  const { className } = await params;
+  const { classSlug } = await params;
 
   const selectedClass = await prisma.class.findUnique({
-    where: { name: decodeURIComponent(className) },
+    where: { slug: decodeURIComponent(classSlug) },
     include: { subjects: true },
   });
 
@@ -52,7 +52,7 @@ export default async function SubjectsSelectionPage({
           {subjects.map((subject) => (
             <Link
               key={subject.id}
-              href={`/${encodeURIComponent(className)}/${encodeURIComponent(subject.slug)}`}
+              href={`/${encodeURIComponent(selectedClass.slug)}/${encodeURIComponent(subject.slug)}`}
               className={cn(
                 "block p-6 rounded-lg border hover:shadow-lg hover:border-primary/30 transition-shadow duration-150 bg-white",
                 "focus:outline-none focus:ring-2 focus:ring-primary/50"

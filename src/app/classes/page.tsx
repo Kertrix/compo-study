@@ -28,7 +28,7 @@ export default async function ClassSelectionPage() {
         <div className="grid grid-cols-2 gap-4 w-full">
           {classes.map((classItem) => (
             <Link
-              href={encodeURIComponent(classItem.name)}
+              href={encodeURIComponent(classItem.slug)}
               key={classItem.id}
               className="p-6 border rounded-lg relative flex flex-col gap-4 transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-lg"
             >

@@ -17,6 +17,7 @@ datasource db {
 model Class {
   id   String @id @default(cuid(2))
   name String @unique
+  slug String @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
