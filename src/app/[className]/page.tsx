@@ -29,7 +29,7 @@ export default async function SubjectsSelectionPage({
     <main className="max-w-5xl mx-auto px-4 py-10">
       <header className="mb-8 flex gap-4 items-center">
         <Button variant={"ghost"} size="icon" asChild>
-          <Link href="class-selection">
+          <Link href="classes">
             <ArrowLeft aria-label="Retour à la sélection de classe" />
           </Link>
         </Button>
