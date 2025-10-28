@@ -3,7 +3,9 @@ import { ArrowRight, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
 export default async function ClassSelectionPage() {
-  const classes = await prisma.class.findMany();
+  const classes = await prisma.class.findMany({
+    orderBy: { name: "desc" },
+  });
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
@@ -23,7 +25,7 @@ export default async function ClassSelectionPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 w-full">
+        <div className="grid grid-cols-2 gap-4 w-full">
           {classes.map((classItem) => (
             <Link
               href={encodeURIComponent(classItem.name)}

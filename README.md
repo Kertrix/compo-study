@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+### 🧠 Description du projet : **CompoStudy**
 
-## Getting Started
+**CompoStudy** est une application web moderne et fluide (compatible mobile et ordinateur) destinée aux élèves du lycée **Jeannine Manuel** pour réviser efficacement les **compositions groupées**.
 
-First, run the development server:
+L’objectif est de proposer une expérience **immersive, élégante et ultra-simple**, avec une interface inspirée des meilleurs designers : **minimalisme, animations lentes et continues**, hiérarchie visuelle claire, et transitions douces entre les écrans.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🔐 Accès
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- L’écran d’accueil présente un **champ de mot de passe** avec une animation subtile (lumière diffuse, léger mouvement du fond).
+- Le mot de passe unique est : **`compostudy2526`**.
+- Une fois validé, l’utilisateur accède à l’espace principal.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+### 🏫 Sélection de classe
 
-To learn more about Next.js, take a look at the following resources:
+- Écran minimaliste avec trois **cartes animées** représentant les classes :
+  - **Seconde**
+  - **Première**
+  - **Terminale**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Animation au survol / clic pour donner une sensation fluide et premium.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+### 📚 Sélection de matière
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Une fois la classe choisie, l’application affiche une **grille de matières** (maths, physique, SVT, histoire-géographie, etc.).
+- Chaque matière est représentée par une **carte élégante** avec icône, couleur spécifique et effet de survol.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+### 🧾 Espace matière
+
+Chaque matière ouvre une page bien structurée en trois sections principales :
+
+1. **Cours officiels** (documents, fiches, résumés)
+2. **Notes d’élèves** (synthèses partagées)
+3. **Conseils des profs** (méthodes, points clés, erreurs fréquentes)
+
+Organisation pensée pour la lisibilité, avec onglets ou colonnes claires et transitions fluides entre les vues.
+
+---
+
+### ⚙️ Stack technique
+
+- **Next.js** : framework principal pour le rendu côté serveur et la navigation fluide.
+- **React** : gestion de l’interface et des composants dynamiques.
+- **Tailwind CSS** : design minimaliste, responsive et moderne.
+- **shadcn/ui** : composants UI raffinés et cohérents avec Tailwind.
+- **Prisma** : ORM pour gérer la base de données (utilisateurs, classes, matières, contenus).
+
+L’architecture doit être pensée pour la **scalabilité**, la **sécurité de l’accès**, et la **rapidité d’exécution**.
+
+---
+
+### 🎨 Objectif design
+
+L’expérience utilisateur doit évoquer :
+
+- Simplicité et élégance (type Apple / Notion)
+- Animations discrètes mais continues (légers mouvements de fond, transitions fondues)
+- Interface **focus sur le contenu**, sans surcharge visuelle.

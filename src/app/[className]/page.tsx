@@ -55,7 +55,7 @@ export default async function SubjectsSelectionPage({
               href={`/${encodeURIComponent(className)}/${encodeURIComponent(subject.slug)}`}
               className={cn(
                 "block p-6 rounded-lg border hover:shadow-lg hover:border-primary/30 transition-shadow duration-150 bg-white",
-                "focus:outline-none focus:ring-2 focus:ring-primary"
+                "focus:outline-none focus:ring-2 focus:ring-primary/50"
               )}
               aria-label={`Ouvrir la matière ${subject.name}`}
             >
