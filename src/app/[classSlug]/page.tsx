@@ -21,9 +21,7 @@ export default async function SubjectsSelectionPage({
     notFound();
   }
 
-  const subjects = selectedClass.subjects.sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
+  const subjects = selectedClass.subjects;
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-10">

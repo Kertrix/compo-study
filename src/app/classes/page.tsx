@@ -11,7 +11,7 @@ export default async function ClassSelectionPage() {
     <div className="min-h-screen flex flex-col items-center justify-center">
       <div className="max-w-4xl w-full mx-auto space-y-12">
         <div className="space-y-3 text-center">
-          <div className="bg-primary/10 h-16 w-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <div className="bg-blue-600/10 h-16 w-16 rounded-full flex items-center justify-center mb-4 mx-auto">
             <GraduationCap className="h-10 w-10 text-blue-600 " />
           </div>
 
