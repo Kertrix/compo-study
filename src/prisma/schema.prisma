@@ -39,4 +39,36 @@ model Subject {
 
   classId String
   class   Class  @relation(fields: [classId], references: [id])
+
+  ressources Ressource[]
+}
+
+model Ressource {
+  id           String        @id @default(cuid(2))
+  title        String
+  description  String?
+  resourceType RessourceType
+  textContent  String?
+  fileUrl      String?
+  mimeType     String?
+  type         Type
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subjectId String
+  subject   Subject @relation(fields: [subjectId], references: [id])
+}
+
+enum RessourceType {
+  TEXT
+  DOCUMENT
+  IMAGE
+  OTHER
+}
+
+enum Type {
+  COURSE
+  REVISION
+  OTHER
 }
