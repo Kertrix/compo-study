@@ -54,6 +54,33 @@ export default async function SubjectsSelectionPage({
           </div>
         </div>
       </header>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="flex flex-col bg-muted/60 border p-5 rounded-lg">
+          <span className="leading-tight text-md font-medium text-muted-foreground">
+            Date de l&apos;examen
+          </span>
+          <p className="text-xl font-semibold mt-2">
+            {selectedSubject.examDate
+              ? selectedSubject.examDate.toLocaleDateString()
+              : "December 15, 2025"}
+          </p>
+          <p className="text-sm">
+            {selectedSubject.examDescription ||
+              "Aucune description d'examen disponible."}
+          </p>
+        </div>
+        <div className="flex flex-col bg-muted/60 border p-5 rounded-lg">
+          <span className="leading-tight text-md font-medium text-muted-foreground">
+            Durée l&apos;examen
+          </span>
+          <p className="text-xl font-semibold mt-2">
+            {selectedSubject.examLength || "2 heures"}
+          </p>
+          <p className="text-sm">
+            {selectedSubject.examDescription || "Durée totale"}
+          </p>
+        </div>
+      </div>
     </>
   );
 }
