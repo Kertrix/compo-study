@@ -24,7 +24,7 @@ export default async function SubjectsSelectionPage({
   const subjects = selectedClass.subjects;
 
   return (
-    <main className="max-w-5xl mx-auto px-4 py-10">
+    <>
       <header className="mb-8 flex gap-4 items-center">
         <Button variant={"ghost"} size="icon" asChild>
           <Link href="classes">
@@ -79,6 +79,6 @@ export default async function SubjectsSelectionPage({
           ))}
         </section>
       )}
-    </main>
+    </>
   );
 }
