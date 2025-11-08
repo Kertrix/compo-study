@@ -1,8 +1,17 @@
 import { Button } from "@/components/ui/button";
+import {
+  Empty,
+  EmptyContent,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { prisma } from "@/lib/prisma";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, BookOpen, BookPlus, FileText } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import RessourceCard from "./ressource-card";
 
 export default async function SubjectsSelectionPage({
   params,
@@ -18,7 +27,7 @@ export default async function SubjectsSelectionPage({
         slug: decodeURIComponent(subjectSlug),
         class: { slug: decodeURIComponent(classSlug) },
       },
-      include: { class: true },
+      include: { class: true, ressources: true },
     });
   } catch (error) {
     console.error("Erreur lors de la récupération du sujet :", error);
@@ -28,6 +37,11 @@ export default async function SubjectsSelectionPage({
   if (!selectedSubject) {
     notFound();
   }
+
+  const courses = selectedSubject.ressources.filter((r) => r.type === "COURSE");
+  const sheets = selectedSubject.ressources.filter(
+    (r) => r.type === "REVISION"
+  );
 
   return (
     <>
@@ -54,7 +68,7 @@ export default async function SubjectsSelectionPage({
           </div>
         </div>
       </header>
-      <div className="grid grid-cols-2 gap-4">
+      <section className="grid grid-cols-2 gap-4">
         <div className="flex flex-col bg-muted/60 border p-5 rounded-lg">
           <span className="leading-tight text-md font-medium text-muted-foreground">
             Date de l&apos;examen
@@ -80,7 +94,86 @@ export default async function SubjectsSelectionPage({
             {selectedSubject.examDescription || "Durée totale"}
           </p>
         </div>
-      </div>
+      </section>
+      <section className="mt-8">
+        <Tabs defaultValue="lesson" className="w-full">
+          <TabsList className="w-full">
+            <TabsTrigger value="lesson">
+              <BookOpen /> Cours ({courses.length})
+            </TabsTrigger>
+            <TabsTrigger value="sheets">
+              <FileText />
+              Fiches de révision ({sheets.length})
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="lesson">
+            {courses.length === 0 ? (
+              <Empty className="border">
+                <EmptyHeader>
+                  <EmptyMedia variant="icon">
+                    <BookOpen />
+                  </EmptyMedia>
+                  <EmptyTitle>
+                    Aucun cours disponible pour le moment 😴
+                  </EmptyTitle>
+                </EmptyHeader>
+                <EmptyContent>
+                  <Button>
+                    <BookPlus />
+                    Uploader un cours
+                  </Button>
+                </EmptyContent>
+              </Empty>
+            ) : (
+              <div className="grid grid-cols-3 gap-4">
+                {courses.map((course) => (
+                  <RessourceCard
+                    key={course.id}
+                    title={course.title}
+                    description={course.description}
+                    resourceType={course.resourceType}
+                    updatedAt={course.updatedAt}
+                    Icon={FileText}
+                  />
+                ))}
+              </div>
+            )}
+          </TabsContent>
+          <TabsContent value="sheets">
+            {sheets.length === 0 ? (
+              <Empty className="border">
+                <EmptyHeader>
+                  <EmptyMedia variant="icon">
+                    <FileText />
+                  </EmptyMedia>
+                  <EmptyTitle>
+                    Aucune fiche de révision disponible pour le moment 😴
+                  </EmptyTitle>
+                </EmptyHeader>
+                <EmptyContent>
+                  <Button>
+                    <BookPlus />
+                    Uploader une fiche de révision
+                  </Button>
+                </EmptyContent>
+              </Empty>
+            ) : (
+              <div className="grid grid-cols-3 gap-4">
+                {sheets.map((sheet) => (
+                  <RessourceCard
+                    key={sheet.id}
+                    title={sheet.title}
+                    description={sheet.description}
+                    resourceType={sheet.resourceType}
+                    updatedAt={sheet.updatedAt}
+                    Icon={FileText}
+                  />
+                ))}
+              </div>
+            )}
+          </TabsContent>
+        </Tabs>
+      </section>
     </>
   );
 }
