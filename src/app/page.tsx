@@ -1,5 +1,6 @@
 "use client";
 
+import GoogleButton from "@/components/google-button";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -54,11 +55,18 @@ export default function PasswordGate() {
             CompoStudy
           </CardTitle>
           <CardDescription>
-            Ce contenu est protégé, veuillez indiquer le mot de passe ci-dessous
-            pour y accéder.
+            Ce contenu est protégé, veuillez vous authentifier pour y accéder.
           </CardDescription>
         </CardHeader>
         <CardContent>
+          <GoogleButton />
+          <div className="flex items-center my-4">
+            <div className="grow h-px bg-muted" />
+            <span className="mx-4 text-muted-foreground text-xs uppercase font-medium">
+              ou continuez en mode invité
+            </span>
+            <div className="grow h-px bg-muted" />
+          </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <InputGroup className="py-5">
               <InputGroupInput
