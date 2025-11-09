@@ -1,16 +1,18 @@
+import { getSessionCookie } from "better-auth/cookies";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 export function proxy(req: NextRequest) {
-  const auth = req.cookies.get("auth")?.value;
+  const studentAccess = req.cookies.get("studentAccess")?.value === "true";
+  const sessionCookie = getSessionCookie(req);
   const isLoginPage = req.nextUrl.pathname === "/";
 
-  if (!auth && !isLoginPage) {
+  if (!studentAccess && !sessionCookie && !isLoginPage) {
     // not logged in → redirect to /
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  if (auth && isLoginPage) {
+  if (isLoginPage && (studentAccess || sessionCookie)) {
     // already logged in → skip login
     return NextResponse.redirect(new URL("/classes", req.url));
   }
@@ -20,5 +22,5 @@ export function proxy(req: NextRequest) {
 
 // Liste des pages protégées
 export const config = {
-  matcher: ["/((?!_next|api/login|favicon.ico|.*\\..*).*)"],
+  matcher: ["/((?!_next|api/auth|api/login|favicon.ico|.*\\..*).*)"],
 };

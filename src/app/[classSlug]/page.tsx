@@ -1,4 +1,6 @@
+import { NavUser } from "@/components/nav-user";
 import { Button } from "@/components/ui/button";
+import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
@@ -11,6 +13,7 @@ export default async function SubjectsSelectionPage({
   params: Promise<{ classSlug: string }>;
 }) {
   const { classSlug } = await params;
+  const user = await getUser();
 
   const selectedClass = await prisma.class.findUnique({
     where: { slug: decodeURIComponent(classSlug) },
@@ -25,20 +28,23 @@ export default async function SubjectsSelectionPage({
 
   return (
     <>
-      <header className="mb-8 flex gap-4 items-center">
-        <Button variant={"ghost"} size="icon" asChild>
-          <Link href="classes">
-            <ArrowLeft aria-label="Retour à la sélection de classe" />
-          </Link>
-        </Button>
-        <div>
-          <h1 className="text-2xl font-semibold leading-tight">
-            {selectedClass.name}
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            Sélectionnez une matière
-          </p>
+      <header className="mb-8 flex justify-between items-center">
+        <div className="flex gap-4 items-center">
+          <Button variant={"ghost"} size="icon" asChild>
+            <Link href="classes">
+              <ArrowLeft aria-label="Retour à la sélection de classe" />
+            </Link>
+          </Button>
+          <div>
+            <h1 className="text-2xl font-semibold leading-tight">
+              {selectedClass.name}
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              Sélectionnez une matière
+            </p>
+          </div>
         </div>
+        {user && <NavUser name={user.name} email={user.email} />}
       </header>
 
       {subjects.length === 0 ? (

@@ -1,3 +1,4 @@
+import { NavUser } from "@/components/nav-user";
 import { Button } from "@/components/ui/button";
 import {
   Empty,
@@ -7,6 +8,7 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
 import { ArrowLeft, BookOpen, BookPlus, FileText } from "lucide-react";
 import Link from "next/link";
@@ -19,6 +21,7 @@ export default async function SubjectsSelectionPage({
   params: { classSlug: string; subjectSlug: string };
 }) {
   const { classSlug, subjectSlug } = await params;
+  const user = await getUser();
 
   let selectedSubject;
   try {
@@ -45,28 +48,31 @@ export default async function SubjectsSelectionPage({
 
   return (
     <>
-      <header className="mb-8 flex gap-4 items-center">
-        <Button variant={"ghost"} size="icon" asChild>
-          <Link href={`/${encodeURIComponent(selectedSubject.class.slug)}`}>
-            <ArrowLeft aria-label="Retour à la sélection de matière" />
-          </Link>
-        </Button>
-        <div className="flex items-center gap-2">
-          <span className="text-4xl">{selectedSubject.icon}</span>
-          <div>
-            <div className="flex gap-3 items-center">
-              <h1 className="text-2xl font-semibold leading-tight">
-                {selectedSubject.name}
-              </h1>
-              <div className="px-2 py-1 rounded-md bg-primary/10 text-xs font-medium text-primary">
-                {selectedSubject.class.name}
+      <header className="mb-8 flex justify-between items-center">
+        <div className="flex gap-4 items-center">
+          <Button variant={"ghost"} size="icon" asChild>
+            <Link href={`/${encodeURIComponent(selectedSubject.class.slug)}`}>
+              <ArrowLeft aria-label="Retour à la sélection de matière" />
+            </Link>
+          </Button>
+          <div className="flex items-center gap-2">
+            <span className="text-4xl">{selectedSubject.icon}</span>
+            <div>
+              <div className="flex gap-3 items-center">
+                <h1 className="text-2xl font-semibold leading-tight">
+                  {selectedSubject.name}
+                </h1>
+                <div className="px-2 py-1 rounded-md bg-primary/10 text-xs font-medium text-primary">
+                  {selectedSubject.class.name}
+                </div>
               </div>
+              <p className="text-sm text-muted-foreground">
+                Dashboard de la matière
+              </p>
             </div>
-            <p className="text-sm text-muted-foreground">
-              Dashboard de la matière
-            </p>
           </div>
         </div>
+        {user && <NavUser name={user.name} email={user.email} />}
       </header>
       <section className="grid grid-cols-2 gap-4">
         <div className="flex flex-col bg-muted/60 border p-5 rounded-lg">
