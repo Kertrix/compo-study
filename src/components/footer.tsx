@@ -1,6 +1,6 @@
 "use client";
 
-import { anonymousLogoutAction } from "./log-out";
+import { anonymousLogoutAction } from "@/lib/server";
 
 export default function Footer({ isGuest }: { isGuest: boolean }) {
   return (

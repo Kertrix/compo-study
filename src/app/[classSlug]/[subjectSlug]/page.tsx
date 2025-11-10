@@ -1,4 +1,3 @@
-import Footer from "@/components/footer";
 import { NavUser } from "@/components/nav-user";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,7 +11,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
 import { ArrowLeft, BookOpen, BookPlus, FileText } from "lucide-react";
-import { cookies } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import RessourceCard from "./ressource-card";
@@ -24,9 +22,6 @@ export default async function SubjectsSelectionPage({
 }) {
   const { classSlug, subjectSlug } = await params;
   const user = await getUser();
-
-  const cookiesStore = await cookies();
-  const isGuest = cookiesStore.get("studentAccess")?.value === "true";
 
   let selectedSubject;
   try {
@@ -187,8 +182,6 @@ export default async function SubjectsSelectionPage({
           </Tabs>
         </section>
       </div>
-
-      <Footer isGuest={isGuest} />
     </>
   );
 }

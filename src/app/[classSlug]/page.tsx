@@ -1,11 +1,9 @@
-import Footer from "@/components/footer";
 import { NavUser } from "@/components/nav-user";
 import { Button } from "@/components/ui/button";
 import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
-import { cookies } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -16,9 +14,6 @@ export default async function SubjectsSelectionPage({
 }) {
   const { classSlug } = await params;
   const user = await getUser();
-
-  const cookiesStore = await cookies();
-  const isGuest = cookiesStore.get("studentAccess")?.value === "true";
 
   const selectedClass = await prisma.class.findUnique({
     where: { slug: decodeURIComponent(classSlug) },
@@ -92,7 +87,6 @@ export default async function SubjectsSelectionPage({
           </section>
         )}
       </div>
-      <Footer isGuest={isGuest} />
     </>
   );
 }
