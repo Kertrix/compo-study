@@ -26,3 +26,13 @@ export const Type = {
 } as const
 
 export type Type = (typeof Type)[keyof typeof Type]
+
+
+export const Role = {
+  ADMIN: 'ADMIN',
+  PROFESSOR: 'PROFESSOR',
+  MODERATOR: 'MODERATOR',
+  STUDENT: 'STUDENT'
+} as const
+
+export type Role = (typeof Role)[keyof typeof Role]

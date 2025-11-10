@@ -45,6 +45,8 @@ model Subject {
 
 model Ressource {
   id           String        @id @default(cuid(2))
+  authorId     String
+  author       User          @relation(fields: [authorId], references: [id])
   title        String
   description  String?
   resourceType RessourceType
@@ -74,18 +76,27 @@ enum Type {
 }
 
 model User {
-  id            String    @id
+  id            String      @id
+  role          Role     @default(STUDENT)
   name          String
   email         String
-  emailVerified Boolean   @default(false)
+  emailVerified Boolean     @default(false)
   image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @default(now()) @updatedAt
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @default(now()) @updatedAt
   sessions      Session[]
   accounts      Account[]
+  ressources    Ressource[]
 
   @@unique([email])
   @@map("user")
+}
+
+enum Role {
+  ADMIN
+  PROFESSOR
+  MODERATOR
+  STUDENT
 }
 
 model Session {

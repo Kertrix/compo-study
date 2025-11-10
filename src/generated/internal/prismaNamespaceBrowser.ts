@@ -103,6 +103,7 @@ export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeo
 
 export const RessourceScalarFieldEnum = {
   id: 'id',
+  authorId: 'authorId',
   title: 'title',
   description: 'description',
   resourceType: 'resourceType',
@@ -120,6 +121,7 @@ export type RessourceScalarFieldEnum = (typeof RessourceScalarFieldEnum)[keyof t
 
 export const UserScalarFieldEnum = {
   id: 'id',
+  role: 'role',
   name: 'name',
   email: 'email',
   emailVerified: 'emailVerified',

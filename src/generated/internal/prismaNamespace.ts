@@ -1002,6 +1002,7 @@ export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeo
 
 export const RessourceScalarFieldEnum = {
   id: 'id',
+  authorId: 'authorId',
   title: 'title',
   description: 'description',
   resourceType: 'resourceType',
@@ -1019,6 +1020,7 @@ export type RessourceScalarFieldEnum = (typeof RessourceScalarFieldEnum)[keyof t
 
 export const UserScalarFieldEnum = {
   id: 'id',
+  role: 'role',
   name: 'name',
   email: 'email',
   emailVerified: 'emailVerified',
@@ -1158,6 +1160,20 @@ export type EnumTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'Type[]'
  */
 export type ListEnumTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Type[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Role'
+ */
+export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
+    
+
+
+/**
+ * Reference to a field of type 'Role[]'
+ */
+export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
     
 
 
