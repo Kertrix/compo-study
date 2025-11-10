@@ -1,6 +1,5 @@
 "use client";
 
-import Footer from "@/components/footer";
 import GoogleButton from "@/components/google-button";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,6 +15,7 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "@/components/ui/input-group";
+import { loginAction } from "@/lib/server";
 import { Eye, EyeClosed, GraduationCap, LockIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -30,15 +30,9 @@ export default function PasswordGate() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ password }),
-    });
+    const res = await loginAction(password);
 
-    if (res.ok) {
+    if (res.success) {
       router.push("/classes");
     } else {
       setError("Mot de passe incorrect, veuillez réessayer.");
@@ -109,7 +103,6 @@ export default function PasswordGate() {
           </CardContent>
         </Card>
       </div>
-      <Footer isGuest={false} />
     </>
   );
 }
