@@ -45,7 +45,14 @@ export default async function SubjectsSelectionPage({
               </p>
             </div>
           </div>
-          {user && <NavUser name={user.name} email={user.email} />}
+          {user && (
+            <NavUser
+              name={user.name}
+              role={user.role}
+              image={user.image ?? undefined}
+              email={user.email}
+            />
+          )}
         </header>
 
         {subjects.length === 0 ? (

@@ -2,7 +2,7 @@
 
 import { logoutAction } from "@/lib/server";
 import { ChevronsUpDown, LogOut, UserCog } from "lucide-react";
-import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -12,12 +12,23 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 
-export function NavUser({ name, email }: { name: string; email: string }) {
+export function NavUser({
+  name,
+  email,
+  image,
+  role,
+}: {
+  name: string;
+  email: string;
+  image?: string;
+  role: string;
+}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant={"ghost"} className="p-2!">
           <Avatar className="flex items-center">
+            <AvatarImage src={image} alt={`${email}'s profile picture`} />
             {(() => {
               // Generate a fallback avatar with initials and a background color based on the name
               const hash = Array.from(name).reduce(
@@ -57,7 +68,7 @@ export function NavUser({ name, email }: { name: string; email: string }) {
       <DropdownMenuContent className="w-56 not-visited:rounded-lg" align="end">
         <DropdownMenuItem disabled>
           <UserCog />
-          Role : Administateur
+          Role : {role}
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem

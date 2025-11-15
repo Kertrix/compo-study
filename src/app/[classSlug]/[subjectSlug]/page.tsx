@@ -73,7 +73,14 @@ export default async function SubjectsSelectionPage({
               </div>
             </div>
           </div>
-          {user && <NavUser name={user.name} email={user.email} />}
+          {user && (
+            <NavUser
+              name={user.name}
+              role={user.role}
+              image={user.image ?? undefined}
+              email={user.email}
+            />
+          )}
         </header>
         <section className="grid grid-cols-2 gap-4">
           <div className="flex flex-col bg-muted/60 border p-5 rounded-lg">
