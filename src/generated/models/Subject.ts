@@ -485,10 +485,6 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type SubjectCreateNestedOneWithoutRessourcesInput = {
   create?: Prisma.XOR<Prisma.SubjectCreateWithoutRessourcesInput, Prisma.SubjectUncheckedCreateWithoutRessourcesInput>
   connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutRessourcesInput
