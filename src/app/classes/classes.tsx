@@ -17,7 +17,7 @@ export const Classes = async () => {
         >
           <ArrowRight className="h-5 w-5 text-muted-foreground absolute top-4 right-4" />
           <span className="text-sm py-1 px-4 w-fit rounded-full bg-indigo-500/15 text-indigo-500">
-            Promo class
+            Promo {classItem.promo}
           </span>
           <h2 className="text-2xl font-semibold tracking-tight">
             {classItem.name}
