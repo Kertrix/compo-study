@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const Classes = async () => {
   const classes = await prisma.class.findMany({
-    orderBy: { name: "desc" },
+    orderBy:{ promo : "asc"},
   });
 
   return (
