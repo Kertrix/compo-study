@@ -1,21 +1,52 @@
 "use server";
 
-export async function uploadAction(formData: FormData) {
+import { Prisma } from "@/generated/client";
+import { getUser } from "@/lib/auth-server";
+import { prisma } from "@/lib/prisma";
+import { uploadFileToS3 } from "./awss3-util";
+
+export async function uploadAction(
+  formData: FormData,
+  subject: Prisma.SubjectGetPayload<{ include: { class: true } }>
+) {
   try {
     const files = formData.getAll("files");
     console.log(files);
 
+    const user = await getUser();
+
+    if (!user) {
+      throw new Error("User not authenticated");
+    }
+
     for (const f of files) {
       if (f instanceof File) {
-        const buf = await f.arrayBuffer();
-        const size = buf.byteLength;
-        console.log("[server action] Received file:", f.name, size, "bytes");
+        const url = await uploadFileToS3({
+          file: f,
+          prefix: `${subject.class.slug}/${subject.slug}`,
+          filename: f.name,
+        });
+
+        if (!url) {
+          throw new Error("File upload failed");
+        }
+
+        await prisma.ressource.create({
+          data: {
+            title: f.name,
+            authorId: user.id,
+            resourceType: "DOCUMENT",
+            type: "OTHER",
+            mimeType: f.type,
+            fileUrl: url,
+            subjectId: subject.id,
+          },
+        });
       } else {
         console.log("[server action] Field value:", String(f));
       }
     }
 
-    // server actions used as form actions should return void (or nothing)
     return;
   } catch (err) {
     console.error("[server action] Error:", err);

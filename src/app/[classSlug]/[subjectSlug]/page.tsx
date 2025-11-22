@@ -133,7 +133,7 @@ export default async function SubjectsSelectionPage({
                     </EmptyTitle>
                   </EmptyHeader>
                   <EmptyContent>
-                    <UploadRessourceDialog />
+                    <UploadRessourceDialog subject={selectedSubject} />
                     {/* <Button>
                       <BookPlus />
                       Uploader un cours

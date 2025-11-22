@@ -13,12 +13,20 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Prisma } from "@/generated/client";
 import { cn } from "@/lib/utils";
 
-export default function UploadRessourceDialog() {
+export default function UploadRessourceDialog({
+  subject,
+}: {
+  subject: Prisma.SubjectGetPayload<{ include: { class: true } }>;
+}) {
+  const [open, setOpen] = React.useState(false);
   const [files, setFiles] = React.useState<File[]>([]);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop: (acceptedFiles) => setFiles([...files, ...acceptedFiles]),
+    onDrop: (acceptedFiles) => setFiles(acceptedFiles.slice(0, 1)),
+    multiple: false,
+    maxFiles: 1,
   });
 
   const filesList = files.map((file) => (
@@ -64,11 +72,17 @@ export default function UploadRessourceDialog() {
     const form = new FormData();
     files.forEach((f) => form.append("files", f));
 
-    await uploadAction(form);
+    await uploadAction(form, subject).then(() => setOpen(false));
   };
 
   return (
-    <Dialog>
+    <Dialog
+      open={open}
+      onOpenChange={() => {
+        setFiles([]);
+        setOpen(!open);
+      }}
+    >
       <DialogTrigger asChild>
         <Button variant="outline">Uploader une ressource</Button>
       </DialogTrigger>
@@ -87,7 +101,8 @@ export default function UploadRessourceDialog() {
                   isDragActive
                     ? "border-primary bg-primary/10 ring-2 ring-primary/20"
                     : "border-border",
-                  "flex justify-center rounded-md border border-dashed px-6 py-12 transition-colors duration-200"
+                  "flex justify-center rounded-md border border-dashed px-6 py-12 transition-colors duration-200",
+                  files.length >= 1 ? "cursor-not-allowed" : "cursor-pointer"
                 )}
               >
                 <div className="flex flex-col items-center justify-center text-center">
@@ -104,10 +119,10 @@ export default function UploadRessourceDialog() {
                     name="files"
                     type="file"
                     className="sr-only"
-                    multiple
+                    disabled={files.length >= 1}
                   />
                   <p className="text-xs text-muted-foreground">
-                    Drag & drop or click to browse (max. 50)
+                    Drag & drop or click to browse (max 1 file)
                   </p>
                 </div>
               </div>
