@@ -31,7 +31,7 @@ model Subject {
   name            String    @unique
   icon            String
   slug            String    @unique
-  examDate        DateTime
+  examDate        DateTime?
   examLength      String?
   examDescription String?
 
