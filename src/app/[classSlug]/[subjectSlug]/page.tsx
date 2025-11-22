@@ -14,6 +14,7 @@ import { ArrowLeft, BookOpen, BookPlus, FileText } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import RessourceCard from "./ressource-card";
+import UploadRessourceDialog from "./upload-dialog";
 
 export default async function SubjectsSelectionPage({
   params,
@@ -132,10 +133,11 @@ export default async function SubjectsSelectionPage({
                     </EmptyTitle>
                   </EmptyHeader>
                   <EmptyContent>
-                    <Button>
+                    <UploadRessourceDialog />
+                    {/* <Button>
                       <BookPlus />
                       Uploader un cours
-                    </Button>
+                    </Button> */}
                   </EmptyContent>
                 </Empty>
               ) : (
