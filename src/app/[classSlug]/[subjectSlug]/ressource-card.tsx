@@ -3,13 +3,11 @@ import { LucideIcon } from "lucide-react";
 export default function RessourceCard({
   title,
   description,
-  resourceType,
   updatedAt,
   Icon,
 }: {
   title: string;
   description: string | null;
-  resourceType: string;
   updatedAt: Date;
   Icon: LucideIcon;
 }) {
@@ -20,11 +18,16 @@ export default function RessourceCard({
           <Icon className="h-6 w-6 text-blue-600 " />
         </div>
       </div>
-      <div>
-        <h3 className="font-semibold text-lg leading-tight">{title}</h3>
+      <div className="overflow-hidden">
+        <h3
+          className="font-semibold text-lg leading-tight pb-1 truncate"
+          title={title}
+        >
+          {title}
+        </h3>
         <p className="text-sm text-muted-foreground pb-2">{description}</p>
         <p className="text-xs text-muted-foreground">
-          {resourceType}&nbsp;•&nbsp;
+          Lorem ipsum &nbsp;•&nbsp;
           {updatedAt.toLocaleDateString()}
         </p>
       </div>

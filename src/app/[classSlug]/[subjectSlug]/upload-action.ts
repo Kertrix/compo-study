@@ -35,8 +35,6 @@ export async function uploadAction(
           data: {
             title: f.name,
             authorId: user.id,
-            resourceType: "DOCUMENT",
-            type: "OTHER",
             mimeType: f.type,
             fileUrl: url,
             subjectId: subject.id,

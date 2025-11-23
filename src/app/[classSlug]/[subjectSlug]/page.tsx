@@ -7,10 +7,9 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
-import { ArrowLeft, BookOpen, BookPlus, FileText } from "lucide-react";
+import { ArrowLeft, BookOpen, FileText } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import RessourceCard from "./ressource-card";
@@ -42,10 +41,7 @@ export default async function SubjectsSelectionPage({
     notFound();
   }
 
-  const courses = selectedSubject.ressources.filter((r) => r.type === "COURSE");
-  const sheets = selectedSubject.ressources.filter(
-    (r) => r.type === "REVISION"
-  );
+  console.log(selectedSubject.ressources);
 
   return (
     <>
@@ -111,84 +107,33 @@ export default async function SubjectsSelectionPage({
           </div>
         </section>
         <section className="mt-8">
-          <Tabs defaultValue="lesson" className="w-full">
-            <TabsList className="w-full">
-              <TabsTrigger value="lesson">
-                <BookOpen /> Cours ({courses.length})
-              </TabsTrigger>
-              <TabsTrigger value="sheets">
-                <FileText />
-                Fiches de révision ({sheets.length})
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value="lesson">
-              {courses.length === 0 ? (
-                <Empty className="border">
-                  <EmptyHeader>
-                    <EmptyMedia variant="icon">
-                      <BookOpen />
-                    </EmptyMedia>
-                    <EmptyTitle>
-                      Aucun cours disponible pour le moment 😴
-                    </EmptyTitle>
-                  </EmptyHeader>
-                  <EmptyContent>
-                    <UploadRessourceDialog subject={selectedSubject} />
-                    {/* <Button>
-                      <BookPlus />
-                      Uploader un cours
-                    </Button> */}
-                  </EmptyContent>
-                </Empty>
-              ) : (
-                <div className="grid grid-cols-3 gap-4">
-                  {courses.map((course) => (
-                    <RessourceCard
-                      key={course.id}
-                      title={course.title}
-                      description={course.description}
-                      resourceType={course.resourceType}
-                      updatedAt={course.updatedAt}
-                      Icon={FileText}
-                    />
-                  ))}
-                </div>
-              )}
-            </TabsContent>
-            <TabsContent value="sheets">
-              {sheets.length === 0 ? (
-                <Empty className="border">
-                  <EmptyHeader>
-                    <EmptyMedia variant="icon">
-                      <FileText />
-                    </EmptyMedia>
-                    <EmptyTitle>
-                      Aucune fiche de révision disponible pour le moment 😴
-                    </EmptyTitle>
-                  </EmptyHeader>
-                  <EmptyContent>
-                    <Button>
-                      <BookPlus />
-                      Uploader une fiche de révision
-                    </Button>
-                  </EmptyContent>
-                </Empty>
-              ) : (
-                <div className="grid grid-cols-3 gap-4">
-                  {sheets.map((sheet) => (
-                    <RessourceCard
-                      key={sheet.id}
-                      title={sheet.title}
-                      description={sheet.description}
-                      resourceType={sheet.resourceType}
-                      updatedAt={sheet.updatedAt}
-                      Icon={FileText}
-                    />
-                  ))}
-                </div>
-              )}
-            </TabsContent>
-          </Tabs>
+          {selectedSubject.ressources.length === 0 ? (
+            <Empty className="border">
+              <EmptyHeader>
+                <EmptyMedia variant="icon">
+                  <BookOpen />
+                </EmptyMedia>
+                <EmptyTitle>
+                  Aucun cours disponible pour le moment 😴
+                </EmptyTitle>
+              </EmptyHeader>
+              <EmptyContent>
+                <UploadRessourceDialog subject={selectedSubject} />
+              </EmptyContent>
+            </Empty>
+          ) : (
+            <div className="grid grid-cols-3 gap-4">
+              {selectedSubject.ressources.map((ressource) => (
+                <RessourceCard
+                  key={ressource.id}
+                  title={ressource.title}
+                  description={ressource.description}
+                  updatedAt={ressource.updatedAt}
+                  Icon={FileText}
+                />
+              ))}
+            </div>
+          )}
         </section>
       </div>
     </>

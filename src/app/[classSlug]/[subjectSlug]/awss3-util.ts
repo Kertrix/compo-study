@@ -1,4 +1,5 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { nanoid } from "nanoid";
 
 export const s3Client = new S3Client({
   region: "auto",
@@ -17,8 +18,10 @@ export async function uploadFileToS3(params: {
   const fileBuffer = await params.file.arrayBuffer();
   const buffer = Buffer.from(fileBuffer);
 
-  const fileExtension = params.file.name.split(".").pop();
-  const uniqueFilename = `${params.prefix}/${params.filename ?? Date.now()}.${fileExtension}`;
+  const filename = params.file.name.split(".");
+  const extension = filename.length > 1 ? `.${filename.pop()}` : "";
+
+  const uniqueFilename = `${params.prefix}/${filename.join("-") ?? ""}_${nanoid(10)}${extension}`;
 
   const command = new PutObjectCommand({
     Bucket: process.env.S3_BUCKET_NAME ?? "",
