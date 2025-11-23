@@ -54,6 +54,8 @@ export const ModelName = {
   Class: 'Class',
   Subject: 'Subject',
   Ressource: 'Ressource',
+  Tag: 'Tag',
+  TagCategory: 'TagCategory',
   User: 'User',
   Session: 'Session',
   Account: 'Account',
@@ -109,17 +111,37 @@ export const RessourceScalarFieldEnum = {
   authorId: 'authorId',
   title: 'title',
   description: 'description',
-  resourceType: 'resourceType',
   textContent: 'textContent',
   fileUrl: 'fileUrl',
   mimeType: 'mimeType',
-  type: 'type',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   subjectId: 'subjectId'
 } as const
 
 export type RessourceScalarFieldEnum = (typeof RessourceScalarFieldEnum)[keyof typeof RessourceScalarFieldEnum]
+
+
+export const TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  color: 'color',
+  categoryId: 'categoryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+
+
+export const TagCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug'
+} as const
+
+export type TagCategoryScalarFieldEnum = (typeof TagCategoryScalarFieldEnum)[keyof typeof TagCategoryScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {

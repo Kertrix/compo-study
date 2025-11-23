@@ -55,6 +55,16 @@ export type Subject = Prisma.SubjectModel
  */
 export type Ressource = Prisma.RessourceModel
 /**
+ * Model Tag
+ * 
+ */
+export type Tag = Prisma.TagModel
+/**
+ * Model TagCategory
+ * 
+ */
+export type TagCategory = Prisma.TagCategoryModel
+/**
  * Model User
  * 
  */

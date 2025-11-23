@@ -11,6 +11,8 @@
 export type * from './models/Class.ts'
 export type * from './models/Subject.ts'
 export type * from './models/Ressource.ts'
+export type * from './models/Tag.ts'
+export type * from './models/TagCategory.ts'
 export type * from './models/User.ts'
 export type * from './models/Session.ts'
 export type * from './models/Account.ts'
