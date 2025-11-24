@@ -1,19 +1,11 @@
 import { NavUser } from "@/components/nav-user";
 import { Button } from "@/components/ui/button";
-import {
-  Empty,
-  EmptyContent,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/components/ui/empty";
 import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
-import { ArrowLeft, BookOpen, FileText } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import RessourceCard from "./ressource-card";
-import UploadRessourceDialog from "./upload-dialog";
+import RessourceGrid from "./(ressourceList)/grid";
 
 export default async function SubjectsSelectionPage({
   params,
@@ -107,33 +99,7 @@ export default async function SubjectsSelectionPage({
           </div>
         </section>
         <section className="mt-8">
-          {selectedSubject.ressources.length === 0 ? (
-            <Empty className="border">
-              <EmptyHeader>
-                <EmptyMedia variant="icon">
-                  <BookOpen />
-                </EmptyMedia>
-                <EmptyTitle>
-                  Aucun cours disponible pour le moment 😴
-                </EmptyTitle>
-              </EmptyHeader>
-              <EmptyContent>
-                <UploadRessourceDialog subject={selectedSubject} />
-              </EmptyContent>
-            </Empty>
-          ) : (
-            <div className="grid grid-cols-3 gap-4">
-              {selectedSubject.ressources.map((ressource) => (
-                <RessourceCard
-                  key={ressource.id}
-                  title={ressource.title}
-                  description={ressource.description}
-                  updatedAt={ressource.updatedAt}
-                  Icon={FileText}
-                />
-              ))}
-            </div>
-          )}
+          <RessourceGrid subject={selectedSubject} />
         </section>
       </div>
     </>
