@@ -11,6 +11,9 @@ importers:
       '@aws-sdk/client-s3':
         specifier: ^3.937.0
         version: 3.937.0
+      '@next/env':
+        specifier: ^16.0.4
+        version: 16.0.4
       '@prisma/adapter-pg':
         specifier: ^7.0.0
         version: 7.0.0
@@ -63,7 +66,7 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
       next:
-        specifier: 16.0.3
+        specifier: ^16.0.3
         version: 16.0.3(@babel/core@7.28.5)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       pg:
         specifier: ^8.16.3
@@ -75,10 +78,10 @@ importers:
         specifier: ^1.4.3
         version: 1.4.3(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
-        specifier: 19.2.0
+        specifier: ^19.2.0
         version: 19.2.0
       react-dom:
-        specifier: 19.2.0
+        specifier: ^19.2.0
         version: 19.2.0(react@19.2.0)
       react-dropzone:
         specifier: ^14.3.8
@@ -633,6 +636,9 @@ packages:
 
   '@next/env@16.0.3':
     resolution: {integrity: sha512-IqgtY5Vwsm14mm/nmQaRMmywCU+yyMIYfk3/MHZ2ZTJvwVbBn3usZnjMi1GacrMVzVcAxJShTCpZlPs26EdEjQ==}
+
+  '@next/env@16.0.4':
+    resolution: {integrity: sha512-FDPaVoB1kYhtOz6Le0Jn2QV7RZJ3Ngxzqri7YX4yu3Ini+l5lciR7nA9eNDpKTmDm7LWZtxSju+/CQnwRBn2pA==}
 
   '@next/eslint-plugin-next@16.0.0':
     resolution: {integrity: sha512-IB7RzmmtrPOrpAgEBR1PIQPD0yea5lggh5cq54m51jHjjljU80Ia+czfxJYMlSDl1DPvpzb8S9TalCc0VMo9Hw==}
@@ -4638,6 +4644,8 @@ snapshots:
     optional: true
 
   '@next/env@16.0.3': {}
+
+  '@next/env@16.0.4': {}
 
   '@next/eslint-plugin-next@16.0.0':
     dependencies:
