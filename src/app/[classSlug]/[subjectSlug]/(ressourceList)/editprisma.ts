@@ -19,7 +19,7 @@ export default async function createTag(formData: FormData) {
     },
   });
   return;
-
+}
 
 // <form action={createTag}>
 // <button type="submit" className="hover:bg-red-500 p-2">
