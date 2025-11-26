@@ -15,11 +15,11 @@
  * model files in the `model` directory!
  */
 
-import * as runtime from "@prisma/client/runtime/library"
-import type * as Prisma from "../models"
-import { type PrismaClient } from "./class"
+import * as runtime from "@prisma/client/runtime/client"
+import type * as Prisma from "../models.ts"
+import { type PrismaClient } from "./class.ts"
 
-export type * from '../models'
+export type * from '../models.ts'
 
 export type DMMF = typeof runtime.DMMF
 
@@ -65,14 +65,6 @@ export type Decimal = runtime.Decimal
 export type DecimalJsLike = runtime.DecimalJsLike
 
 /**
- * Metrics
- */
-export type Metrics = runtime.Metrics
-export type Metric<T> = runtime.Metric<T>
-export type MetricHistogram = runtime.MetricHistogram
-export type MetricHistogramBucket = runtime.MetricHistogramBucket
-
-/**
 * Extensions
 */
 export type Extension = runtime.Types.Extensions.UserArgs
@@ -88,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 6.19.0
- * Query Engine version: 2ba551f319ab1df4bc874a89965d8b3641056773
+ * Prisma Client JS version: 7.0.0
+ * Query Engine version: 0c19ccc313cf9911a90d99d2ac2eb0280c76c513
  */
 export const prismaVersion: PrismaVersion = {
-  client: "6.19.0",
-  engine: "2ba551f319ab1df4bc874a89965d8b3641056773"
+  client: "7.0.0",
+  engine: "0c19ccc313cf9911a90d99d2ac2eb0280c76c513"
 }
 
 /**
@@ -110,28 +102,30 @@ export type InputJsonValue = runtime.InputJsonValue
 
 
 export const NullTypes = {
-  DbNull: runtime.objectEnumValues.classes.DbNull as (new (secret: never) => typeof runtime.objectEnumValues.instances.DbNull),
-  JsonNull: runtime.objectEnumValues.classes.JsonNull as (new (secret: never) => typeof runtime.objectEnumValues.instances.JsonNull),
-  AnyNull: runtime.objectEnumValues.classes.AnyNull as (new (secret: never) => typeof runtime.objectEnumValues.instances.AnyNull),
+  DbNull: runtime.NullTypes.DbNull as (new (secret: never) => typeof runtime.DbNull),
+  JsonNull: runtime.NullTypes.JsonNull as (new (secret: never) => typeof runtime.JsonNull),
+  AnyNull: runtime.NullTypes.AnyNull as (new (secret: never) => typeof runtime.AnyNull),
 }
 /**
  * Helper for filtering JSON entries that have `null` on the database (empty on the db)
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const DbNull = runtime.objectEnumValues.instances.DbNull
+export const DbNull = runtime.DbNull
+
 /**
  * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const JsonNull = runtime.objectEnumValues.instances.JsonNull
+export const JsonNull = runtime.JsonNull
+
 /**
  * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const AnyNull = runtime.objectEnumValues.instances.AnyNull
+export const AnyNull = runtime.AnyNull
 
 
 type SelectAndInclude = {
@@ -393,6 +387,8 @@ export const ModelName = {
   Class: 'Class',
   Subject: 'Subject',
   Ressource: 'Ressource',
+  Tag: 'Tag',
+  TagCategory: 'TagCategory',
   User: 'User',
   Session: 'Session',
   Account: 'Account',
@@ -412,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "class" | "subject" | "ressource" | "user" | "session" | "account" | "verification"
+    modelProps: "class" | "subject" | "ressource" | "tag" | "tagCategory" | "user" | "session" | "account" | "verification"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -635,6 +631,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.RessourceCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.RessourceCountAggregateOutputType> | number
+        }
+      }
+    }
+    Tag: {
+      payload: Prisma.$TagPayload<ExtArgs>
+      fields: Prisma.TagFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TagFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TagFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagPayload>
+        }
+        findFirst: {
+          args: Prisma.TagFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TagFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagPayload>
+        }
+        findMany: {
+          args: Prisma.TagFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagPayload>[]
+        }
+        create: {
+          args: Prisma.TagCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagPayload>
+        }
+        createMany: {
+          args: Prisma.TagCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TagCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagPayload>[]
+        }
+        delete: {
+          args: Prisma.TagDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagPayload>
+        }
+        update: {
+          args: Prisma.TagUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagPayload>
+        }
+        deleteMany: {
+          args: Prisma.TagDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TagUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TagUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagPayload>[]
+        }
+        upsert: {
+          args: Prisma.TagUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagPayload>
+        }
+        aggregate: {
+          args: Prisma.TagAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTag>
+        }
+        groupBy: {
+          args: Prisma.TagGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TagGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TagCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TagCountAggregateOutputType> | number
+        }
+      }
+    }
+    TagCategory: {
+      payload: Prisma.$TagCategoryPayload<ExtArgs>
+      fields: Prisma.TagCategoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TagCategoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagCategoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TagCategoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagCategoryPayload>
+        }
+        findFirst: {
+          args: Prisma.TagCategoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagCategoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TagCategoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagCategoryPayload>
+        }
+        findMany: {
+          args: Prisma.TagCategoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagCategoryPayload>[]
+        }
+        create: {
+          args: Prisma.TagCategoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagCategoryPayload>
+        }
+        createMany: {
+          args: Prisma.TagCategoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TagCategoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagCategoryPayload>[]
+        }
+        delete: {
+          args: Prisma.TagCategoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagCategoryPayload>
+        }
+        update: {
+          args: Prisma.TagCategoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagCategoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.TagCategoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TagCategoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TagCategoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagCategoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.TagCategoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TagCategoryPayload>
+        }
+        aggregate: {
+          args: Prisma.TagCategoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTagCategory>
+        }
+        groupBy: {
+          args: Prisma.TagCategoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TagCategoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TagCategoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TagCategoryCountAggregateOutputType> | number
         }
       }
     }
@@ -1006,17 +1150,37 @@ export const RessourceScalarFieldEnum = {
   authorId: 'authorId',
   title: 'title',
   description: 'description',
-  resourceType: 'resourceType',
   textContent: 'textContent',
   fileUrl: 'fileUrl',
   mimeType: 'mimeType',
-  type: 'type',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   subjectId: 'subjectId'
 } as const
 
 export type RessourceScalarFieldEnum = (typeof RessourceScalarFieldEnum)[keyof typeof RessourceScalarFieldEnum]
+
+
+export const TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  color: 'color',
+  categoryId: 'categoryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+
+
+export const TagCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug'
+} as const
+
+export type TagCategoryScalarFieldEnum = (typeof TagCategoryScalarFieldEnum)[keyof typeof TagCategoryScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -1137,34 +1301,6 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'RessourceType'
- */
-export type EnumRessourceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RessourceType'>
-    
-
-
-/**
- * Reference to a field of type 'RessourceType[]'
- */
-export type ListEnumRessourceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RessourceType[]'>
-    
-
-
-/**
- * Reference to a field of type 'Type'
- */
-export type EnumTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Type'>
-    
-
-
-/**
- * Reference to a field of type 'Type[]'
- */
-export type ListEnumTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Type[]'>
-    
-
-
-/**
  * Reference to a field of type 'Role'
  */
 export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
@@ -1205,26 +1341,22 @@ export type BatchPayload = {
   count: number
 }
 
-
-export type Datasource = {
-  url?: string
-}
-export type Datasources = {
-  db?: Datasource
-}
-
 export const defineExtension = runtime.Extensions.defineExtension as unknown as runtime.Types.Extensions.ExtendsHook<"define", TypeMapCb, runtime.Types.Extensions.DefaultArgs>
 export type DefaultPrismaClient = PrismaClient
 export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
-export interface PrismaClientOptions {
+export type PrismaClientOptions = ({
   /**
-   * Overwrites the datasource url from your schema.prisma file
+   * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-pg`.
    */
-  datasources?: Datasources
+  adapter: runtime.SqlDriverAdapterFactory
+  accelerateUrl?: never
+} | {
   /**
-   * Overwrites the datasource url from your schema.prisma file
+   * Prisma Accelerate URL allowing the client to connect through Accelerate instead of a direct database.
    */
-  datasourceUrl?: string
+  accelerateUrl: string
+  adapter?: never
+}) & {
   /**
    * @default "colorless"
    */
@@ -1265,10 +1397,6 @@ export interface PrismaClientOptions {
     isolationLevel?: TransactionIsolationLevel
   }
   /**
-   * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
-   */
-  adapter?: runtime.SqlDriverAdapterFactory | null
-  /**
    * Global configuration for omitting model fields by default.
    * 
    * @example
@@ -1288,6 +1416,8 @@ export type GlobalOmitConfig = {
   class?: Prisma.ClassOmit
   subject?: Prisma.SubjectOmit
   ressource?: Prisma.RessourceOmit
+  tag?: Prisma.TagOmit
+  tagCategory?: Prisma.TagCategoryOmit
   user?: Prisma.UserOmit
   session?: Prisma.SessionOmit
   account?: Prisma.AccountOmit

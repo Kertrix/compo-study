@@ -9,9 +9,9 @@
  * 🟢 You can import this file directly.
  */
 
-import type * as runtime from "@prisma/client/runtime/library"
-import * as $Enums from "./enums"
-import type * as Prisma from "./internal/prismaNamespace"
+import type * as runtime from "@prisma/client/runtime/client"
+import * as $Enums from "./enums.ts"
+import type * as Prisma from "./internal/prismaNamespace.ts"
 
 
 export type StringFilter<$PrismaModel = never> = {
@@ -133,40 +133,6 @@ export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
   _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
-}
-
-export type EnumRessourceTypeFilter<$PrismaModel = never> = {
-  equals?: $Enums.RessourceType | Prisma.EnumRessourceTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.RessourceType[] | Prisma.ListEnumRessourceTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.RessourceType[] | Prisma.ListEnumRessourceTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumRessourceTypeFilter<$PrismaModel> | $Enums.RessourceType
-}
-
-export type EnumTypeFilter<$PrismaModel = never> = {
-  equals?: $Enums.Type | Prisma.EnumTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.Type[] | Prisma.ListEnumTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.Type[] | Prisma.ListEnumTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumTypeFilter<$PrismaModel> | $Enums.Type
-}
-
-export type EnumRessourceTypeWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.RessourceType | Prisma.EnumRessourceTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.RessourceType[] | Prisma.ListEnumRessourceTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.RessourceType[] | Prisma.ListEnumRessourceTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumRessourceTypeWithAggregatesFilter<$PrismaModel> | $Enums.RessourceType
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumRessourceTypeFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumRessourceTypeFilter<$PrismaModel>
-}
-
-export type EnumTypeWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.Type | Prisma.EnumTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.Type[] | Prisma.ListEnumTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.Type[] | Prisma.ListEnumTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumTypeWithAggregatesFilter<$PrismaModel> | $Enums.Type
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumTypeFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumTypeFilter<$PrismaModel>
 }
 
 export type EnumRoleFilter<$PrismaModel = never> = {
@@ -331,40 +297,6 @@ export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
   _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
-}
-
-export type NestedEnumRessourceTypeFilter<$PrismaModel = never> = {
-  equals?: $Enums.RessourceType | Prisma.EnumRessourceTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.RessourceType[] | Prisma.ListEnumRessourceTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.RessourceType[] | Prisma.ListEnumRessourceTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumRessourceTypeFilter<$PrismaModel> | $Enums.RessourceType
-}
-
-export type NestedEnumTypeFilter<$PrismaModel = never> = {
-  equals?: $Enums.Type | Prisma.EnumTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.Type[] | Prisma.ListEnumTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.Type[] | Prisma.ListEnumTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumTypeFilter<$PrismaModel> | $Enums.Type
-}
-
-export type NestedEnumRessourceTypeWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.RessourceType | Prisma.EnumRessourceTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.RessourceType[] | Prisma.ListEnumRessourceTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.RessourceType[] | Prisma.ListEnumRessourceTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumRessourceTypeWithAggregatesFilter<$PrismaModel> | $Enums.RessourceType
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumRessourceTypeFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumRessourceTypeFilter<$PrismaModel>
-}
-
-export type NestedEnumTypeWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.Type | Prisma.EnumTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.Type[] | Prisma.ListEnumTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.Type[] | Prisma.ListEnumTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumTypeWithAggregatesFilter<$PrismaModel> | $Enums.Type
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumTypeFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumTypeFilter<$PrismaModel>
 }
 
 export type NestedEnumRoleFilter<$PrismaModel = never> = {

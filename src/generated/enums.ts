@@ -9,25 +9,6 @@
 * 🟢 You can import this file directly.
 */
 
-export const RessourceType = {
-  TEXT: 'TEXT',
-  DOCUMENT: 'DOCUMENT',
-  IMAGE: 'IMAGE',
-  OTHER: 'OTHER'
-} as const
-
-export type RessourceType = (typeof RessourceType)[keyof typeof RessourceType]
-
-
-export const Type = {
-  COURSE: 'COURSE',
-  REVISION: 'REVISION',
-  OTHER: 'OTHER'
-} as const
-
-export type Type = (typeof Type)[keyof typeof Type]
-
-
 export const Role = {
   ADMIN: 'ADMIN',
   PROFESSOR: 'PROFESSOR',

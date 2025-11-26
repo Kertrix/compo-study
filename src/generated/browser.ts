@@ -13,10 +13,10 @@
  * 🟢 You can import this file directly.
  */
 
-import * as Prisma from './internal/prismaNamespaceBrowser'
+import * as Prisma from './internal/prismaNamespaceBrowser.ts'
 export { Prisma }
-export * as $Enums from './enums'
-export * from './enums';
+export * as $Enums from './enums.ts'
+export * from './enums.ts';
 /**
  * Model Class
  * 
@@ -32,6 +32,16 @@ export type Subject = Prisma.SubjectModel
  * 
  */
 export type Ressource = Prisma.RessourceModel
+/**
+ * Model Tag
+ * 
+ */
+export type Tag = Prisma.TagModel
+/**
+ * Model TagCategory
+ * 
+ */
+export type TagCategory = Prisma.TagCategoryModel
 /**
  * Model User
  * 

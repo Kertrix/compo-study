@@ -7,11 +7,13 @@
 generator client {
   provider = "prisma-client"
   output   = "../generated"
+  moduleFormat = "esm"
+  generatedFileExtension = "ts"
+  importFileExtension = "ts"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model Class {
@@ -50,30 +52,35 @@ model Ressource {
   author       User          @relation(fields: [authorId], references: [id])
   title        String
   description  String?
-  resourceType RessourceType
   textContent  String?
   fileUrl      String?
   mimeType     String?
-  type         Type
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   subjectId String
   subject   Subject @relation(fields: [subjectId], references: [id])
+  tags      Tag[]   @relation("RessourceTags")
 }
 
-enum RessourceType {
-  TEXT
-  DOCUMENT
-  IMAGE
-  OTHER
+model Tag {
+  id        String   @id @default(cuid(2))
+  name      String   @unique
+  slug      String   @unique
+  color     String?
+  categoryId String
+  category   TagCategory @relation(fields: [categoryId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ressources Ressource[] @relation("RessourceTags")
 }
 
-enum Type {
-  COURSE
-  REVISION
-  OTHER
+model TagCategory {
+  id        String   @id @default(cuid(2))
+  name      String   @unique
+  slug      String   @unique
+  tags     Tag[]
 }
 
 model User {

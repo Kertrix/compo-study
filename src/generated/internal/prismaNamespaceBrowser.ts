@@ -17,41 +17,45 @@
 
 import * as runtime from "@prisma/client/runtime/index-browser"
 
-export type * from '../models'
-export type * from './prismaNamespace'
+export type * from '../models.ts'
+export type * from './prismaNamespace.ts'
 
 export const Decimal = runtime.Decimal
 
 
 export const NullTypes = {
-  DbNull: runtime.objectEnumValues.classes.DbNull as (new (secret: never) => typeof runtime.objectEnumValues.instances.DbNull),
-  JsonNull: runtime.objectEnumValues.classes.JsonNull as (new (secret: never) => typeof runtime.objectEnumValues.instances.JsonNull),
-  AnyNull: runtime.objectEnumValues.classes.AnyNull as (new (secret: never) => typeof runtime.objectEnumValues.instances.AnyNull),
+  DbNull: runtime.NullTypes.DbNull as (new (secret: never) => typeof runtime.DbNull),
+  JsonNull: runtime.NullTypes.JsonNull as (new (secret: never) => typeof runtime.JsonNull),
+  AnyNull: runtime.NullTypes.AnyNull as (new (secret: never) => typeof runtime.AnyNull),
 }
 /**
  * Helper for filtering JSON entries that have `null` on the database (empty on the db)
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const DbNull = runtime.objectEnumValues.instances.DbNull
+export const DbNull = runtime.DbNull
+
 /**
  * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const JsonNull = runtime.objectEnumValues.instances.JsonNull
+export const JsonNull = runtime.JsonNull
+
 /**
  * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const AnyNull = runtime.objectEnumValues.instances.AnyNull
+export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
   Class: 'Class',
   Subject: 'Subject',
   Ressource: 'Ressource',
+  Tag: 'Tag',
+  TagCategory: 'TagCategory',
   User: 'User',
   Session: 'Session',
   Account: 'Account',
@@ -64,12 +68,12 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName]
  * Enums
  */
 
-export const TransactionIsolationLevel = runtime.makeStrictEnum({
+export const TransactionIsolationLevel = {
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
   RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
-} as const)
+} as const
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
@@ -107,17 +111,37 @@ export const RessourceScalarFieldEnum = {
   authorId: 'authorId',
   title: 'title',
   description: 'description',
-  resourceType: 'resourceType',
   textContent: 'textContent',
   fileUrl: 'fileUrl',
   mimeType: 'mimeType',
-  type: 'type',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   subjectId: 'subjectId'
 } as const
 
 export type RessourceScalarFieldEnum = (typeof RessourceScalarFieldEnum)[keyof typeof RessourceScalarFieldEnum]
+
+
+export const TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  color: 'color',
+  categoryId: 'categoryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+
+
+export const TagCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug'
+} as const
+
+export type TagCategoryScalarFieldEnum = (typeof TagCategoryScalarFieldEnum)[keyof typeof TagCategoryScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {

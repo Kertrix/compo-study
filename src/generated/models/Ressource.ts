@@ -8,9 +8,9 @@
  *
  * 🟢 You can import this file directly.
  */
-import type * as runtime from "@prisma/client/runtime/library"
-import type * as $Enums from "../enums"
-import type * as Prisma from "../internal/prismaNamespace"
+import type * as runtime from "@prisma/client/runtime/client"
+import type * as $Enums from "../enums.ts"
+import type * as Prisma from "../internal/prismaNamespace.ts"
 
 /**
  * Model Ressource
@@ -29,11 +29,9 @@ export type RessourceMinAggregateOutputType = {
   authorId: string | null
   title: string | null
   description: string | null
-  resourceType: $Enums.RessourceType | null
   textContent: string | null
   fileUrl: string | null
   mimeType: string | null
-  type: $Enums.Type | null
   createdAt: Date | null
   updatedAt: Date | null
   subjectId: string | null
@@ -44,11 +42,9 @@ export type RessourceMaxAggregateOutputType = {
   authorId: string | null
   title: string | null
   description: string | null
-  resourceType: $Enums.RessourceType | null
   textContent: string | null
   fileUrl: string | null
   mimeType: string | null
-  type: $Enums.Type | null
   createdAt: Date | null
   updatedAt: Date | null
   subjectId: string | null
@@ -59,11 +55,9 @@ export type RessourceCountAggregateOutputType = {
   authorId: number
   title: number
   description: number
-  resourceType: number
   textContent: number
   fileUrl: number
   mimeType: number
-  type: number
   createdAt: number
   updatedAt: number
   subjectId: number
@@ -76,11 +70,9 @@ export type RessourceMinAggregateInputType = {
   authorId?: true
   title?: true
   description?: true
-  resourceType?: true
   textContent?: true
   fileUrl?: true
   mimeType?: true
-  type?: true
   createdAt?: true
   updatedAt?: true
   subjectId?: true
@@ -91,11 +83,9 @@ export type RessourceMaxAggregateInputType = {
   authorId?: true
   title?: true
   description?: true
-  resourceType?: true
   textContent?: true
   fileUrl?: true
   mimeType?: true
-  type?: true
   createdAt?: true
   updatedAt?: true
   subjectId?: true
@@ -106,11 +96,9 @@ export type RessourceCountAggregateInputType = {
   authorId?: true
   title?: true
   description?: true
-  resourceType?: true
   textContent?: true
   fileUrl?: true
   mimeType?: true
-  type?: true
   createdAt?: true
   updatedAt?: true
   subjectId?: true
@@ -194,11 +182,9 @@ export type RessourceGroupByOutputType = {
   authorId: string
   title: string
   description: string | null
-  resourceType: $Enums.RessourceType
   textContent: string | null
   fileUrl: string | null
   mimeType: string | null
-  type: $Enums.Type
   createdAt: Date
   updatedAt: Date
   subjectId: string
@@ -230,16 +216,15 @@ export type RessourceWhereInput = {
   authorId?: Prisma.StringFilter<"Ressource"> | string
   title?: Prisma.StringFilter<"Ressource"> | string
   description?: Prisma.StringNullableFilter<"Ressource"> | string | null
-  resourceType?: Prisma.EnumRessourceTypeFilter<"Ressource"> | $Enums.RessourceType
   textContent?: Prisma.StringNullableFilter<"Ressource"> | string | null
   fileUrl?: Prisma.StringNullableFilter<"Ressource"> | string | null
   mimeType?: Prisma.StringNullableFilter<"Ressource"> | string | null
-  type?: Prisma.EnumTypeFilter<"Ressource"> | $Enums.Type
   createdAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   subjectId?: Prisma.StringFilter<"Ressource"> | string
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
+  tags?: Prisma.TagListRelationFilter
 }
 
 export type RessourceOrderByWithRelationInput = {
@@ -247,16 +232,15 @@ export type RessourceOrderByWithRelationInput = {
   authorId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  resourceType?: Prisma.SortOrder
   textContent?: Prisma.SortOrderInput | Prisma.SortOrder
   fileUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   mimeType?: Prisma.SortOrderInput | Prisma.SortOrder
-  type?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
   author?: Prisma.UserOrderByWithRelationInput
   subject?: Prisma.SubjectOrderByWithRelationInput
+  tags?: Prisma.TagOrderByRelationAggregateInput
 }
 
 export type RessourceWhereUniqueInput = Prisma.AtLeast<{
@@ -267,16 +251,15 @@ export type RessourceWhereUniqueInput = Prisma.AtLeast<{
   authorId?: Prisma.StringFilter<"Ressource"> | string
   title?: Prisma.StringFilter<"Ressource"> | string
   description?: Prisma.StringNullableFilter<"Ressource"> | string | null
-  resourceType?: Prisma.EnumRessourceTypeFilter<"Ressource"> | $Enums.RessourceType
   textContent?: Prisma.StringNullableFilter<"Ressource"> | string | null
   fileUrl?: Prisma.StringNullableFilter<"Ressource"> | string | null
   mimeType?: Prisma.StringNullableFilter<"Ressource"> | string | null
-  type?: Prisma.EnumTypeFilter<"Ressource"> | $Enums.Type
   createdAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   subjectId?: Prisma.StringFilter<"Ressource"> | string
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
+  tags?: Prisma.TagListRelationFilter
 }, "id">
 
 export type RessourceOrderByWithAggregationInput = {
@@ -284,11 +267,9 @@ export type RessourceOrderByWithAggregationInput = {
   authorId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  resourceType?: Prisma.SortOrder
   textContent?: Prisma.SortOrderInput | Prisma.SortOrder
   fileUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   mimeType?: Prisma.SortOrderInput | Prisma.SortOrder
-  type?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
@@ -305,11 +286,9 @@ export type RessourceScalarWhereWithAggregatesInput = {
   authorId?: Prisma.StringWithAggregatesFilter<"Ressource"> | string
   title?: Prisma.StringWithAggregatesFilter<"Ressource"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Ressource"> | string | null
-  resourceType?: Prisma.EnumRessourceTypeWithAggregatesFilter<"Ressource"> | $Enums.RessourceType
   textContent?: Prisma.StringNullableWithAggregatesFilter<"Ressource"> | string | null
   fileUrl?: Prisma.StringNullableWithAggregatesFilter<"Ressource"> | string | null
   mimeType?: Prisma.StringNullableWithAggregatesFilter<"Ressource"> | string | null
-  type?: Prisma.EnumTypeWithAggregatesFilter<"Ressource"> | $Enums.Type
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Ressource"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Ressource"> | Date | string
   subjectId?: Prisma.StringWithAggregatesFilter<"Ressource"> | string
@@ -319,15 +298,14 @@ export type RessourceCreateInput = {
   id?: string
   title: string
   description?: string | null
-  resourceType: $Enums.RessourceType
   textContent?: string | null
   fileUrl?: string | null
   mimeType?: string | null
-  type: $Enums.Type
   createdAt?: Date | string
   updatedAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutRessourcesInput
   subject: Prisma.SubjectCreateNestedOneWithoutRessourcesInput
+  tags?: Prisma.TagCreateNestedManyWithoutRessourcesInput
 }
 
 export type RessourceUncheckedCreateInput = {
@@ -335,29 +313,27 @@ export type RessourceUncheckedCreateInput = {
   authorId: string
   title: string
   description?: string | null
-  resourceType: $Enums.RessourceType
   textContent?: string | null
   fileUrl?: string | null
   mimeType?: string | null
-  type: $Enums.Type
   createdAt?: Date | string
   updatedAt?: Date | string
   subjectId: string
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutRessourcesInput
 }
 
 export type RessourceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resourceType?: Prisma.EnumRessourceTypeFieldUpdateOperationsInput | $Enums.RessourceType
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutRessourcesNestedInput
   subject?: Prisma.SubjectUpdateOneRequiredWithoutRessourcesNestedInput
+  tags?: Prisma.TagUpdateManyWithoutRessourcesNestedInput
 }
 
 export type RessourceUncheckedUpdateInput = {
@@ -365,14 +341,13 @@ export type RessourceUncheckedUpdateInput = {
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resourceType?: Prisma.EnumRessourceTypeFieldUpdateOperationsInput | $Enums.RessourceType
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+  tags?: Prisma.TagUncheckedUpdateManyWithoutRessourcesNestedInput
 }
 
 export type RessourceCreateManyInput = {
@@ -380,11 +355,9 @@ export type RessourceCreateManyInput = {
   authorId: string
   title: string
   description?: string | null
-  resourceType: $Enums.RessourceType
   textContent?: string | null
   fileUrl?: string | null
   mimeType?: string | null
-  type: $Enums.Type
   createdAt?: Date | string
   updatedAt?: Date | string
   subjectId: string
@@ -394,11 +367,9 @@ export type RessourceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resourceType?: Prisma.EnumRessourceTypeFieldUpdateOperationsInput | $Enums.RessourceType
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -408,11 +379,9 @@ export type RessourceUncheckedUpdateManyInput = {
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resourceType?: Prisma.EnumRessourceTypeFieldUpdateOperationsInput | $Enums.RessourceType
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -433,11 +402,9 @@ export type RessourceCountOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  resourceType?: Prisma.SortOrder
   textContent?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
@@ -448,11 +415,9 @@ export type RessourceMaxOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  resourceType?: Prisma.SortOrder
   textContent?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
@@ -463,11 +428,9 @@ export type RessourceMinOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  resourceType?: Prisma.SortOrder
   textContent?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
@@ -515,12 +478,42 @@ export type RessourceUncheckedUpdateManyWithoutSubjectNestedInput = {
   deleteMany?: Prisma.RessourceScalarWhereInput | Prisma.RessourceScalarWhereInput[]
 }
 
-export type EnumRessourceTypeFieldUpdateOperationsInput = {
-  set?: $Enums.RessourceType
+export type RessourceCreateNestedManyWithoutTagsInput = {
+  create?: Prisma.XOR<Prisma.RessourceCreateWithoutTagsInput, Prisma.RessourceUncheckedCreateWithoutTagsInput> | Prisma.RessourceCreateWithoutTagsInput[] | Prisma.RessourceUncheckedCreateWithoutTagsInput[]
+  connectOrCreate?: Prisma.RessourceCreateOrConnectWithoutTagsInput | Prisma.RessourceCreateOrConnectWithoutTagsInput[]
+  connect?: Prisma.RessourceWhereUniqueInput | Prisma.RessourceWhereUniqueInput[]
 }
 
-export type EnumTypeFieldUpdateOperationsInput = {
-  set?: $Enums.Type
+export type RessourceUncheckedCreateNestedManyWithoutTagsInput = {
+  create?: Prisma.XOR<Prisma.RessourceCreateWithoutTagsInput, Prisma.RessourceUncheckedCreateWithoutTagsInput> | Prisma.RessourceCreateWithoutTagsInput[] | Prisma.RessourceUncheckedCreateWithoutTagsInput[]
+  connectOrCreate?: Prisma.RessourceCreateOrConnectWithoutTagsInput | Prisma.RessourceCreateOrConnectWithoutTagsInput[]
+  connect?: Prisma.RessourceWhereUniqueInput | Prisma.RessourceWhereUniqueInput[]
+}
+
+export type RessourceUpdateManyWithoutTagsNestedInput = {
+  create?: Prisma.XOR<Prisma.RessourceCreateWithoutTagsInput, Prisma.RessourceUncheckedCreateWithoutTagsInput> | Prisma.RessourceCreateWithoutTagsInput[] | Prisma.RessourceUncheckedCreateWithoutTagsInput[]
+  connectOrCreate?: Prisma.RessourceCreateOrConnectWithoutTagsInput | Prisma.RessourceCreateOrConnectWithoutTagsInput[]
+  upsert?: Prisma.RessourceUpsertWithWhereUniqueWithoutTagsInput | Prisma.RessourceUpsertWithWhereUniqueWithoutTagsInput[]
+  set?: Prisma.RessourceWhereUniqueInput | Prisma.RessourceWhereUniqueInput[]
+  disconnect?: Prisma.RessourceWhereUniqueInput | Prisma.RessourceWhereUniqueInput[]
+  delete?: Prisma.RessourceWhereUniqueInput | Prisma.RessourceWhereUniqueInput[]
+  connect?: Prisma.RessourceWhereUniqueInput | Prisma.RessourceWhereUniqueInput[]
+  update?: Prisma.RessourceUpdateWithWhereUniqueWithoutTagsInput | Prisma.RessourceUpdateWithWhereUniqueWithoutTagsInput[]
+  updateMany?: Prisma.RessourceUpdateManyWithWhereWithoutTagsInput | Prisma.RessourceUpdateManyWithWhereWithoutTagsInput[]
+  deleteMany?: Prisma.RessourceScalarWhereInput | Prisma.RessourceScalarWhereInput[]
+}
+
+export type RessourceUncheckedUpdateManyWithoutTagsNestedInput = {
+  create?: Prisma.XOR<Prisma.RessourceCreateWithoutTagsInput, Prisma.RessourceUncheckedCreateWithoutTagsInput> | Prisma.RessourceCreateWithoutTagsInput[] | Prisma.RessourceUncheckedCreateWithoutTagsInput[]
+  connectOrCreate?: Prisma.RessourceCreateOrConnectWithoutTagsInput | Prisma.RessourceCreateOrConnectWithoutTagsInput[]
+  upsert?: Prisma.RessourceUpsertWithWhereUniqueWithoutTagsInput | Prisma.RessourceUpsertWithWhereUniqueWithoutTagsInput[]
+  set?: Prisma.RessourceWhereUniqueInput | Prisma.RessourceWhereUniqueInput[]
+  disconnect?: Prisma.RessourceWhereUniqueInput | Prisma.RessourceWhereUniqueInput[]
+  delete?: Prisma.RessourceWhereUniqueInput | Prisma.RessourceWhereUniqueInput[]
+  connect?: Prisma.RessourceWhereUniqueInput | Prisma.RessourceWhereUniqueInput[]
+  update?: Prisma.RessourceUpdateWithWhereUniqueWithoutTagsInput | Prisma.RessourceUpdateWithWhereUniqueWithoutTagsInput[]
+  updateMany?: Prisma.RessourceUpdateManyWithWhereWithoutTagsInput | Prisma.RessourceUpdateManyWithWhereWithoutTagsInput[]
+  deleteMany?: Prisma.RessourceScalarWhereInput | Prisma.RessourceScalarWhereInput[]
 }
 
 export type RessourceCreateNestedManyWithoutAuthorInput = {
@@ -569,14 +562,13 @@ export type RessourceCreateWithoutSubjectInput = {
   id?: string
   title: string
   description?: string | null
-  resourceType: $Enums.RessourceType
   textContent?: string | null
   fileUrl?: string | null
   mimeType?: string | null
-  type: $Enums.Type
   createdAt?: Date | string
   updatedAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutRessourcesInput
+  tags?: Prisma.TagCreateNestedManyWithoutRessourcesInput
 }
 
 export type RessourceUncheckedCreateWithoutSubjectInput = {
@@ -584,13 +576,12 @@ export type RessourceUncheckedCreateWithoutSubjectInput = {
   authorId: string
   title: string
   description?: string | null
-  resourceType: $Enums.RessourceType
   textContent?: string | null
   fileUrl?: string | null
   mimeType?: string | null
-  type: $Enums.Type
   createdAt?: Date | string
   updatedAt?: Date | string
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutRessourcesInput
 }
 
 export type RessourceCreateOrConnectWithoutSubjectInput = {
@@ -627,42 +618,85 @@ export type RessourceScalarWhereInput = {
   authorId?: Prisma.StringFilter<"Ressource"> | string
   title?: Prisma.StringFilter<"Ressource"> | string
   description?: Prisma.StringNullableFilter<"Ressource"> | string | null
-  resourceType?: Prisma.EnumRessourceTypeFilter<"Ressource"> | $Enums.RessourceType
   textContent?: Prisma.StringNullableFilter<"Ressource"> | string | null
   fileUrl?: Prisma.StringNullableFilter<"Ressource"> | string | null
   mimeType?: Prisma.StringNullableFilter<"Ressource"> | string | null
-  type?: Prisma.EnumTypeFilter<"Ressource"> | $Enums.Type
   createdAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   subjectId?: Prisma.StringFilter<"Ressource"> | string
+}
+
+export type RessourceCreateWithoutTagsInput = {
+  id?: string
+  title: string
+  description?: string | null
+  textContent?: string | null
+  fileUrl?: string | null
+  mimeType?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  author: Prisma.UserCreateNestedOneWithoutRessourcesInput
+  subject: Prisma.SubjectCreateNestedOneWithoutRessourcesInput
+}
+
+export type RessourceUncheckedCreateWithoutTagsInput = {
+  id?: string
+  authorId: string
+  title: string
+  description?: string | null
+  textContent?: string | null
+  fileUrl?: string | null
+  mimeType?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subjectId: string
+}
+
+export type RessourceCreateOrConnectWithoutTagsInput = {
+  where: Prisma.RessourceWhereUniqueInput
+  create: Prisma.XOR<Prisma.RessourceCreateWithoutTagsInput, Prisma.RessourceUncheckedCreateWithoutTagsInput>
+}
+
+export type RessourceUpsertWithWhereUniqueWithoutTagsInput = {
+  where: Prisma.RessourceWhereUniqueInput
+  update: Prisma.XOR<Prisma.RessourceUpdateWithoutTagsInput, Prisma.RessourceUncheckedUpdateWithoutTagsInput>
+  create: Prisma.XOR<Prisma.RessourceCreateWithoutTagsInput, Prisma.RessourceUncheckedCreateWithoutTagsInput>
+}
+
+export type RessourceUpdateWithWhereUniqueWithoutTagsInput = {
+  where: Prisma.RessourceWhereUniqueInput
+  data: Prisma.XOR<Prisma.RessourceUpdateWithoutTagsInput, Prisma.RessourceUncheckedUpdateWithoutTagsInput>
+}
+
+export type RessourceUpdateManyWithWhereWithoutTagsInput = {
+  where: Prisma.RessourceScalarWhereInput
+  data: Prisma.XOR<Prisma.RessourceUpdateManyMutationInput, Prisma.RessourceUncheckedUpdateManyWithoutTagsInput>
 }
 
 export type RessourceCreateWithoutAuthorInput = {
   id?: string
   title: string
   description?: string | null
-  resourceType: $Enums.RessourceType
   textContent?: string | null
   fileUrl?: string | null
   mimeType?: string | null
-  type: $Enums.Type
   createdAt?: Date | string
   updatedAt?: Date | string
   subject: Prisma.SubjectCreateNestedOneWithoutRessourcesInput
+  tags?: Prisma.TagCreateNestedManyWithoutRessourcesInput
 }
 
 export type RessourceUncheckedCreateWithoutAuthorInput = {
   id?: string
   title: string
   description?: string | null
-  resourceType: $Enums.RessourceType
   textContent?: string | null
   fileUrl?: string | null
   mimeType?: string | null
-  type: $Enums.Type
   createdAt?: Date | string
   updatedAt?: Date | string
   subjectId: string
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutRessourcesInput
 }
 
 export type RessourceCreateOrConnectWithoutAuthorInput = {
@@ -696,11 +730,9 @@ export type RessourceCreateManySubjectInput = {
   authorId: string
   title: string
   description?: string | null
-  resourceType: $Enums.RessourceType
   textContent?: string | null
   fileUrl?: string | null
   mimeType?: string | null
-  type: $Enums.Type
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -709,14 +741,13 @@ export type RessourceUpdateWithoutSubjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resourceType?: Prisma.EnumRessourceTypeFieldUpdateOperationsInput | $Enums.RessourceType
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutRessourcesNestedInput
+  tags?: Prisma.TagUpdateManyWithoutRessourcesNestedInput
 }
 
 export type RessourceUncheckedUpdateWithoutSubjectInput = {
@@ -724,13 +755,12 @@ export type RessourceUncheckedUpdateWithoutSubjectInput = {
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resourceType?: Prisma.EnumRessourceTypeFieldUpdateOperationsInput | $Enums.RessourceType
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tags?: Prisma.TagUncheckedUpdateManyWithoutRessourcesNestedInput
 }
 
 export type RessourceUncheckedUpdateManyWithoutSubjectInput = {
@@ -738,24 +768,59 @@ export type RessourceUncheckedUpdateManyWithoutSubjectInput = {
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resourceType?: Prisma.EnumRessourceTypeFieldUpdateOperationsInput | $Enums.RessourceType
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type RessourceUpdateWithoutTagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  author?: Prisma.UserUpdateOneRequiredWithoutRessourcesNestedInput
+  subject?: Prisma.SubjectUpdateOneRequiredWithoutRessourcesNestedInput
+}
+
+export type RessourceUncheckedUpdateWithoutTagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  authorId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type RessourceUncheckedUpdateManyWithoutTagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  authorId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subjectId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type RessourceCreateManyAuthorInput = {
   id?: string
   title: string
   description?: string | null
-  resourceType: $Enums.RessourceType
   textContent?: string | null
   fileUrl?: string | null
   mimeType?: string | null
-  type: $Enums.Type
   createdAt?: Date | string
   updatedAt?: Date | string
   subjectId: string
@@ -765,44 +830,69 @@ export type RessourceUpdateWithoutAuthorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resourceType?: Prisma.EnumRessourceTypeFieldUpdateOperationsInput | $Enums.RessourceType
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subject?: Prisma.SubjectUpdateOneRequiredWithoutRessourcesNestedInput
+  tags?: Prisma.TagUpdateManyWithoutRessourcesNestedInput
 }
 
 export type RessourceUncheckedUpdateWithoutAuthorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resourceType?: Prisma.EnumRessourceTypeFieldUpdateOperationsInput | $Enums.RessourceType
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+  tags?: Prisma.TagUncheckedUpdateManyWithoutRessourcesNestedInput
 }
 
 export type RessourceUncheckedUpdateManyWithoutAuthorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resourceType?: Prisma.EnumRessourceTypeFieldUpdateOperationsInput | $Enums.RessourceType
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
+
+/**
+ * Count Type RessourceCountOutputType
+ */
+
+export type RessourceCountOutputType = {
+  tags: number
+}
+
+export type RessourceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tags?: boolean | RessourceCountOutputTypeCountTagsArgs
+}
+
+/**
+ * RessourceCountOutputType without action
+ */
+export type RessourceCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RessourceCountOutputType
+   */
+  select?: Prisma.RessourceCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * RessourceCountOutputType without action
+ */
+export type RessourceCountOutputTypeCountTagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TagWhereInput
+}
 
 
 export type RessourceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -810,16 +900,16 @@ export type RessourceSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   authorId?: boolean
   title?: boolean
   description?: boolean
-  resourceType?: boolean
   textContent?: boolean
   fileUrl?: boolean
   mimeType?: boolean
-  type?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   subjectId?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  tags?: boolean | Prisma.Ressource$tagsArgs<ExtArgs>
+  _count?: boolean | Prisma.RessourceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["ressource"]>
 
 export type RessourceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -827,11 +917,9 @@ export type RessourceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   authorId?: boolean
   title?: boolean
   description?: boolean
-  resourceType?: boolean
   textContent?: boolean
   fileUrl?: boolean
   mimeType?: boolean
-  type?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   subjectId?: boolean
@@ -844,11 +932,9 @@ export type RessourceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   authorId?: boolean
   title?: boolean
   description?: boolean
-  resourceType?: boolean
   textContent?: boolean
   fileUrl?: boolean
   mimeType?: boolean
-  type?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   subjectId?: boolean
@@ -861,20 +947,20 @@ export type RessourceSelectScalar = {
   authorId?: boolean
   title?: boolean
   description?: boolean
-  resourceType?: boolean
   textContent?: boolean
   fileUrl?: boolean
   mimeType?: boolean
-  type?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   subjectId?: boolean
 }
 
-export type RessourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "authorId" | "title" | "description" | "resourceType" | "textContent" | "fileUrl" | "mimeType" | "type" | "createdAt" | "updatedAt" | "subjectId", ExtArgs["result"]["ressource"]>
+export type RessourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "authorId" | "title" | "description" | "textContent" | "fileUrl" | "mimeType" | "createdAt" | "updatedAt" | "subjectId", ExtArgs["result"]["ressource"]>
 export type RessourceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  tags?: boolean | Prisma.Ressource$tagsArgs<ExtArgs>
+  _count?: boolean | Prisma.RessourceCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RessourceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -890,17 +976,16 @@ export type $RessourcePayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     author: Prisma.$UserPayload<ExtArgs>
     subject: Prisma.$SubjectPayload<ExtArgs>
+    tags: Prisma.$TagPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     authorId: string
     title: string
     description: string | null
-    resourceType: $Enums.RessourceType
     textContent: string | null
     fileUrl: string | null
     mimeType: string | null
-    type: $Enums.Type
     createdAt: Date
     updatedAt: Date
     subjectId: string
@@ -1300,6 +1385,7 @@ export interface Prisma__RessourceClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   subject<T extends Prisma.SubjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubjectDefaultArgs<ExtArgs>>): Prisma.Prisma__SubjectClient<runtime.Types.Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  tags<T extends Prisma.Ressource$tagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ressource$tagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1333,11 +1419,9 @@ export interface RessourceFieldRefs {
   readonly authorId: Prisma.FieldRef<"Ressource", 'String'>
   readonly title: Prisma.FieldRef<"Ressource", 'String'>
   readonly description: Prisma.FieldRef<"Ressource", 'String'>
-  readonly resourceType: Prisma.FieldRef<"Ressource", 'RessourceType'>
   readonly textContent: Prisma.FieldRef<"Ressource", 'String'>
   readonly fileUrl: Prisma.FieldRef<"Ressource", 'String'>
   readonly mimeType: Prisma.FieldRef<"Ressource", 'String'>
-  readonly type: Prisma.FieldRef<"Ressource", 'Type'>
   readonly createdAt: Prisma.FieldRef<"Ressource", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Ressource", 'DateTime'>
   readonly subjectId: Prisma.FieldRef<"Ressource", 'String'>
@@ -1734,6 +1818,30 @@ export type RessourceDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many Ressources to delete.
    */
   limit?: number
+}
+
+/**
+ * Ressource.tags
+ */
+export type Ressource$tagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Tag
+   */
+  select?: Prisma.TagSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Tag
+   */
+  omit?: Prisma.TagOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TagInclude<ExtArgs> | null
+  where?: Prisma.TagWhereInput
+  orderBy?: Prisma.TagOrderByWithRelationInput | Prisma.TagOrderByWithRelationInput[]
+  cursor?: Prisma.TagWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TagScalarFieldEnum | Prisma.TagScalarFieldEnum[]
 }
 
 /**

@@ -8,11 +8,13 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Class'
-export type * from './models/Subject'
-export type * from './models/Ressource'
-export type * from './models/User'
-export type * from './models/Session'
-export type * from './models/Account'
-export type * from './models/Verification'
-export type * from './commonInputTypes'
+export type * from './models/Class.ts'
+export type * from './models/Subject.ts'
+export type * from './models/Ressource.ts'
+export type * from './models/Tag.ts'
+export type * from './models/TagCategory.ts'
+export type * from './models/User.ts'
+export type * from './models/Session.ts'
+export type * from './models/Account.ts'
+export type * from './models/Verification.ts'
+export type * from './commonInputTypes.ts'
