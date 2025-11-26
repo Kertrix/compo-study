@@ -16,7 +16,7 @@ datasource db {
 
 model Class {
   id   String @id @default(cuid(2))
-  name String @unique
+  name String 
   slug String @unique
   promo String?  
 
@@ -28,7 +28,7 @@ model Class {
 
 model Subject {
   id              String    @id @default(cuid(2))
-  name            String    @unique
+  name            String    
   icon            String
   slug            String    @unique
   examDate        DateTime?
