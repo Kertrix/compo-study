@@ -67,7 +67,7 @@ model Ressource {
 
 model Tag {
   id        String   @id @default(cuid(2))
-  name      String   @unique
+  name      String   
   slug      String   @unique
   color     String?
   categoryId String
@@ -79,7 +79,7 @@ model Tag {
 
 model TagCategory {
   id        String   @id @default(cuid(2))
-  name      String   @unique
+  name      String   
   slug      String   @unique
   tags     Tag[]
 }
