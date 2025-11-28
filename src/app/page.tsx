@@ -56,6 +56,10 @@ export default function PasswordGate() {
           </CardHeader>
           <CardContent>
             <GoogleButton />
+            <p className="mt-2 text-justify text-muted-foreground text-xs">
+              Seules les adresses en <code>@ejm.org</code> et{" "}
+              <code>@ejm.net</code> sont autorisées.
+            </p>
             <div className="flex items-center my-4">
               <div className="grow h-px bg-muted" />
               <span className="mx-4 text-muted-foreground text-xs uppercase font-medium">

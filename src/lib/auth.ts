@@ -1,5 +1,4 @@
-import { betterAuth } from "better-auth";
-import { createAuthMiddleware, APIError } from "better-auth/api";
+import { APIError, betterAuth, User } from "better-auth";
 
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
@@ -15,19 +14,36 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     },
   },
-  hooks: {
-    after: createAuthMiddleware(async (ctx) => {
-      if (!ctx.path.startsWith("/sign-in")) {
-        return;
-      }
-      const newSession = ctx.context.newSession;
-      const email = newSession?.user?.email;
-      if (email && !email.endsWith("@ejm.net")) {
-        throw new APIError("FORBIDDEN", {
-          message: "Only ejm.net email addresses are allowed",
-        });
-      }
-    }),
+  databaseHooks: {
+    user: {
+      create: {
+        before: async (user: User) => {
+          const email = user.email.toLowerCase();
+
+          const isStudent = email.endsWith("@ejm.org");
+          const isTeacher = email.endsWith("@ejm.net");
+
+          if (!email) {
+            throw new Error("Email is required");
+          }
+
+          if (!isStudent && !isTeacher) {
+            throw new APIError("UNAUTHORIZED", {
+              message:
+                "Seuls les comptes de l'école Jeannine Manuel (@ejm.org / @ejm.net) sont autorisés. Veuillez réessayer.",
+            });
+          }
+          const role = isStudent ? "STUDENT" : "PROFESSOR";
+
+          return {
+            data: {
+              ...user,
+              role,
+            },
+          };
+        },
+      },
+    },
   },
   plugins: [nextCookies()],
   user: {
