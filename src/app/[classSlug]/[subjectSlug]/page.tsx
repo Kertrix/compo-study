@@ -22,7 +22,7 @@ export default async function SubjectsSelectionPage({
         slug: decodeURIComponent(subjectSlug),
         class: { slug: decodeURIComponent(classSlug) },
       },
-      include: { class: true, ressources: true },
+      include: { class: true, ressources: { include: { tags: true } } },
     });
   } catch (error) {
     console.error("Erreur lors de la récupération du sujet :", error);
@@ -33,7 +33,15 @@ export default async function SubjectsSelectionPage({
     notFound();
   }
 
-  console.log(selectedSubject.ressources);
+  const tagCategories = await prisma.tagCategory.findMany({
+    include: {
+      tags: {
+        where: { ressources: { some: { subjectId: selectedSubject.id } } },
+      },
+    },
+  });
+
+  console.log(tagCategories);
 
   return (
     <>
@@ -99,7 +107,10 @@ export default async function SubjectsSelectionPage({
           </div>
         </section>
         <section className="mt-8">
-          <RessourceGrid subject={selectedSubject} />
+          <RessourceGrid
+            subject={selectedSubject}
+            tagCategories={tagCategories}
+          />
         </section>
       </div>
     </>
