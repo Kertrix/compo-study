@@ -29,12 +29,12 @@ export type SubjectMinAggregateOutputType = {
   name: string | null
   icon: string | null
   slug: string | null
-  examDate: Date | null
-  examLength: string | null
-  examDescription: string | null
   createdAt: Date | null
   updatedAt: Date | null
   classId: string | null
+  examDate: Date | null
+  examDescription: string | null
+  examLength: string | null
 }
 
 export type SubjectMaxAggregateOutputType = {
@@ -42,12 +42,12 @@ export type SubjectMaxAggregateOutputType = {
   name: string | null
   icon: string | null
   slug: string | null
-  examDate: Date | null
-  examLength: string | null
-  examDescription: string | null
   createdAt: Date | null
   updatedAt: Date | null
   classId: string | null
+  examDate: Date | null
+  examDescription: string | null
+  examLength: string | null
 }
 
 export type SubjectCountAggregateOutputType = {
@@ -55,12 +55,12 @@ export type SubjectCountAggregateOutputType = {
   name: number
   icon: number
   slug: number
-  examDate: number
-  examLength: number
-  examDescription: number
   createdAt: number
   updatedAt: number
   classId: number
+  examDate: number
+  examDescription: number
+  examLength: number
   _all: number
 }
 
@@ -70,12 +70,12 @@ export type SubjectMinAggregateInputType = {
   name?: true
   icon?: true
   slug?: true
-  examDate?: true
-  examLength?: true
-  examDescription?: true
   createdAt?: true
   updatedAt?: true
   classId?: true
+  examDate?: true
+  examDescription?: true
+  examLength?: true
 }
 
 export type SubjectMaxAggregateInputType = {
@@ -83,12 +83,12 @@ export type SubjectMaxAggregateInputType = {
   name?: true
   icon?: true
   slug?: true
-  examDate?: true
-  examLength?: true
-  examDescription?: true
   createdAt?: true
   updatedAt?: true
   classId?: true
+  examDate?: true
+  examDescription?: true
+  examLength?: true
 }
 
 export type SubjectCountAggregateInputType = {
@@ -96,12 +96,12 @@ export type SubjectCountAggregateInputType = {
   name?: true
   icon?: true
   slug?: true
-  examDate?: true
-  examLength?: true
-  examDescription?: true
   createdAt?: true
   updatedAt?: true
   classId?: true
+  examDate?: true
+  examDescription?: true
+  examLength?: true
   _all?: true
 }
 
@@ -182,12 +182,12 @@ export type SubjectGroupByOutputType = {
   name: string
   icon: string
   slug: string
-  examDate: Date | null
-  examLength: string | null
-  examDescription: string | null
   createdAt: Date
   updatedAt: Date
   classId: string
+  examDate: Date | null
+  examDescription: string | null
+  examLength: string | null
   _count: SubjectCountAggregateOutputType | null
   _min: SubjectMinAggregateOutputType | null
   _max: SubjectMaxAggregateOutputType | null
@@ -216,14 +216,14 @@ export type SubjectWhereInput = {
   name?: Prisma.StringFilter<"Subject"> | string
   icon?: Prisma.StringFilter<"Subject"> | string
   slug?: Prisma.StringFilter<"Subject"> | string
-  examDate?: Prisma.DateTimeNullableFilter<"Subject"> | Date | string | null
-  examLength?: Prisma.StringNullableFilter<"Subject"> | string | null
-  examDescription?: Prisma.StringNullableFilter<"Subject"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Subject"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Subject"> | Date | string
   classId?: Prisma.StringFilter<"Subject"> | string
-  class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
+  examDate?: Prisma.DateTimeNullableFilter<"Subject"> | Date | string | null
+  examDescription?: Prisma.StringNullableFilter<"Subject"> | string | null
+  examLength?: Prisma.StringNullableFilter<"Subject"> | string | null
   ressources?: Prisma.RessourceListRelationFilter
+  class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
 }
 
 export type SubjectOrderByWithRelationInput = {
@@ -231,14 +231,14 @@ export type SubjectOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   icon?: Prisma.SortOrder
   slug?: Prisma.SortOrder
-  examDate?: Prisma.SortOrderInput | Prisma.SortOrder
-  examLength?: Prisma.SortOrderInput | Prisma.SortOrder
-  examDescription?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   classId?: Prisma.SortOrder
-  class?: Prisma.ClassOrderByWithRelationInput
+  examDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  examDescription?: Prisma.SortOrderInput | Prisma.SortOrder
+  examLength?: Prisma.SortOrderInput | Prisma.SortOrder
   ressources?: Prisma.RessourceOrderByRelationAggregateInput
+  class?: Prisma.ClassOrderByWithRelationInput
 }
 
 export type SubjectWhereUniqueInput = Prisma.AtLeast<{
@@ -249,14 +249,14 @@ export type SubjectWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.SubjectWhereInput[]
   NOT?: Prisma.SubjectWhereInput | Prisma.SubjectWhereInput[]
   icon?: Prisma.StringFilter<"Subject"> | string
-  examDate?: Prisma.DateTimeNullableFilter<"Subject"> | Date | string | null
-  examLength?: Prisma.StringNullableFilter<"Subject"> | string | null
-  examDescription?: Prisma.StringNullableFilter<"Subject"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Subject"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Subject"> | Date | string
   classId?: Prisma.StringFilter<"Subject"> | string
-  class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
+  examDate?: Prisma.DateTimeNullableFilter<"Subject"> | Date | string | null
+  examDescription?: Prisma.StringNullableFilter<"Subject"> | string | null
+  examLength?: Prisma.StringNullableFilter<"Subject"> | string | null
   ressources?: Prisma.RessourceListRelationFilter
+  class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
 }, "id" | "name" | "slug">
 
 export type SubjectOrderByWithAggregationInput = {
@@ -264,12 +264,12 @@ export type SubjectOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   icon?: Prisma.SortOrder
   slug?: Prisma.SortOrder
-  examDate?: Prisma.SortOrderInput | Prisma.SortOrder
-  examLength?: Prisma.SortOrderInput | Prisma.SortOrder
-  examDescription?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   classId?: Prisma.SortOrder
+  examDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  examDescription?: Prisma.SortOrderInput | Prisma.SortOrder
+  examLength?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SubjectCountOrderByAggregateInput
   _max?: Prisma.SubjectMaxOrderByAggregateInput
   _min?: Prisma.SubjectMinOrderByAggregateInput
@@ -283,12 +283,12 @@ export type SubjectScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Subject"> | string
   icon?: Prisma.StringWithAggregatesFilter<"Subject"> | string
   slug?: Prisma.StringWithAggregatesFilter<"Subject"> | string
-  examDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Subject"> | Date | string | null
-  examLength?: Prisma.StringNullableWithAggregatesFilter<"Subject"> | string | null
-  examDescription?: Prisma.StringNullableWithAggregatesFilter<"Subject"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Subject"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Subject"> | Date | string
   classId?: Prisma.StringWithAggregatesFilter<"Subject"> | string
+  examDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Subject"> | Date | string | null
+  examDescription?: Prisma.StringNullableWithAggregatesFilter<"Subject"> | string | null
+  examLength?: Prisma.StringNullableWithAggregatesFilter<"Subject"> | string | null
 }
 
 export type SubjectCreateInput = {
@@ -296,13 +296,13 @@ export type SubjectCreateInput = {
   name: string
   icon: string
   slug: string
-  examDate?: Date | string | null
-  examLength?: string | null
-  examDescription?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  class: Prisma.ClassCreateNestedOneWithoutSubjectsInput
+  examDate?: Date | string | null
+  examDescription?: string | null
+  examLength?: string | null
   ressources?: Prisma.RessourceCreateNestedManyWithoutSubjectInput
+  class: Prisma.ClassCreateNestedOneWithoutSubjectsInput
 }
 
 export type SubjectUncheckedCreateInput = {
@@ -310,12 +310,12 @@ export type SubjectUncheckedCreateInput = {
   name: string
   icon: string
   slug: string
-  examDate?: Date | string | null
-  examLength?: string | null
-  examDescription?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   classId: string
+  examDate?: Date | string | null
+  examDescription?: string | null
+  examLength?: string | null
   ressources?: Prisma.RessourceUncheckedCreateNestedManyWithoutSubjectInput
 }
 
@@ -324,13 +324,13 @@ export type SubjectUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  class?: Prisma.ClassUpdateOneRequiredWithoutSubjectsNestedInput
+  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ressources?: Prisma.RessourceUpdateManyWithoutSubjectNestedInput
+  class?: Prisma.ClassUpdateOneRequiredWithoutSubjectsNestedInput
 }
 
 export type SubjectUncheckedUpdateInput = {
@@ -338,12 +338,12 @@ export type SubjectUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   classId?: Prisma.StringFieldUpdateOperationsInput | string
+  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ressources?: Prisma.RessourceUncheckedUpdateManyWithoutSubjectNestedInput
 }
 
@@ -352,12 +352,12 @@ export type SubjectCreateManyInput = {
   name: string
   icon: string
   slug: string
-  examDate?: Date | string | null
-  examLength?: string | null
-  examDescription?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   classId: string
+  examDate?: Date | string | null
+  examDescription?: string | null
+  examLength?: string | null
 }
 
 export type SubjectUpdateManyMutationInput = {
@@ -365,11 +365,11 @@ export type SubjectUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SubjectUncheckedUpdateManyInput = {
@@ -377,12 +377,12 @@ export type SubjectUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   classId?: Prisma.StringFieldUpdateOperationsInput | string
+  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SubjectListRelationFilter = {
@@ -400,12 +400,12 @@ export type SubjectCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   icon?: Prisma.SortOrder
   slug?: Prisma.SortOrder
-  examDate?: Prisma.SortOrder
-  examLength?: Prisma.SortOrder
-  examDescription?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   classId?: Prisma.SortOrder
+  examDate?: Prisma.SortOrder
+  examDescription?: Prisma.SortOrder
+  examLength?: Prisma.SortOrder
 }
 
 export type SubjectMaxOrderByAggregateInput = {
@@ -413,12 +413,12 @@ export type SubjectMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   icon?: Prisma.SortOrder
   slug?: Prisma.SortOrder
-  examDate?: Prisma.SortOrder
-  examLength?: Prisma.SortOrder
-  examDescription?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   classId?: Prisma.SortOrder
+  examDate?: Prisma.SortOrder
+  examDescription?: Prisma.SortOrder
+  examLength?: Prisma.SortOrder
 }
 
 export type SubjectMinOrderByAggregateInput = {
@@ -426,12 +426,12 @@ export type SubjectMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   icon?: Prisma.SortOrder
   slug?: Prisma.SortOrder
-  examDate?: Prisma.SortOrder
-  examLength?: Prisma.SortOrder
-  examDescription?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   classId?: Prisma.SortOrder
+  examDate?: Prisma.SortOrder
+  examDescription?: Prisma.SortOrder
+  examLength?: Prisma.SortOrder
 }
 
 export type SubjectScalarRelationFilter = {
@@ -504,11 +504,11 @@ export type SubjectCreateWithoutClassInput = {
   name: string
   icon: string
   slug: string
-  examDate?: Date | string | null
-  examLength?: string | null
-  examDescription?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  examDate?: Date | string | null
+  examDescription?: string | null
+  examLength?: string | null
   ressources?: Prisma.RessourceCreateNestedManyWithoutSubjectInput
 }
 
@@ -517,11 +517,11 @@ export type SubjectUncheckedCreateWithoutClassInput = {
   name: string
   icon: string
   slug: string
-  examDate?: Date | string | null
-  examLength?: string | null
-  examDescription?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  examDate?: Date | string | null
+  examDescription?: string | null
+  examLength?: string | null
   ressources?: Prisma.RessourceUncheckedCreateNestedManyWithoutSubjectInput
 }
 
@@ -559,12 +559,12 @@ export type SubjectScalarWhereInput = {
   name?: Prisma.StringFilter<"Subject"> | string
   icon?: Prisma.StringFilter<"Subject"> | string
   slug?: Prisma.StringFilter<"Subject"> | string
-  examDate?: Prisma.DateTimeNullableFilter<"Subject"> | Date | string | null
-  examLength?: Prisma.StringNullableFilter<"Subject"> | string | null
-  examDescription?: Prisma.StringNullableFilter<"Subject"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Subject"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Subject"> | Date | string
   classId?: Prisma.StringFilter<"Subject"> | string
+  examDate?: Prisma.DateTimeNullableFilter<"Subject"> | Date | string | null
+  examDescription?: Prisma.StringNullableFilter<"Subject"> | string | null
+  examLength?: Prisma.StringNullableFilter<"Subject"> | string | null
 }
 
 export type SubjectCreateWithoutRessourcesInput = {
@@ -572,11 +572,11 @@ export type SubjectCreateWithoutRessourcesInput = {
   name: string
   icon: string
   slug: string
-  examDate?: Date | string | null
-  examLength?: string | null
-  examDescription?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  examDate?: Date | string | null
+  examDescription?: string | null
+  examLength?: string | null
   class: Prisma.ClassCreateNestedOneWithoutSubjectsInput
 }
 
@@ -585,12 +585,12 @@ export type SubjectUncheckedCreateWithoutRessourcesInput = {
   name: string
   icon: string
   slug: string
-  examDate?: Date | string | null
-  examLength?: string | null
-  examDescription?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   classId: string
+  examDate?: Date | string | null
+  examDescription?: string | null
+  examLength?: string | null
 }
 
 export type SubjectCreateOrConnectWithoutRessourcesInput = {
@@ -614,11 +614,11 @@ export type SubjectUpdateWithoutRessourcesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   class?: Prisma.ClassUpdateOneRequiredWithoutSubjectsNestedInput
 }
 
@@ -627,12 +627,12 @@ export type SubjectUncheckedUpdateWithoutRessourcesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   classId?: Prisma.StringFieldUpdateOperationsInput | string
+  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SubjectCreateManyClassInput = {
@@ -640,11 +640,11 @@ export type SubjectCreateManyClassInput = {
   name: string
   icon: string
   slug: string
-  examDate?: Date | string | null
-  examLength?: string | null
-  examDescription?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  examDate?: Date | string | null
+  examDescription?: string | null
+  examLength?: string | null
 }
 
 export type SubjectUpdateWithoutClassInput = {
@@ -652,11 +652,11 @@ export type SubjectUpdateWithoutClassInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ressources?: Prisma.RessourceUpdateManyWithoutSubjectNestedInput
 }
 
@@ -665,11 +665,11 @@ export type SubjectUncheckedUpdateWithoutClassInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ressources?: Prisma.RessourceUncheckedUpdateManyWithoutSubjectNestedInput
 }
 
@@ -678,11 +678,11 @@ export type SubjectUncheckedUpdateManyWithoutClassInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  examDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  examDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examLength?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -721,14 +721,14 @@ export type SubjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name?: boolean
   icon?: boolean
   slug?: boolean
-  examDate?: boolean
-  examLength?: boolean
-  examDescription?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   classId?: boolean
-  class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
+  examDate?: boolean
+  examDescription?: boolean
+  examLength?: boolean
   ressources?: boolean | Prisma.Subject$ressourcesArgs<ExtArgs>
+  class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.SubjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subject"]>
 
@@ -737,12 +737,12 @@ export type SubjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   name?: boolean
   icon?: boolean
   slug?: boolean
-  examDate?: boolean
-  examLength?: boolean
-  examDescription?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   classId?: boolean
+  examDate?: boolean
+  examDescription?: boolean
+  examLength?: boolean
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subject"]>
 
@@ -751,12 +751,12 @@ export type SubjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   name?: boolean
   icon?: boolean
   slug?: boolean
-  examDate?: boolean
-  examLength?: boolean
-  examDescription?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   classId?: boolean
+  examDate?: boolean
+  examDescription?: boolean
+  examLength?: boolean
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subject"]>
 
@@ -765,18 +765,18 @@ export type SubjectSelectScalar = {
   name?: boolean
   icon?: boolean
   slug?: boolean
-  examDate?: boolean
-  examLength?: boolean
-  examDescription?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   classId?: boolean
+  examDate?: boolean
+  examDescription?: boolean
+  examLength?: boolean
 }
 
-export type SubjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "icon" | "slug" | "examDate" | "examLength" | "examDescription" | "createdAt" | "updatedAt" | "classId", ExtArgs["result"]["subject"]>
+export type SubjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "icon" | "slug" | "createdAt" | "updatedAt" | "classId" | "examDate" | "examDescription" | "examLength", ExtArgs["result"]["subject"]>
 export type SubjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
   ressources?: boolean | Prisma.Subject$ressourcesArgs<ExtArgs>
+  class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.SubjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SubjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -789,20 +789,20 @@ export type SubjectIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $SubjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Subject"
   objects: {
-    class: Prisma.$ClassPayload<ExtArgs>
     ressources: Prisma.$RessourcePayload<ExtArgs>[]
+    class: Prisma.$ClassPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
     icon: string
     slug: string
-    examDate: Date | null
-    examLength: string | null
-    examDescription: string | null
     createdAt: Date
     updatedAt: Date
     classId: string
+    examDate: Date | null
+    examDescription: string | null
+    examLength: string | null
   }, ExtArgs["result"]["subject"]>
   composites: {}
 }
@@ -1197,8 +1197,8 @@ readonly fields: SubjectFieldRefs;
  */
 export interface Prisma__SubjectClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  class<T extends Prisma.ClassDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassDefaultArgs<ExtArgs>>): Prisma.Prisma__ClassClient<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   ressources<T extends Prisma.Subject$ressourcesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subject$ressourcesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RessourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  class<T extends Prisma.ClassDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassDefaultArgs<ExtArgs>>): Prisma.Prisma__ClassClient<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1232,12 +1232,12 @@ export interface SubjectFieldRefs {
   readonly name: Prisma.FieldRef<"Subject", 'String'>
   readonly icon: Prisma.FieldRef<"Subject", 'String'>
   readonly slug: Prisma.FieldRef<"Subject", 'String'>
-  readonly examDate: Prisma.FieldRef<"Subject", 'DateTime'>
-  readonly examLength: Prisma.FieldRef<"Subject", 'String'>
-  readonly examDescription: Prisma.FieldRef<"Subject", 'String'>
   readonly createdAt: Prisma.FieldRef<"Subject", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Subject", 'DateTime'>
   readonly classId: Prisma.FieldRef<"Subject", 'String'>
+  readonly examDate: Prisma.FieldRef<"Subject", 'DateTime'>
+  readonly examDescription: Prisma.FieldRef<"Subject", 'String'>
+  readonly examLength: Prisma.FieldRef<"Subject", 'String'>
 }
     
 

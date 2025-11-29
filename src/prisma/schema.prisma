@@ -1,117 +1,95 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated"
-  moduleFormat = "esm"
+  provider               = "prisma-client"
+  output                 = "../generated"
   generatedFileExtension = "ts"
-  importFileExtension = "ts"
+  importFileExtension    = "ts"
+  moduleFormat           = "esm"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model Class {
-  id   String @id @default(cuid(2))
-  name String 
-  slug String @unique
-  promo String?  
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  subjects Subject[]
+  id        String    @id @default(cuid(2))
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  slug      String    @unique
+  promo     String?
+  subjects  Subject[]
 }
 
 model Subject {
-  id              String    @id @default(cuid(2))
-  name            String    
+  id              String      @id @default(cuid(2))
+  name            String      @unique
   icon            String
-  slug            String    @unique
+  slug            String      @unique
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  classId         String
   examDate        DateTime?
-  examLength      String?
   examDescription String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  classId String
-  class   Class  @relation(fields: [classId], references: [id])
-
-  ressources Ressource[]
+  examLength      String?
+  ressources      Ressource[]
+  class           Class       @relation(fields: [classId], references: [id])
 }
 
 model Ressource {
-  id           String        @id @default(cuid(2))
-  authorId     String
-  author       User          @relation(fields: [authorId], references: [id])
-  title        String
-  description  String?
-  textContent  String?
-  fileUrl      String?
-  mimeType     String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  subjectId String
-  subject   Subject @relation(fields: [subjectId], references: [id])
-  tags      Tag[]   @relation("RessourceTags")
+  id          String   @id @default(cuid(2))
+  title       String
+  description String?
+  textContent String?
+  fileUrl     String?
+  mimeType    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  subjectId   String
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
+  subject     Subject  @relation(fields: [subjectId], references: [id])
+  tags        Tag[]    @relation("RessourceTags")
 }
 
 model Tag {
-  id        String   @id @default(cuid(2))
-  name      String   
-  slug      String   @unique
-  color     String?
+  id         String      @id @default(cuid(2))
+  name       String      @unique
+  slug       String      @unique
+  color      String?
   categoryId String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
   category   TagCategory @relation(fields: [categoryId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
   ressources Ressource[] @relation("RessourceTags")
 }
 
 model TagCategory {
-  id        String   @id @default(cuid(2))
-  name      String   
-  slug      String   @unique
-  tags     Tag[]
+  id   String @id @default(cuid(2))
+  name String @unique
+  slug String @unique
+  tags Tag[]
 }
 
 model User {
   id            String      @id
-  role          Role     @default(STUDENT)
   name          String
-  email         String
+  email         String      @unique
   emailVerified Boolean     @default(false)
   image         String?
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @default(now()) @updatedAt
-  sessions      Session[]
-  accounts      Account[]
+  role          Role        @default(STUDENT)
   ressources    Ressource[]
+  accounts      Account[]
+  sessions      Session[]
 
-  @@unique([email])
   @@map("user")
-}
-
-enum Role {
-  ADMIN
-  PROFESSOR
-  MODERATOR
-  STUDENT
 }
 
 model Session {
   id        String   @id
   expiresAt DateTime
-  token     String
+  token     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   ipAddress String?
@@ -119,7 +97,6 @@ model Session {
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([token])
   @@map("session")
 }
 
@@ -128,7 +105,6 @@ model Account {
   accountId             String
   providerId            String
   userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   accessToken           String?
   refreshToken          String?
   idToken               String?
@@ -138,6 +114,7 @@ model Account {
   password              String?
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("account")
 }
@@ -151,4 +128,11 @@ model Verification {
   updatedAt  DateTime @default(now()) @updatedAt
 
   @@map("verification")
+}
+
+enum Role {
+  ADMIN
+  PROFESSOR
+  MODERATOR
+  STUDENT
 }

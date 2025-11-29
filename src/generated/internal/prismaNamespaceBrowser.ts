@@ -81,10 +81,10 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const ClassScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  slug: 'slug',
-  promo: 'promo',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  slug: 'slug',
+  promo: 'promo'
 } as const
 
 export type ClassScalarFieldEnum = (typeof ClassScalarFieldEnum)[keyof typeof ClassScalarFieldEnum]
@@ -95,12 +95,12 @@ export const SubjectScalarFieldEnum = {
   name: 'name',
   icon: 'icon',
   slug: 'slug',
-  examDate: 'examDate',
-  examLength: 'examLength',
-  examDescription: 'examDescription',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  classId: 'classId'
+  classId: 'classId',
+  examDate: 'examDate',
+  examDescription: 'examDescription',
+  examLength: 'examLength'
 } as const
 
 export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeof SubjectScalarFieldEnum]
@@ -108,7 +108,6 @@ export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeo
 
 export const RessourceScalarFieldEnum = {
   id: 'id',
-  authorId: 'authorId',
   title: 'title',
   description: 'description',
   textContent: 'textContent',
@@ -116,7 +115,8 @@ export const RessourceScalarFieldEnum = {
   mimeType: 'mimeType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  subjectId: 'subjectId'
+  subjectId: 'subjectId',
+  authorId: 'authorId'
 } as const
 
 export type RessourceScalarFieldEnum = (typeof RessourceScalarFieldEnum)[keyof typeof RessourceScalarFieldEnum]
@@ -146,13 +146,13 @@ export type TagCategoryScalarFieldEnum = (typeof TagCategoryScalarFieldEnum)[key
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  role: 'role',
   name: 'name',
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  role: 'role'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]

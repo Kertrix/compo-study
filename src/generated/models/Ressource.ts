@@ -26,7 +26,6 @@ export type AggregateRessource = {
 
 export type RessourceMinAggregateOutputType = {
   id: string | null
-  authorId: string | null
   title: string | null
   description: string | null
   textContent: string | null
@@ -35,11 +34,11 @@ export type RessourceMinAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   subjectId: string | null
+  authorId: string | null
 }
 
 export type RessourceMaxAggregateOutputType = {
   id: string | null
-  authorId: string | null
   title: string | null
   description: string | null
   textContent: string | null
@@ -48,11 +47,11 @@ export type RessourceMaxAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   subjectId: string | null
+  authorId: string | null
 }
 
 export type RessourceCountAggregateOutputType = {
   id: number
-  authorId: number
   title: number
   description: number
   textContent: number
@@ -61,13 +60,13 @@ export type RessourceCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   subjectId: number
+  authorId: number
   _all: number
 }
 
 
 export type RessourceMinAggregateInputType = {
   id?: true
-  authorId?: true
   title?: true
   description?: true
   textContent?: true
@@ -76,11 +75,11 @@ export type RessourceMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   subjectId?: true
+  authorId?: true
 }
 
 export type RessourceMaxAggregateInputType = {
   id?: true
-  authorId?: true
   title?: true
   description?: true
   textContent?: true
@@ -89,11 +88,11 @@ export type RessourceMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   subjectId?: true
+  authorId?: true
 }
 
 export type RessourceCountAggregateInputType = {
   id?: true
-  authorId?: true
   title?: true
   description?: true
   textContent?: true
@@ -102,6 +101,7 @@ export type RessourceCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   subjectId?: true
+  authorId?: true
   _all?: true
 }
 
@@ -179,7 +179,6 @@ export type RessourceGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 
 export type RessourceGroupByOutputType = {
   id: string
-  authorId: string
   title: string
   description: string | null
   textContent: string | null
@@ -188,6 +187,7 @@ export type RessourceGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   subjectId: string
+  authorId: string
   _count: RessourceCountAggregateOutputType | null
   _min: RessourceMinAggregateOutputType | null
   _max: RessourceMaxAggregateOutputType | null
@@ -213,7 +213,6 @@ export type RessourceWhereInput = {
   OR?: Prisma.RessourceWhereInput[]
   NOT?: Prisma.RessourceWhereInput | Prisma.RessourceWhereInput[]
   id?: Prisma.StringFilter<"Ressource"> | string
-  authorId?: Prisma.StringFilter<"Ressource"> | string
   title?: Prisma.StringFilter<"Ressource"> | string
   description?: Prisma.StringNullableFilter<"Ressource"> | string | null
   textContent?: Prisma.StringNullableFilter<"Ressource"> | string | null
@@ -222,6 +221,7 @@ export type RessourceWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   subjectId?: Prisma.StringFilter<"Ressource"> | string
+  authorId?: Prisma.StringFilter<"Ressource"> | string
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
   tags?: Prisma.TagListRelationFilter
@@ -229,7 +229,6 @@ export type RessourceWhereInput = {
 
 export type RessourceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   textContent?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -238,6 +237,7 @@ export type RessourceOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
+  authorId?: Prisma.SortOrder
   author?: Prisma.UserOrderByWithRelationInput
   subject?: Prisma.SubjectOrderByWithRelationInput
   tags?: Prisma.TagOrderByRelationAggregateInput
@@ -248,7 +248,6 @@ export type RessourceWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RessourceWhereInput | Prisma.RessourceWhereInput[]
   OR?: Prisma.RessourceWhereInput[]
   NOT?: Prisma.RessourceWhereInput | Prisma.RessourceWhereInput[]
-  authorId?: Prisma.StringFilter<"Ressource"> | string
   title?: Prisma.StringFilter<"Ressource"> | string
   description?: Prisma.StringNullableFilter<"Ressource"> | string | null
   textContent?: Prisma.StringNullableFilter<"Ressource"> | string | null
@@ -257,6 +256,7 @@ export type RessourceWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   subjectId?: Prisma.StringFilter<"Ressource"> | string
+  authorId?: Prisma.StringFilter<"Ressource"> | string
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
   tags?: Prisma.TagListRelationFilter
@@ -264,7 +264,6 @@ export type RessourceWhereUniqueInput = Prisma.AtLeast<{
 
 export type RessourceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   textContent?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -273,6 +272,7 @@ export type RessourceOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
+  authorId?: Prisma.SortOrder
   _count?: Prisma.RessourceCountOrderByAggregateInput
   _max?: Prisma.RessourceMaxOrderByAggregateInput
   _min?: Prisma.RessourceMinOrderByAggregateInput
@@ -283,7 +283,6 @@ export type RessourceScalarWhereWithAggregatesInput = {
   OR?: Prisma.RessourceScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RessourceScalarWhereWithAggregatesInput | Prisma.RessourceScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Ressource"> | string
-  authorId?: Prisma.StringWithAggregatesFilter<"Ressource"> | string
   title?: Prisma.StringWithAggregatesFilter<"Ressource"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Ressource"> | string | null
   textContent?: Prisma.StringNullableWithAggregatesFilter<"Ressource"> | string | null
@@ -292,6 +291,7 @@ export type RessourceScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Ressource"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Ressource"> | Date | string
   subjectId?: Prisma.StringWithAggregatesFilter<"Ressource"> | string
+  authorId?: Prisma.StringWithAggregatesFilter<"Ressource"> | string
 }
 
 export type RessourceCreateInput = {
@@ -310,7 +310,6 @@ export type RessourceCreateInput = {
 
 export type RessourceUncheckedCreateInput = {
   id?: string
-  authorId: string
   title: string
   description?: string | null
   textContent?: string | null
@@ -319,6 +318,7 @@ export type RessourceUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   subjectId: string
+  authorId: string
   tags?: Prisma.TagUncheckedCreateNestedManyWithoutRessourcesInput
 }
 
@@ -338,7 +338,6 @@ export type RessourceUpdateInput = {
 
 export type RessourceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -347,12 +346,12 @@ export type RessourceUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+  authorId?: Prisma.StringFieldUpdateOperationsInput | string
   tags?: Prisma.TagUncheckedUpdateManyWithoutRessourcesNestedInput
 }
 
 export type RessourceCreateManyInput = {
   id?: string
-  authorId: string
   title: string
   description?: string | null
   textContent?: string | null
@@ -361,6 +360,7 @@ export type RessourceCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   subjectId: string
+  authorId: string
 }
 
 export type RessourceUpdateManyMutationInput = {
@@ -376,7 +376,6 @@ export type RessourceUpdateManyMutationInput = {
 
 export type RessourceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -385,6 +384,7 @@ export type RessourceUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+  authorId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type RessourceListRelationFilter = {
@@ -399,7 +399,6 @@ export type RessourceOrderByRelationAggregateInput = {
 
 export type RessourceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   textContent?: Prisma.SortOrder
@@ -408,11 +407,11 @@ export type RessourceCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
+  authorId?: Prisma.SortOrder
 }
 
 export type RessourceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   textContent?: Prisma.SortOrder
@@ -421,11 +420,11 @@ export type RessourceMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
+  authorId?: Prisma.SortOrder
 }
 
 export type RessourceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   textContent?: Prisma.SortOrder
@@ -434,6 +433,7 @@ export type RessourceMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
+  authorId?: Prisma.SortOrder
 }
 
 export type RessourceCreateNestedManyWithoutSubjectInput = {
@@ -573,7 +573,6 @@ export type RessourceCreateWithoutSubjectInput = {
 
 export type RessourceUncheckedCreateWithoutSubjectInput = {
   id?: string
-  authorId: string
   title: string
   description?: string | null
   textContent?: string | null
@@ -581,6 +580,7 @@ export type RessourceUncheckedCreateWithoutSubjectInput = {
   mimeType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  authorId: string
   tags?: Prisma.TagUncheckedCreateNestedManyWithoutRessourcesInput
 }
 
@@ -615,7 +615,6 @@ export type RessourceScalarWhereInput = {
   OR?: Prisma.RessourceScalarWhereInput[]
   NOT?: Prisma.RessourceScalarWhereInput | Prisma.RessourceScalarWhereInput[]
   id?: Prisma.StringFilter<"Ressource"> | string
-  authorId?: Prisma.StringFilter<"Ressource"> | string
   title?: Prisma.StringFilter<"Ressource"> | string
   description?: Prisma.StringNullableFilter<"Ressource"> | string | null
   textContent?: Prisma.StringNullableFilter<"Ressource"> | string | null
@@ -624,6 +623,7 @@ export type RessourceScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   subjectId?: Prisma.StringFilter<"Ressource"> | string
+  authorId?: Prisma.StringFilter<"Ressource"> | string
 }
 
 export type RessourceCreateWithoutTagsInput = {
@@ -641,7 +641,6 @@ export type RessourceCreateWithoutTagsInput = {
 
 export type RessourceUncheckedCreateWithoutTagsInput = {
   id?: string
-  authorId: string
   title: string
   description?: string | null
   textContent?: string | null
@@ -650,6 +649,7 @@ export type RessourceUncheckedCreateWithoutTagsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   subjectId: string
+  authorId: string
 }
 
 export type RessourceCreateOrConnectWithoutTagsInput = {
@@ -727,7 +727,6 @@ export type RessourceUpdateManyWithWhereWithoutAuthorInput = {
 
 export type RessourceCreateManySubjectInput = {
   id?: string
-  authorId: string
   title: string
   description?: string | null
   textContent?: string | null
@@ -735,6 +734,7 @@ export type RessourceCreateManySubjectInput = {
   mimeType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  authorId: string
 }
 
 export type RessourceUpdateWithoutSubjectInput = {
@@ -752,7 +752,6 @@ export type RessourceUpdateWithoutSubjectInput = {
 
 export type RessourceUncheckedUpdateWithoutSubjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -760,12 +759,12 @@ export type RessourceUncheckedUpdateWithoutSubjectInput = {
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  authorId?: Prisma.StringFieldUpdateOperationsInput | string
   tags?: Prisma.TagUncheckedUpdateManyWithoutRessourcesNestedInput
 }
 
 export type RessourceUncheckedUpdateManyWithoutSubjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -773,6 +772,7 @@ export type RessourceUncheckedUpdateManyWithoutSubjectInput = {
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  authorId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type RessourceUpdateWithoutTagsInput = {
@@ -790,7 +790,6 @@ export type RessourceUpdateWithoutTagsInput = {
 
 export type RessourceUncheckedUpdateWithoutTagsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -799,11 +798,11 @@ export type RessourceUncheckedUpdateWithoutTagsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+  authorId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type RessourceUncheckedUpdateManyWithoutTagsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -812,6 +811,7 @@ export type RessourceUncheckedUpdateManyWithoutTagsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+  authorId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type RessourceCreateManyAuthorInput = {
@@ -897,7 +897,6 @@ export type RessourceCountOutputTypeCountTagsArgs<ExtArgs extends runtime.Types.
 
 export type RessourceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  authorId?: boolean
   title?: boolean
   description?: boolean
   textContent?: boolean
@@ -906,6 +905,7 @@ export type RessourceSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   createdAt?: boolean
   updatedAt?: boolean
   subjectId?: boolean
+  authorId?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
   tags?: boolean | Prisma.Ressource$tagsArgs<ExtArgs>
@@ -914,7 +914,6 @@ export type RessourceSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type RessourceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  authorId?: boolean
   title?: boolean
   description?: boolean
   textContent?: boolean
@@ -923,13 +922,13 @@ export type RessourceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   createdAt?: boolean
   updatedAt?: boolean
   subjectId?: boolean
+  authorId?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["ressource"]>
 
 export type RessourceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  authorId?: boolean
   title?: boolean
   description?: boolean
   textContent?: boolean
@@ -938,13 +937,13 @@ export type RessourceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   createdAt?: boolean
   updatedAt?: boolean
   subjectId?: boolean
+  authorId?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["ressource"]>
 
 export type RessourceSelectScalar = {
   id?: boolean
-  authorId?: boolean
   title?: boolean
   description?: boolean
   textContent?: boolean
@@ -953,9 +952,10 @@ export type RessourceSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   subjectId?: boolean
+  authorId?: boolean
 }
 
-export type RessourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "authorId" | "title" | "description" | "textContent" | "fileUrl" | "mimeType" | "createdAt" | "updatedAt" | "subjectId", ExtArgs["result"]["ressource"]>
+export type RessourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "textContent" | "fileUrl" | "mimeType" | "createdAt" | "updatedAt" | "subjectId" | "authorId", ExtArgs["result"]["ressource"]>
 export type RessourceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
@@ -980,7 +980,6 @@ export type $RessourcePayload<ExtArgs extends runtime.Types.Extensions.InternalA
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    authorId: string
     title: string
     description: string | null
     textContent: string | null
@@ -989,6 +988,7 @@ export type $RessourcePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     createdAt: Date
     updatedAt: Date
     subjectId: string
+    authorId: string
   }, ExtArgs["result"]["ressource"]>
   composites: {}
 }
@@ -1416,7 +1416,6 @@ export interface Prisma__RessourceClient<T, Null = never, ExtArgs extends runtim
  */
 export interface RessourceFieldRefs {
   readonly id: Prisma.FieldRef<"Ressource", 'String'>
-  readonly authorId: Prisma.FieldRef<"Ressource", 'String'>
   readonly title: Prisma.FieldRef<"Ressource", 'String'>
   readonly description: Prisma.FieldRef<"Ressource", 'String'>
   readonly textContent: Prisma.FieldRef<"Ressource", 'String'>
@@ -1425,6 +1424,7 @@ export interface RessourceFieldRefs {
   readonly createdAt: Prisma.FieldRef<"Ressource", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Ressource", 'DateTime'>
   readonly subjectId: Prisma.FieldRef<"Ressource", 'String'>
+  readonly authorId: Prisma.FieldRef<"Ressource", 'String'>
 }
     
 

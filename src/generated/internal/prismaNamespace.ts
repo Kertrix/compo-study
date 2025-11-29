@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.0.0
- * Query Engine version: 0c19ccc313cf9911a90d99d2ac2eb0280c76c513
+ * Prisma Client JS version: 7.0.1
+ * Query Engine version: f09f2815f091dbba658cdcd2264306d88bb5bda6
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.0.0",
-  engine: "0c19ccc313cf9911a90d99d2ac2eb0280c76c513"
+  client: "7.0.1",
+  engine: "f09f2815f091dbba658cdcd2264306d88bb5bda6"
 }
 
 /**
@@ -1120,10 +1120,10 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const ClassScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  slug: 'slug',
-  promo: 'promo',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  slug: 'slug',
+  promo: 'promo'
 } as const
 
 export type ClassScalarFieldEnum = (typeof ClassScalarFieldEnum)[keyof typeof ClassScalarFieldEnum]
@@ -1134,12 +1134,12 @@ export const SubjectScalarFieldEnum = {
   name: 'name',
   icon: 'icon',
   slug: 'slug',
-  examDate: 'examDate',
-  examLength: 'examLength',
-  examDescription: 'examDescription',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  classId: 'classId'
+  classId: 'classId',
+  examDate: 'examDate',
+  examDescription: 'examDescription',
+  examLength: 'examLength'
 } as const
 
 export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeof SubjectScalarFieldEnum]
@@ -1147,7 +1147,6 @@ export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeo
 
 export const RessourceScalarFieldEnum = {
   id: 'id',
-  authorId: 'authorId',
   title: 'title',
   description: 'description',
   textContent: 'textContent',
@@ -1155,7 +1154,8 @@ export const RessourceScalarFieldEnum = {
   mimeType: 'mimeType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  subjectId: 'subjectId'
+  subjectId: 'subjectId',
+  authorId: 'authorId'
 } as const
 
 export type RessourceScalarFieldEnum = (typeof RessourceScalarFieldEnum)[keyof typeof RessourceScalarFieldEnum]
@@ -1185,13 +1185,13 @@ export type TagCategoryScalarFieldEnum = (typeof TagCategoryScalarFieldEnum)[key
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  role: 'role',
   name: 'name',
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  role: 'role'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1301,6 +1301,13 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'Role'
  */
 export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
@@ -1311,13 +1318,6 @@ export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'Role[]'
  */
 export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

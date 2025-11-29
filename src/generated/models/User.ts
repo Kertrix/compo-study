@@ -26,70 +26,70 @@ export type AggregateUser = {
 
 export type UserMinAggregateOutputType = {
   id: string | null
-  role: $Enums.Role | null
   name: string | null
   email: string | null
   emailVerified: boolean | null
   image: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  role: $Enums.Role | null
 }
 
 export type UserMaxAggregateOutputType = {
   id: string | null
-  role: $Enums.Role | null
   name: string | null
   email: string | null
   emailVerified: boolean | null
   image: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  role: $Enums.Role | null
 }
 
 export type UserCountAggregateOutputType = {
   id: number
-  role: number
   name: number
   email: number
   emailVerified: number
   image: number
   createdAt: number
   updatedAt: number
+  role: number
   _all: number
 }
 
 
 export type UserMinAggregateInputType = {
   id?: true
-  role?: true
   name?: true
   email?: true
   emailVerified?: true
   image?: true
   createdAt?: true
   updatedAt?: true
+  role?: true
 }
 
 export type UserMaxAggregateInputType = {
   id?: true
-  role?: true
   name?: true
   email?: true
   emailVerified?: true
   image?: true
   createdAt?: true
   updatedAt?: true
+  role?: true
 }
 
 export type UserCountAggregateInputType = {
   id?: true
-  role?: true
   name?: true
   email?: true
   emailVerified?: true
   image?: true
   createdAt?: true
   updatedAt?: true
+  role?: true
   _all?: true
 }
 
@@ -167,13 +167,13 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type UserGroupByOutputType = {
   id: string
-  role: $Enums.Role
   name: string
   email: string
   emailVerified: boolean
   image: string | null
   createdAt: Date
   updatedAt: Date
+  role: $Enums.Role
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -199,30 +199,30 @@ export type UserWhereInput = {
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.StringFilter<"User"> | string
-  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   emailVerified?: Prisma.BoolFilter<"User"> | boolean
   image?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  sessions?: Prisma.SessionListRelationFilter
-  accounts?: Prisma.AccountListRelationFilter
+  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   ressources?: Prisma.RessourceListRelationFilter
+  accounts?: Prisma.AccountListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  sessions?: Prisma.SessionOrderByRelationAggregateInput
-  accounts?: Prisma.AccountOrderByRelationAggregateInput
+  role?: Prisma.SortOrder
   ressources?: Prisma.RessourceOrderByRelationAggregateInput
+  accounts?: Prisma.AccountOrderByRelationAggregateInput
+  sessions?: Prisma.SessionOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -231,26 +231,26 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   name?: Prisma.StringFilter<"User"> | string
   emailVerified?: Prisma.BoolFilter<"User"> | boolean
   image?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  sessions?: Prisma.SessionListRelationFilter
-  accounts?: Prisma.AccountListRelationFilter
+  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   ressources?: Prisma.RessourceListRelationFilter
+  accounts?: Prisma.AccountListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -261,102 +261,102 @@ export type UserScalarWhereWithAggregatesInput = {
   OR?: Prisma.UserScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
-  role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
 }
 
 export type UserCreateInput = {
   id: string
-  role?: $Enums.Role
   name: string
   email: string
   emailVerified?: boolean
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  role?: $Enums.Role
   ressources?: Prisma.RessourceCreateNestedManyWithoutAuthorInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
   id: string
-  role?: $Enums.Role
   name: string
   email: string
   emailVerified?: boolean
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.Role
   ressources?: Prisma.RessourceUncheckedCreateNestedManyWithoutAuthorInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   ressources?: Prisma.RessourceUpdateManyWithoutAuthorNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   ressources?: Prisma.RessourceUncheckedUpdateManyWithoutAuthorNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
   id: string
-  role?: $Enums.Role
   name: string
   email: string
   emailVerified?: boolean
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  role?: $Enums.Role
 }
 
 export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
 }
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
 }
 
 export type UserScalarRelationFilter = {
@@ -366,35 +366,35 @@ export type UserScalarRelationFilter = {
 
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  role?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  role?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  role?: Prisma.SortOrder
 }
 
 export type UserCreateNestedOneWithoutRessourcesInput = {
@@ -411,12 +411,12 @@ export type UserUpdateOneRequiredWithoutRessourcesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRessourcesInput, Prisma.UserUpdateWithoutRessourcesInput>, Prisma.UserUncheckedUpdateWithoutRessourcesInput>
 }
 
-export type EnumRoleFieldUpdateOperationsInput = {
-  set?: $Enums.Role
-}
-
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
+}
+
+export type EnumRoleFieldUpdateOperationsInput = {
+  set?: $Enums.Role
 }
 
 export type UserCreateNestedOneWithoutSessionsInput = {
@@ -449,28 +449,28 @@ export type UserUpdateOneRequiredWithoutAccountsNestedInput = {
 
 export type UserCreateWithoutRessourcesInput = {
   id: string
-  role?: $Enums.Role
   name: string
   email: string
   emailVerified?: boolean
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.Role
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRessourcesInput = {
   id: string
-  role?: $Enums.Role
   name: string
   email: string
   emailVerified?: boolean
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.Role
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRessourcesInput = {
@@ -491,54 +491,54 @@ export type UserUpdateToOneWithWhereWithoutRessourcesInput = {
 
 export type UserUpdateWithoutRessourcesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRessourcesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
   id: string
-  role?: $Enums.Role
   name: string
   email: string
   emailVerified?: boolean
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  role?: $Enums.Role
   ressources?: Prisma.RessourceCreateNestedManyWithoutAuthorInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
   id: string
-  role?: $Enums.Role
   name: string
   email: string
   emailVerified?: boolean
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.Role
   ressources?: Prisma.RessourceUncheckedCreateNestedManyWithoutAuthorInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -559,54 +559,54 @@ export type UserUpdateToOneWithWhereWithoutSessionsInput = {
 
 export type UserUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   ressources?: Prisma.RessourceUpdateManyWithoutAuthorNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   ressources?: Prisma.RessourceUncheckedUpdateManyWithoutAuthorNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
   id: string
-  role?: $Enums.Role
   name: string
   email: string
   emailVerified?: boolean
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.Role
   ressources?: Prisma.RessourceCreateNestedManyWithoutAuthorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
   id: string
-  role?: $Enums.Role
   name: string
   email: string
   emailVerified?: boolean
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.Role
   ressources?: Prisma.RessourceUncheckedCreateNestedManyWithoutAuthorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -627,28 +627,28 @@ export type UserUpdateToOneWithWhereWithoutAccountsInput = {
 
 export type UserUpdateWithoutAccountsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   ressources?: Prisma.RessourceUpdateManyWithoutAuthorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   ressources?: Prisma.RessourceUncheckedUpdateManyWithoutAuthorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -657,15 +657,15 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
  */
 
 export type UserCountOutputType = {
-  sessions: number
-  accounts: number
   ressources: number
+  accounts: number
+  sessions: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  sessions?: boolean | UserCountOutputTypeCountSessionsArgs
-  accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   ressources?: boolean | UserCountOutputTypeCountRessourcesArgs
+  accounts?: boolean | UserCountOutputTypeCountAccountsArgs
+  sessions?: boolean | UserCountOutputTypeCountSessionsArgs
 }
 
 /**
@@ -681,8 +681,8 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SessionWhereInput
+export type UserCountOutputTypeCountRessourcesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RessourceWhereInput
 }
 
 /**
@@ -695,64 +695,64 @@ export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends runtime.Types.E
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountRessourcesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.RessourceWhereInput
+export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SessionWhereInput
 }
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  role?: boolean
   name?: boolean
   email?: boolean
   emailVerified?: boolean
   image?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
-  accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
+  role?: boolean
   ressources?: boolean | Prisma.User$ressourcesArgs<ExtArgs>
+  accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
+  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  role?: boolean
   name?: boolean
   email?: boolean
   emailVerified?: boolean
   image?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  role?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  role?: boolean
   name?: boolean
   email?: boolean
   emailVerified?: boolean
   image?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  role?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
   id?: boolean
-  role?: boolean
   name?: boolean
   email?: boolean
   emailVerified?: boolean
   image?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  role?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "role" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt" | "role", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
-  accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   ressources?: boolean | Prisma.User$ressourcesArgs<ExtArgs>
+  accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
+  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -761,19 +761,19 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    sessions: Prisma.$SessionPayload<ExtArgs>[]
-    accounts: Prisma.$AccountPayload<ExtArgs>[]
     ressources: Prisma.$RessourcePayload<ExtArgs>[]
+    accounts: Prisma.$AccountPayload<ExtArgs>[]
+    sessions: Prisma.$SessionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    role: $Enums.Role
     name: string
     email: string
     emailVerified: boolean
     image: string | null
     createdAt: Date
     updatedAt: Date
+    role: $Enums.Role
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1168,9 +1168,9 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ressources<T extends Prisma.User$ressourcesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ressourcesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RessourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1201,13 +1201,13 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
-  readonly role: Prisma.FieldRef<"User", 'Role'>
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
   readonly image: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly role: Prisma.FieldRef<"User", 'Role'>
 }
     
 
@@ -1596,27 +1596,27 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.sessions
+ * User.ressources
  */
-export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$ressourcesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Session
+   * Select specific fields to fetch from the Ressource
    */
-  select?: Prisma.SessionSelect<ExtArgs> | null
+  select?: Prisma.RessourceSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Session
+   * Omit specific fields from the Ressource
    */
-  omit?: Prisma.SessionOmit<ExtArgs> | null
+  omit?: Prisma.RessourceOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SessionInclude<ExtArgs> | null
-  where?: Prisma.SessionWhereInput
-  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
-  cursor?: Prisma.SessionWhereUniqueInput
+  include?: Prisma.RessourceInclude<ExtArgs> | null
+  where?: Prisma.RessourceWhereInput
+  orderBy?: Prisma.RessourceOrderByWithRelationInput | Prisma.RessourceOrderByWithRelationInput[]
+  cursor?: Prisma.RessourceWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
+  distinct?: Prisma.RessourceScalarFieldEnum | Prisma.RessourceScalarFieldEnum[]
 }
 
 /**
@@ -1644,27 +1644,27 @@ export type User$accountsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * User.ressources
+ * User.sessions
  */
-export type User$ressourcesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Ressource
+   * Select specific fields to fetch from the Session
    */
-  select?: Prisma.RessourceSelect<ExtArgs> | null
+  select?: Prisma.SessionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Ressource
+   * Omit specific fields from the Session
    */
-  omit?: Prisma.RessourceOmit<ExtArgs> | null
+  omit?: Prisma.SessionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RessourceInclude<ExtArgs> | null
-  where?: Prisma.RessourceWhereInput
-  orderBy?: Prisma.RessourceOrderByWithRelationInput | Prisma.RessourceOrderByWithRelationInput[]
-  cursor?: Prisma.RessourceWhereUniqueInput
+  include?: Prisma.SessionInclude<ExtArgs> | null
+  where?: Prisma.SessionWhereInput
+  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
+  cursor?: Prisma.SessionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.RessourceScalarFieldEnum | Prisma.RessourceScalarFieldEnum[]
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
 }
 
 /**
