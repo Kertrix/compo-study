@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import RessourceGrid from "./(ressourceList)/grid";
+import UploadRessourceDialog from "./upload-dialog";
 
 export default async function SubjectsSelectionPage({
   params,
@@ -14,6 +15,8 @@ export default async function SubjectsSelectionPage({
 }) {
   const { classSlug, subjectSlug } = await params;
   const user = await getUser();
+
+  const allowed = user?.role === "ADMIN" || user?.role === "TEACHER";
 
   let selectedSubject;
   try {
@@ -104,10 +107,17 @@ export default async function SubjectsSelectionPage({
             </p>
           </div>
         </section>
-        <section className="mt-8">
+        <section className="mt-4">
+          {allowed && selectedSubject.ressources.length !== 0 && (
+            <div className="mb-4">
+              <UploadRessourceDialog subject={selectedSubject} />
+            </div>
+          )}
+
           <RessourceGrid
             subject={selectedSubject}
             tagCategories={tagCategories}
+            allowed={allowed}
           />
         </section>
       </div>

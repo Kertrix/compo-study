@@ -147,7 +147,10 @@ export default function UploadRessourceDialog({
       }}
     >
       <DialogTrigger asChild>
-        <Button variant="outline">Uploader une ressource</Button>
+        <Button className="cursor-pointer">
+          <UploadIcon />
+          Uploader une ressource
+        </Button>
       </DialogTrigger>
       <DialogContent className="p-0">
         <DialogHeader>

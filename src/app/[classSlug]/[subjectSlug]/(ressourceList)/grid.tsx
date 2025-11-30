@@ -24,6 +24,7 @@ import UploadRessourceDialog from "../upload-dialog";
 export default function RessourceGrid({
   subject,
   tagCategories,
+  allowed,
 }: {
   subject: Prisma.SubjectGetPayload<{
     include: { ressources: { include: { tags: true } }; class: true };
@@ -31,6 +32,7 @@ export default function RessourceGrid({
   tagCategories: Prisma.TagCategoryGetPayload<{
     include: { tags: true };
   }>[];
+  allowed: boolean;
 }) {
   const [query, setQuery] = useState("");
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
@@ -98,10 +100,10 @@ export default function RessourceGrid({
           <EmptyMedia variant="icon">
             <BookOpen />
           </EmptyMedia>
-          <EmptyTitle>Aucun cours disponible pour le moment 😴</EmptyTitle>
+          <EmptyTitle>Aucune ressource disponible pour le moment 😴</EmptyTitle>
         </EmptyHeader>
         <EmptyContent>
-          <UploadRessourceDialog subject={subject} />
+          {allowed && <UploadRessourceDialog subject={subject} />}
         </EmptyContent>
       </Empty>
     );
