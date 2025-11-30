@@ -18,13 +18,29 @@ export async function GET(request: NextRequest) {
     }
 
     const contentType = response.headers.get("content-type");
-    const blob = await response.blob();
 
-    return new NextResponse(blob, {
-      headers: {
-        "Content-Type": contentType || "application/pdf",
-        "Access-Control-Allow-Origin": "*", // Allow client-side access
-      },
+    // Create headers for the response
+    const headers = new Headers();
+    headers.set("Content-Type", contentType || "application/pdf");
+    headers.set("Access-Control-Allow-Origin", "*"); // Allow client-side access
+
+    // Add aggressive caching headers
+    // public: can be cached by browsers and intermediate proxies
+    // max-age=31536000: cache for 1 year (effectively immutable)
+    // immutable: indicates the response body will not change over time
+    headers.set("Cache-Control", "public, max-age=31536000, immutable");
+
+    // Forward ETag if available for conditional requests
+    const etag = response.headers.get("etag");
+    if (etag) {
+      headers.set("ETag", etag);
+    }
+
+    // Use response.body directly for streaming to reduce memory usage
+    return new NextResponse(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers,
     });
   } catch (error) {
     console.error("Proxy error:", error);
