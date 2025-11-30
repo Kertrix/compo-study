@@ -115,8 +115,8 @@ export default function RessourceGrid({
 
   return (
     <>
-      <div className="grid grid-cols-5 gap-2 mb-2">
-        <div className="space-y-2 col-span-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-2 gap-y-4 mb-2">
+        <div className="space-y-2 col-span-2 sm:col-span-3">
           <Label>Rechercher par nom</Label>
           <InputGroup>
             <InputGroupAddon>
@@ -157,7 +157,7 @@ export default function RessourceGrid({
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {results.map((ressource) => (
           <RessourceCard
             key={ressource.id}
