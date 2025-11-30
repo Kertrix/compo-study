@@ -29,6 +29,7 @@ export default async function ClassSelectionPage() {
                 <>
                   <Skeleton className="w-full h-[162px]" />
                   <Skeleton className="w-full h-[162px]" />
+                  <Skeleton className="w-full h-[162px]" />
                 </>
               }
             >
