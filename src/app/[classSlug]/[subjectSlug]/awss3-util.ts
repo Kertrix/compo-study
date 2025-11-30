@@ -33,7 +33,7 @@ export async function uploadFileToS3(params: {
   try {
     await s3Client.send(command);
 
-    return `${process.env.R2_URL}/${uniqueFilename}`;
+    return `${process.env.R2_URL}/${process.env.S3_BUCKET_NAME}/${uniqueFilename}`;
   } catch (error) {
     console.error("Error uploading file to S3:", error);
     throw error;

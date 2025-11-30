@@ -19,6 +19,17 @@ export async function uploadAction(
       throw new Error("User not authenticated");
     }
 
+    const thumbnail = formData.get("thumbnail");
+    let thumbnailUrl: string | undefined;
+
+    if (thumbnail instanceof File) {
+      thumbnailUrl = await uploadFileToS3({
+        file: thumbnail,
+        prefix: `${subject.class.slug}/${subject.slug}`,
+        filename: `thumbnail_${thumbnail.name}`,
+      });
+    }
+
     for (const f of files) {
       if (f instanceof File) {
         const url = await uploadFileToS3({
@@ -37,6 +48,8 @@ export async function uploadAction(
             authorId: user.id,
             mimeType: f.type,
             fileUrl: url,
+            thumbnailUrl:
+              f.type === "application/pdf" ? thumbnailUrl : undefined,
             subjectId: subject.id,
           },
         });

@@ -5,18 +5,30 @@ export default function RessourceCard({
   description,
   updatedAt,
   Icon,
+  thumbnailUrl,
 }: {
   title: string;
   description: string | null;
   updatedAt: Date;
   Icon: LucideIcon;
+  thumbnailUrl?: string | null;
 }) {
   return (
     <div className="border rounded-lg p-4 gap-4 flex items-center">
       <div>
-        <div className="bg-blue-600/10 rounded-lg p-2">
-          <Icon className="h-6 w-6 text-blue-600 " />
-        </div>
+        {thumbnailUrl ? (
+          <div className="h-16 w-16 rounded-lg overflow-hidden border bg-muted">
+            <img
+              src={thumbnailUrl}
+              alt={title}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        ) : (
+          <div className="bg-blue-600/10 rounded-lg p-2">
+            <Icon className="h-6 w-6 text-blue-600 " />
+          </div>
+        )}
       </div>
       <div className="overflow-hidden">
         <h3

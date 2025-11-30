@@ -16,6 +16,12 @@ import {
 import { Prisma } from "@/generated/client";
 import { cn } from "@/lib/utils";
 
+// Import pdfjs-dist
+import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf.mjs";
+
+// Set worker source
+pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
+
 export default function UploadRessourceDialog({
   subject,
 }: {
@@ -23,11 +29,52 @@ export default function UploadRessourceDialog({
 }) {
   const [open, setOpen] = React.useState(false);
   const [files, setFiles] = React.useState<File[]>([]);
+  const [isUploading, setIsUploading] = React.useState(false);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (acceptedFiles) => setFiles(acceptedFiles.slice(0, 1)),
     multiple: false,
     maxFiles: 1,
+    accept: {
+      "application/pdf": [".pdf"],
+    },
   });
+
+  const generateThumbnail = async (file: File): Promise<File | null> => {
+    if (file.type !== "application/pdf") return null;
+
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+      const page = await pdf.getPage(1);
+      const viewport = page.getViewport({ scale: 1 });
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d");
+
+      if (!context) return null;
+
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      await page.render({
+        canvasContext: context,
+        viewport: viewport,
+        canvas,
+      } as any).promise;
+
+      return new Promise((resolve) => {
+        canvas.toBlob((blob) => {
+          if (blob) {
+            resolve(new File([blob], "thumbnail.png", { type: "image/png" }));
+          } else {
+            resolve(null);
+          }
+        }, "image/png");
+      });
+    } catch (error) {
+      console.error("Error generating thumbnail:", error);
+      return null;
+    }
+  };
 
   const filesList = files.map((file) => (
     <div
@@ -69,10 +116,25 @@ export default function UploadRessourceDialog({
     e.preventDefault();
     if (files.length === 0) return;
 
+    setIsUploading(true);
     const form = new FormData();
-    files.forEach((f) => form.append("files", f));
 
-    await uploadAction(form, subject).then(() => setOpen(false));
+    for (const f of files) {
+      form.append("files", f);
+      if (f.type === "application/pdf") {
+        const thumbnail = await generateThumbnail(f);
+        if (thumbnail) {
+          form.append("thumbnail", thumbnail);
+        }
+      }
+    }
+
+    await uploadAction(form, subject)
+      .then(() => {
+        setOpen(false);
+        setFiles([]);
+      })
+      .finally(() => setIsUploading(false));
   };
 
   return (
@@ -133,11 +195,15 @@ export default function UploadRessourceDialog({
                 type="button"
                 variant="outline"
                 onClick={() => setFiles([])}
+                disabled={isUploading}
               >
                 Annuler
               </Button>
-              <Button type="submit" disabled={files.length === 0}>
-                Téléverser
+              <Button
+                type="submit"
+                disabled={files.length === 0 || isUploading}
+              >
+                {isUploading ? "Téléversement..." : "Téléverser"}
               </Button>
             </div>
           </form>

@@ -30,6 +30,7 @@ export type RessourceMinAggregateOutputType = {
   description: string | null
   textContent: string | null
   fileUrl: string | null
+  thumbnailUrl: string | null
   mimeType: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -43,6 +44,7 @@ export type RessourceMaxAggregateOutputType = {
   description: string | null
   textContent: string | null
   fileUrl: string | null
+  thumbnailUrl: string | null
   mimeType: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -56,6 +58,7 @@ export type RessourceCountAggregateOutputType = {
   description: number
   textContent: number
   fileUrl: number
+  thumbnailUrl: number
   mimeType: number
   createdAt: number
   updatedAt: number
@@ -71,6 +74,7 @@ export type RessourceMinAggregateInputType = {
   description?: true
   textContent?: true
   fileUrl?: true
+  thumbnailUrl?: true
   mimeType?: true
   createdAt?: true
   updatedAt?: true
@@ -84,6 +88,7 @@ export type RessourceMaxAggregateInputType = {
   description?: true
   textContent?: true
   fileUrl?: true
+  thumbnailUrl?: true
   mimeType?: true
   createdAt?: true
   updatedAt?: true
@@ -97,6 +102,7 @@ export type RessourceCountAggregateInputType = {
   description?: true
   textContent?: true
   fileUrl?: true
+  thumbnailUrl?: true
   mimeType?: true
   createdAt?: true
   updatedAt?: true
@@ -183,6 +189,7 @@ export type RessourceGroupByOutputType = {
   description: string | null
   textContent: string | null
   fileUrl: string | null
+  thumbnailUrl: string | null
   mimeType: string | null
   createdAt: Date
   updatedAt: Date
@@ -217,6 +224,7 @@ export type RessourceWhereInput = {
   description?: Prisma.StringNullableFilter<"Ressource"> | string | null
   textContent?: Prisma.StringNullableFilter<"Ressource"> | string | null
   fileUrl?: Prisma.StringNullableFilter<"Ressource"> | string | null
+  thumbnailUrl?: Prisma.StringNullableFilter<"Ressource"> | string | null
   mimeType?: Prisma.StringNullableFilter<"Ressource"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
@@ -233,6 +241,7 @@ export type RessourceOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   textContent?: Prisma.SortOrderInput | Prisma.SortOrder
   fileUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  thumbnailUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   mimeType?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -252,6 +261,7 @@ export type RessourceWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"Ressource"> | string | null
   textContent?: Prisma.StringNullableFilter<"Ressource"> | string | null
   fileUrl?: Prisma.StringNullableFilter<"Ressource"> | string | null
+  thumbnailUrl?: Prisma.StringNullableFilter<"Ressource"> | string | null
   mimeType?: Prisma.StringNullableFilter<"Ressource"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
@@ -268,6 +278,7 @@ export type RessourceOrderByWithAggregationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   textContent?: Prisma.SortOrderInput | Prisma.SortOrder
   fileUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  thumbnailUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   mimeType?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -287,6 +298,7 @@ export type RessourceScalarWhereWithAggregatesInput = {
   description?: Prisma.StringNullableWithAggregatesFilter<"Ressource"> | string | null
   textContent?: Prisma.StringNullableWithAggregatesFilter<"Ressource"> | string | null
   fileUrl?: Prisma.StringNullableWithAggregatesFilter<"Ressource"> | string | null
+  thumbnailUrl?: Prisma.StringNullableWithAggregatesFilter<"Ressource"> | string | null
   mimeType?: Prisma.StringNullableWithAggregatesFilter<"Ressource"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Ressource"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Ressource"> | Date | string
@@ -300,6 +312,7 @@ export type RessourceCreateInput = {
   description?: string | null
   textContent?: string | null
   fileUrl?: string | null
+  thumbnailUrl?: string | null
   mimeType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -314,6 +327,7 @@ export type RessourceUncheckedCreateInput = {
   description?: string | null
   textContent?: string | null
   fileUrl?: string | null
+  thumbnailUrl?: string | null
   mimeType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -328,6 +342,7 @@ export type RessourceUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -342,6 +357,7 @@ export type RessourceUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -356,6 +372,7 @@ export type RessourceCreateManyInput = {
   description?: string | null
   textContent?: string | null
   fileUrl?: string | null
+  thumbnailUrl?: string | null
   mimeType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -369,6 +386,7 @@ export type RessourceUpdateManyMutationInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -380,6 +398,7 @@ export type RessourceUncheckedUpdateManyInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -403,6 +422,7 @@ export type RessourceCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   textContent?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
+  thumbnailUrl?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -416,6 +436,7 @@ export type RessourceMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   textContent?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
+  thumbnailUrl?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -429,6 +450,7 @@ export type RessourceMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   textContent?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
+  thumbnailUrl?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -564,6 +586,7 @@ export type RessourceCreateWithoutSubjectInput = {
   description?: string | null
   textContent?: string | null
   fileUrl?: string | null
+  thumbnailUrl?: string | null
   mimeType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -577,6 +600,7 @@ export type RessourceUncheckedCreateWithoutSubjectInput = {
   description?: string | null
   textContent?: string | null
   fileUrl?: string | null
+  thumbnailUrl?: string | null
   mimeType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -619,6 +643,7 @@ export type RessourceScalarWhereInput = {
   description?: Prisma.StringNullableFilter<"Ressource"> | string | null
   textContent?: Prisma.StringNullableFilter<"Ressource"> | string | null
   fileUrl?: Prisma.StringNullableFilter<"Ressource"> | string | null
+  thumbnailUrl?: Prisma.StringNullableFilter<"Ressource"> | string | null
   mimeType?: Prisma.StringNullableFilter<"Ressource"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ressource"> | Date | string
@@ -632,6 +657,7 @@ export type RessourceCreateWithoutTagsInput = {
   description?: string | null
   textContent?: string | null
   fileUrl?: string | null
+  thumbnailUrl?: string | null
   mimeType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -645,6 +671,7 @@ export type RessourceUncheckedCreateWithoutTagsInput = {
   description?: string | null
   textContent?: string | null
   fileUrl?: string | null
+  thumbnailUrl?: string | null
   mimeType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -679,6 +706,7 @@ export type RessourceCreateWithoutAuthorInput = {
   description?: string | null
   textContent?: string | null
   fileUrl?: string | null
+  thumbnailUrl?: string | null
   mimeType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -692,6 +720,7 @@ export type RessourceUncheckedCreateWithoutAuthorInput = {
   description?: string | null
   textContent?: string | null
   fileUrl?: string | null
+  thumbnailUrl?: string | null
   mimeType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -731,6 +760,7 @@ export type RessourceCreateManySubjectInput = {
   description?: string | null
   textContent?: string | null
   fileUrl?: string | null
+  thumbnailUrl?: string | null
   mimeType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -743,6 +773,7 @@ export type RessourceUpdateWithoutSubjectInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -756,6 +787,7 @@ export type RessourceUncheckedUpdateWithoutSubjectInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -769,6 +801,7 @@ export type RessourceUncheckedUpdateManyWithoutSubjectInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -781,6 +814,7 @@ export type RessourceUpdateWithoutTagsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -794,6 +828,7 @@ export type RessourceUncheckedUpdateWithoutTagsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -807,6 +842,7 @@ export type RessourceUncheckedUpdateManyWithoutTagsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -820,6 +856,7 @@ export type RessourceCreateManyAuthorInput = {
   description?: string | null
   textContent?: string | null
   fileUrl?: string | null
+  thumbnailUrl?: string | null
   mimeType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -832,6 +869,7 @@ export type RessourceUpdateWithoutAuthorInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -845,6 +883,7 @@ export type RessourceUncheckedUpdateWithoutAuthorInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -858,6 +897,7 @@ export type RessourceUncheckedUpdateManyWithoutAuthorInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   textContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -901,6 +941,7 @@ export type RessourceSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   description?: boolean
   textContent?: boolean
   fileUrl?: boolean
+  thumbnailUrl?: boolean
   mimeType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -918,6 +959,7 @@ export type RessourceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   description?: boolean
   textContent?: boolean
   fileUrl?: boolean
+  thumbnailUrl?: boolean
   mimeType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -933,6 +975,7 @@ export type RessourceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   description?: boolean
   textContent?: boolean
   fileUrl?: boolean
+  thumbnailUrl?: boolean
   mimeType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -948,6 +991,7 @@ export type RessourceSelectScalar = {
   description?: boolean
   textContent?: boolean
   fileUrl?: boolean
+  thumbnailUrl?: boolean
   mimeType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -955,7 +999,7 @@ export type RessourceSelectScalar = {
   authorId?: boolean
 }
 
-export type RessourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "textContent" | "fileUrl" | "mimeType" | "createdAt" | "updatedAt" | "subjectId" | "authorId", ExtArgs["result"]["ressource"]>
+export type RessourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "textContent" | "fileUrl" | "thumbnailUrl" | "mimeType" | "createdAt" | "updatedAt" | "subjectId" | "authorId", ExtArgs["result"]["ressource"]>
 export type RessourceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
@@ -984,6 +1028,7 @@ export type $RessourcePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     description: string | null
     textContent: string | null
     fileUrl: string | null
+    thumbnailUrl: string | null
     mimeType: string | null
     createdAt: Date
     updatedAt: Date
@@ -1420,6 +1465,7 @@ export interface RessourceFieldRefs {
   readonly description: Prisma.FieldRef<"Ressource", 'String'>
   readonly textContent: Prisma.FieldRef<"Ressource", 'String'>
   readonly fileUrl: Prisma.FieldRef<"Ressource", 'String'>
+  readonly thumbnailUrl: Prisma.FieldRef<"Ressource", 'String'>
   readonly mimeType: Prisma.FieldRef<"Ressource", 'String'>
   readonly createdAt: Prisma.FieldRef<"Ressource", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Ressource", 'DateTime'>

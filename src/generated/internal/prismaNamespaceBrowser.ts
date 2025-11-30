@@ -112,6 +112,7 @@ export const RessourceScalarFieldEnum = {
   description: 'description',
   textContent: 'textContent',
   fileUrl: 'fileUrl',
+  thumbnailUrl: 'thumbnailUrl',
   mimeType: 'mimeType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
