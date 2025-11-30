@@ -16,11 +16,12 @@ import {
 import { Prisma } from "@/generated/client";
 import { cn } from "@/lib/utils";
 
-// Import pdfjs-dist
-import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf.mjs";
+import * as pdfjs from "pdfjs-dist/legacy/build/pdf.mjs";
 
-// Set worker source
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/legacy/build/pdf.worker.min.mjs",
+  import.meta.url
+).toString();
 
 export default function UploadRessourceDialog({
   subject,
@@ -44,7 +45,7 @@ export default function UploadRessourceDialog({
 
     try {
       const arrayBuffer = await file.arrayBuffer();
-      const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+      const pdf = await pdfjs.getDocument(arrayBuffer).promise;
       const page = await pdf.getPage(1);
       const viewport = page.getViewport({ scale: 1 });
       const canvas = document.createElement("canvas");

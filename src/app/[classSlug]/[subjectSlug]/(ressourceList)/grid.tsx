@@ -163,6 +163,7 @@ export default function RessourceGrid({
             description={ressource.description}
             updatedAt={ressource.updatedAt}
             Icon={FileText}
+            fileUrl={ressource.fileUrl}
             thumbnailUrl={ressource.thumbnailUrl}
           />
         ))}

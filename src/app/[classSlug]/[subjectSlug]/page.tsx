@@ -41,8 +41,6 @@ export default async function SubjectsSelectionPage({
     },
   });
 
-  console.log(tagCategories);
-
   return (
     <>
       <div className="flex-1">
