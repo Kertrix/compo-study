@@ -155,7 +155,7 @@ export default function RessourceGrid({
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         {results.map((ressource) => (
           <RessourceCard
             key={ressource.id}
@@ -163,6 +163,7 @@ export default function RessourceGrid({
             description={ressource.description}
             updatedAt={ressource.updatedAt}
             Icon={FileText}
+            thumbnailUrl={ressource.thumbnailUrl}
           />
         ))}
       </div>
