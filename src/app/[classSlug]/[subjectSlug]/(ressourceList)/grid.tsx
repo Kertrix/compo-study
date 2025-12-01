@@ -116,7 +116,7 @@ export default function RessourceGrid({
   return (
     <>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-2 gap-y-4 mb-2">
-        <div className="space-y-2 col-span-2 sm:col-span-3">
+        <div className="space-y-2 col-span-2 sm:col-span-3 md:col-span-2">
           <Label>Rechercher par nom</Label>
           <InputGroup>
             <InputGroupAddon>
