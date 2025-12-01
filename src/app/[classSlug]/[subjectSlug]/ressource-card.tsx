@@ -65,7 +65,7 @@ export default function RessourceCard({
           )}
           <div className="absolute bottom-0 bg-white py-2 border-t w-full flex flex-col items-center justify-center">
             <h3
-              className="font-semibold text-md leading-tight truncate"
+              className="font-semibold px-4 text-md leading-tight truncate max-w-full"
               title={title}
             >
               {title}
