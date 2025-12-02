@@ -115,7 +115,7 @@ export default async function SubjectsSelectionPage({
             </div>
           )}
           <div className="grid grid-cols-2 mb-6">
-            <NewRessourceForm />
+            <NewRessourceForm subject={selectedSubject} />
           </div>
 
           <RessourceGrid

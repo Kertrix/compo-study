@@ -359,9 +359,9 @@ export type UserUncheckedUpdateManyInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
 }
 
-export type UserScalarRelationFilter = {
-  is?: Prisma.UserWhereInput
-  isNot?: Prisma.UserWhereInput
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -397,16 +397,23 @@ export type UserMinOrderByAggregateInput = {
   role?: Prisma.SortOrder
 }
 
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
+}
+
 export type UserCreateNestedOneWithoutRessourcesInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutRessourcesInput, Prisma.UserUncheckedCreateWithoutRessourcesInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutRessourcesInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutRessourcesNestedInput = {
+export type UserUpdateOneWithoutRessourcesNestedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutRessourcesInput, Prisma.UserUncheckedCreateWithoutRessourcesInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutRessourcesInput
   upsert?: Prisma.UserUpsertWithoutRessourcesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRessourcesInput, Prisma.UserUpdateWithoutRessourcesInput>, Prisma.UserUncheckedUpdateWithoutRessourcesInput>
 }

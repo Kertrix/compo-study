@@ -14,27 +14,71 @@ import {
   InputGroupText,
   InputGroupTextarea,
 } from "@/components/ui/input-group";
+import { Prisma } from "@/generated/client";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PaperclipIcon, UploadIcon, XIcon } from "lucide-react";
+import * as pdfjs from "pdfjs-dist/legacy/build/pdf.mjs";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
+import { uploadAction } from "../upload-action";
 
-const RessourceSchema = z.object({
-  title: z
-    .string()
-    .min(3, "Le titre doit contenir au moins 3 caractères")
-    .max(100, "Le titre doit contenir au plus 100 caractères"),
-  description: z
-    .string()
-    .min(3, "La description doit contenir au moins 3 caractères")
-    .max(1000, "La description doit contenir au plus 1000 caractères"),
-  files: z.array(z.instanceof(File)).optional(),
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/legacy/build/pdf.worker.mjs",
+  import.meta.url
+).toString();
+
+const generateThumbnail = async (file: File): Promise<File | null> => {
+  if (file.type !== "application/pdf") return null;
+
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjs.getDocument(arrayBuffer).promise;
+    const page = await pdf.getPage(1);
+    const viewport = page.getViewport({ scale: 1 });
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+
+    if (!context) return null;
+
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    await page.render({
+      canvasContext: context,
+      viewport: viewport,
+      canvas,
+    } as any).promise;
+
+    return new Promise((resolve) => {
+      canvas.toBlob((blob) => {
+        if (blob) {
+          resolve(new File([blob], "thumbnail.png", { type: "image/png" }));
+        } else {
+          resolve(null);
+        }
+      }, "image/png");
+    });
+  } catch (error) {
+    console.error("Error generating thumbnail:", error);
+    return null;
+  }
+};
+
+export const RessourceSchema = z.object({
+  title: z.string().optional(),
+  description: z.string().optional(),
+  files: z.array(z.instanceof(File)).min(1, "Un fichier est requis"),
+  thumbnail: z.instanceof(File).optional(),
 });
 
-export default function NewRessourceForm() {
+export default function NewRessourceForm({
+  subject,
+}: {
+  subject: Prisma.SubjectGetPayload<{ include: { class: true } }>;
+}) {
   const form = useForm<z.infer<typeof RessourceSchema>>({
     resolver: zodResolver(RessourceSchema),
     defaultValues: {
@@ -45,6 +89,7 @@ export default function NewRessourceForm() {
   });
 
   const [files, setFiles] = useState<File[]>([]);
+  const [isUploading, setIsUploading] = useState(false);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (acceptedFiles) => {
@@ -60,9 +105,21 @@ export default function NewRessourceForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof RessourceSchema>) {
-    // Do something with the form values.
-    console.log(data);
+  async function onSubmit(data: z.infer<typeof RessourceSchema>) {
+    setIsUploading(true);
+
+    if (files[0].type === "application/pdf") {
+      const thumbnail = await generateThumbnail(files[0]);
+      if (thumbnail) {
+        data.thumbnail = thumbnail;
+      }
+    }
+
+    await uploadAction(data, subject)
+      .then(() => {
+        setFiles([]);
+      })
+      .finally(() => setIsUploading(false));
   }
 
   const filesList = files.map((file) => (
@@ -94,6 +151,7 @@ export default function NewRessourceForm() {
             (prevFile) => prevFile.name !== file.name
           );
           form.setValue("files", newFiles, { shouldValidate: true });
+          setFiles(newFiles);
         }}
         aria-label="Remove file"
       >
@@ -113,7 +171,9 @@ export default function NewRessourceForm() {
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="ressource-title">Titre</FieldLabel>
+              <FieldLabel htmlFor="ressource-title">
+                Titre (facultatif)
+              </FieldLabel>
               <Input
                 {...field}
                 id="ressource-title"
@@ -131,7 +191,7 @@ export default function NewRessourceForm() {
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="ressource-description">
-                Description
+                Description (facultatif)
               </FieldLabel>
               <InputGroup>
                 <InputGroupTextarea
@@ -157,7 +217,7 @@ export default function NewRessourceForm() {
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="ressource-files">Fichiers</FieldLabel>
+              <FieldLabel htmlFor="ressource-files">Fichier</FieldLabel>
               <div
                 {...field}
                 {...getRootProps()}
@@ -176,7 +236,9 @@ export default function NewRessourceForm() {
                   >
                     <UploadIcon className="size-4 opacity-60" />
                   </div>
-                  <p className="mb-1.5 text-sm font-medium">Upload file</p>
+                  <p className="mb-1.5 text-sm font-medium">
+                    Uploader un fichier
+                  </p>
                   <input
                     {...getInputProps()}
                     id="file-upload-dialog"
@@ -186,7 +248,8 @@ export default function NewRessourceForm() {
                     disabled={files.length >= 1}
                   />
                   <p className="text-xs text-muted-foreground">
-                    Drag & drop or click to browse (max 1 file)
+                    Glissez & déposez ou cliquez pour sélectionner (max 1
+                    fichier)
                   </p>
                 </div>
               </div>
@@ -197,7 +260,7 @@ export default function NewRessourceForm() {
         />
         <Field orientation="horizontal">
           <Button className="w-full cursor-pointer" type="submit">
-            Créer
+            {isUploading ? "En cours..." : "Créer"}
           </Button>
         </Field>
       </FieldGroup>

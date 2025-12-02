@@ -3,30 +3,35 @@
 import { Prisma } from "@/generated/client";
 import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
+import * as z from "zod";
+import { RessourceSchema } from "./(createRessource)/new-ressource-form";
 import { uploadFileToS3 } from "./awss3-util";
 
 export async function uploadAction(
-  formData: FormData,
+  formData: z.infer<typeof RessourceSchema>,
   subject: Prisma.SubjectGetPayload<{ include: { class: true } }>
 ) {
   try {
-    const files = formData.getAll("files");
-    console.log(files);
+    const files = formData.files;
+
+    if (formData.title === undefined || formData.title === "") {
+      formData.title = files[0].name;
+    }
+
+    if (!files) {
+      throw new Error("No files provided");
+    }
 
     const user = await getUser();
 
-    if (!user) {
-      throw new Error("User not authenticated");
-    }
-
-    const thumbnail = formData.get("thumbnail");
+    const thumbnailFile = formData.thumbnail;
     let thumbnailUrl: string | undefined;
 
-    if (thumbnail instanceof File) {
+    if (thumbnailFile) {
       thumbnailUrl = await uploadFileToS3({
-        file: thumbnail,
+        file: thumbnailFile,
         prefix: `${subject.class.slug}/${subject.slug}`,
-        filename: `thumbnail_${thumbnail.name}`,
+        filename: `thumbnail_${thumbnailFile.name}`,
       });
     }
 
@@ -44,8 +49,9 @@ export async function uploadAction(
 
         await prisma.ressource.create({
           data: {
-            title: f.name,
-            authorId: user.id,
+            title: formData.title,
+            authorId: user?.id,
+            description: formData.description,
             mimeType: f.type,
             fileUrl: url,
             thumbnailUrl:
