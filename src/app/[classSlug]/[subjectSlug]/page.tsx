@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import NewRessourceForm from "./(createRessource)/new-ressource-form";
 import RessourceGrid from "./(ressourceList)/grid";
 import UploadRessourceDialog from "./upload-dialog";
 
@@ -113,6 +114,9 @@ export default async function SubjectsSelectionPage({
               <UploadRessourceDialog subject={selectedSubject} />
             </div>
           )}
+          <div className="grid grid-cols-2 mb-6">
+            <NewRessourceForm />
+          </div>
 
           <RessourceGrid
             subject={selectedSubject}
