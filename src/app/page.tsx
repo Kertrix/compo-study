@@ -1,5 +1,6 @@
 "use client";
 
+import GoogleButton from "@/components/google-button";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -54,18 +55,6 @@ export default function PasswordGate() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {/* <GoogleButton />
-            <p className="mt-2 text-justify text-muted-foreground text-xs">
-              Seules les adresses en <code>@ejm.org</code> et{" "}
-              <code>@ejm.net</code> sont autorisées.
-            </p>
-            <div className="flex items-center my-4">
-              <div className="grow h-px bg-muted" />
-              <span className="mx-4 text-muted-foreground text-xs uppercase font-medium">
-                ou continuez en mode invité
-              </span>
-              <div className="grow h-px bg-muted" />
-            </div> */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <InputGroup className="py-5">
                 <InputGroupInput
@@ -100,9 +89,21 @@ export default function PasswordGate() {
                 type="submit"
                 className="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-medium rounded-md transition-colors"
               >
-                Enter
+                Entrer
               </Button>
             </form>
+            <div className="flex items-center my-4">
+              <div className="grow h-px bg-muted" />
+              <span className="mx-4 text-muted-foreground text-xs uppercase font-medium">
+                (désactivé temporairement)
+              </span>
+              <div className="grow h-px bg-muted" />
+            </div>
+            <GoogleButton />
+            {/* <p className="mt-2 text-justify text-muted-foreground text-xs">
+                Seules les adresses en <code>@ejm.org</code> et{" "}
+                <code>@ejm.net</code> sont autorisées.
+              </p> */}
           </CardContent>
         </Card>
       </div>

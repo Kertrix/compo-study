@@ -118,7 +118,7 @@ export default async function SubjectsSelectionPage({
           </div>
         </section>
         <section className="mt-4">
-          <div className="grid grid-cols-2 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 mb-6">
             {allowed && (
               <Accordion
                 className="w-full space-y-2"
