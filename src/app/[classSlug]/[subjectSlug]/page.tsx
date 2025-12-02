@@ -1,12 +1,19 @@
 import { NavUser } from "@/components/nav-user";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, PlusCircle } from "lucide-react";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import NewRessourceForm from "./(createRessource)/new-ressource-form";
 import RessourceGrid from "./(ressourceList)/grid";
-import UploadRessourceDialog from "./upload-dialog";
 
 export default async function SubjectsSelectionPage({
   params,
@@ -16,7 +23,10 @@ export default async function SubjectsSelectionPage({
   const { classSlug, subjectSlug } = await params;
   const user = await getUser();
 
-  const allowed = user?.role === "ADMIN" || user?.role === "TEACHER";
+  const cookieStore = await cookies();
+  const allowed =
+    user?.role === "ADMIN" ||
+    cookieStore.get("teacherAccess")?.value === "true";
 
   let selectedSubject;
   try {
@@ -108,16 +118,35 @@ export default async function SubjectsSelectionPage({
           </div>
         </section>
         <section className="mt-4">
-          {allowed && selectedSubject.ressources.length !== 0 && (
-            <div className="mb-4">
-              <UploadRessourceDialog subject={selectedSubject} />
-            </div>
-          )}
+          <div className="grid grid-cols-2 mb-6">
+            {allowed && (
+              <Accordion
+                className="w-full space-y-2"
+                collapsible
+                defaultValue="3"
+                type="single"
+              >
+                <AccordionItem
+                  className="rounded-md border bg-background px-4 py-1 outline-none last:border-b has-focus-visible:border-ring has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50"
+                  value="1"
+                >
+                  <AccordionTrigger className="py-2 cursor-pointer text-[15px] leading-6 hover:no-underline focus-visible:ring-0">
+                    <span className="flex items-center gap-2">
+                      <PlusCircle size={16} />
+                      Créer une nouvelle ressource ressource
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-2 text-muted-foreground">
+                    <NewRessourceForm subject={selectedSubject} />
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            )}
+          </div>
 
           <RessourceGrid
             subject={selectedSubject}
             tagCategories={tagCategories}
-            allowed={allowed}
           />
         </section>
       </div>
