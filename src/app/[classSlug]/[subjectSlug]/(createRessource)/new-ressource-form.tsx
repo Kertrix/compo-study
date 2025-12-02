@@ -161,7 +161,7 @@ export default function NewRessourceForm({
   ));
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)}>
+    <form onSubmit={form.handleSubmit(onSubmit)} className="p-1">
       <FieldGroup>
         <Controller
           name="title"

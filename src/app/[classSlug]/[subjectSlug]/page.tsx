@@ -130,7 +130,7 @@ export default async function SubjectsSelectionPage({
                   className="rounded-md border bg-background px-4 py-1 outline-none last:border-b has-focus-visible:border-ring has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50"
                   value="1"
                 >
-                  <AccordionTrigger className="py-2 text-[15px] leading-6 hover:no-underline focus-visible:ring-0">
+                  <AccordionTrigger className="py-2 cursor-pointer text-[15px] leading-6 hover:no-underline focus-visible:ring-0">
                     <span className="flex items-center gap-2">
                       <PlusCircle size={16} />
                       Créer une nouvelle ressource ressource
