@@ -26,6 +26,7 @@ export default async function RootLayout({
 }>) {
   const cookieStore = await cookies();
   const isGuest = cookieStore.get("studentAccess")?.value === "true";
+  const isTeacher = cookieStore.get("teacherAccess")?.value === "true";
   return (
     <html lang="en">
       <body
@@ -33,7 +34,7 @@ export default async function RootLayout({
       >
         <main className="max-w-5xl min-h-screen mx-auto flex flex-col px-4 py-10">
           {children}
-          <Footer isGuest={isGuest} />
+          <Footer isGuest={isGuest} isTeacher={isTeacher} />
         </main>
       </body>
     </html>

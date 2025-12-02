@@ -1,6 +1,5 @@
 "use client";
 
-import GoogleButton from "@/components/google-button";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -55,7 +54,7 @@ export default function PasswordGate() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <GoogleButton />
+            {/* <GoogleButton />
             <p className="mt-2 text-justify text-muted-foreground text-xs">
               Seules les adresses en <code>@ejm.org</code> et{" "}
               <code>@ejm.net</code> sont autorisées.
@@ -66,7 +65,7 @@ export default function PasswordGate() {
                 ou continuez en mode invité
               </span>
               <div className="grow h-px bg-muted" />
-            </div>
+            </div> */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <InputGroup className="py-5">
                 <InputGroupInput
