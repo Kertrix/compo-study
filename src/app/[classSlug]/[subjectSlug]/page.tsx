@@ -90,7 +90,7 @@ export default async function SubjectsSelectionPage({
             />
           )}
         </header>
-        <section className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="flex flex-col bg-muted/60 border p-5 rounded-lg">
             <span className="leading-tight text-md font-medium text-muted-foreground">
               Date de l&apos;examen
@@ -116,6 +116,46 @@ export default async function SubjectsSelectionPage({
               {selectedSubject.examDescription || "Durée totale"}
             </p>
           </div>
+          <div className="flex flex-col bg-muted/60 border p-5 rounded-lg">
+            <span className="leading-tight text-md font-medium text-muted-foreground">
+              Liens rapides
+            </span>
+            {selectedSubject.quickLinks ? (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {selectedSubject.quickLinks
+                  .split("\n")
+                  .map((entry) => entry.trim())
+                  .filter(Boolean)
+                  .map((entry) => {
+                    const [labelCandidate, urlCandidate] = entry
+                      .split("|")
+                      .map((part) => part.trim());
+                    const href = urlCandidate || labelCandidate;
+                    if (!href) {
+                      return null;
+                    }
+                    const label =
+                      urlCandidate && labelCandidate
+                        ? labelCandidate
+                        : href.replace(/^https?:\/\//, "");
+                    return (
+                      <Link
+                        key={`${href}-${label}`}
+                        href={href}
+                        className="rounded-full border border-border/80 px-3 py-1 text-sm transition-colors hover:bg-background"
+                      >
+                        {label}
+                      </Link>
+                    );
+                  })}
+              </div>
+            ) : (
+              <p className="mt-2 text-sm text-muted-foreground">
+                Aucun lien rapide configuré.
+              </p>
+            )}
+          </div>
+          
         </section>
         <section className="mt-4">
           <div className="grid grid-cols-1 md:grid-cols-2 mb-6">

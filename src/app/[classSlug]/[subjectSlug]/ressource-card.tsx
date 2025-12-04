@@ -29,6 +29,8 @@ export default function RessourceCard({
   fileUrl?: string | null;
 }) {
   const [showPreview, setShowPreview] = useState(false);
+  const descriptionText = description?.trim();
+  const formattedDate = updatedAt.toLocaleDateString();
 
   const handleCardClick = () => {
     if (fileUrl) {
@@ -70,9 +72,12 @@ export default function RessourceCard({
             >
               {title}
             </h3>
-            <p className="text-xs text-muted-foreground">
-              Lorem ipsum &nbsp;•&nbsp;
-              {updatedAt.toLocaleDateString()}
+            <p
+              className="text-xs text-muted-foreground px-4 text-center"
+              title={descriptionText ?? undefined}
+            >
+              {descriptionText ? `${descriptionText} • ` : ""}
+              {formattedDate}
             </p>
           </div>
         </AspectRatio>

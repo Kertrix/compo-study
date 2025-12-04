@@ -46,11 +46,13 @@ const generateThumbnail = async (file: File): Promise<File | null> => {
     canvas.height = viewport.height;
     canvas.width = viewport.width;
 
-    await page.render({
-      canvasContext: context,
-      viewport: viewport,
+    const renderParameters: pdfjs.RenderParameters = {
       canvas,
-    } as any).promise;
+      viewport,
+      canvasContext: context,
+    };
+
+    await page.render(renderParameters).promise;
 
     return new Promise((resolve) => {
       canvas.toBlob((blob) => {

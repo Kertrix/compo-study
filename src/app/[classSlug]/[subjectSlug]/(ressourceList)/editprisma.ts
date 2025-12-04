@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 
-export default async function createTag(formData: FormData) {
+export default async function createTag() {
   console.log("Creating default tag categories...");
   // await prisma.tagCategory.createMany({
   //   data: [
