@@ -90,39 +90,44 @@ export default async function SubjectsSelectionPage({
 
     try {
       const parsed = JSON.parse(trimmed);
+      const normalizeItem = (item: unknown): QuickLink | null => {
+        if (typeof item === "string") {
+          const url = normalizeUrl(item);
+          if (!url) return null;
+          return { label: fallbackLabel(url), url };
+        }
+        if (item && typeof item === "object") {
+          const record = item as Record<string, unknown>;
+          const urlValue =
+            typeof record.url === "string"
+              ? record.url
+              : typeof record.href === "string"
+                ? record.href
+                : undefined;
+          if (!urlValue) {
+            return null;
+          }
+          const normalizedUrl = normalizeUrl(urlValue);
+          const labelValue =
+            typeof record.label === "string"
+              ? record.label
+              : typeof record.title === "string"
+                ? record.title
+                : fallbackLabel(normalizedUrl);
+          return { label: labelValue, url: normalizedUrl };
+        }
+        return null;
+      };
+
       if (Array.isArray(parsed)) {
         return parsed
-          .map((item) => {
-            if (typeof item === "string") {
-              const url = normalizeUrl(item);
-              if (!url) return null;
-              return { label: fallbackLabel(url), url };
-            }
-            if (item && typeof item === "object") {
-              const urlValue =
-                typeof item.url === "string"
-                  ? item.url
-                  : typeof item.href === "string"
-                    ? item.href
-                    : undefined;
-              if (!urlValue) {
-                return null;
-              }
-              const normalizedUrl = normalizeUrl(urlValue);
-              const labelValue =
-                typeof item.label === "string"
-                  ? item.label
-                  : typeof item.title === "string"
-                    ? item.title
-                    : fallbackLabel(normalizedUrl);
-              return {
-                label: labelValue,
-                url: normalizedUrl,
-              };
-            }
-            return null;
-          })
+          .map((item) => normalizeItem(item))
           .filter((link): link is QuickLink => Boolean(link));
+      }
+
+      const normalizedSingle = normalizeItem(parsed);
+      if (normalizedSingle) {
+        return [normalizedSingle];
       }
     } catch {
       // Ignore JSON parse errors and fallback to string parsing below
