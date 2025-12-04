@@ -16,13 +16,11 @@ import {
 } from "@/components/ui/input-group";
 import { Prisma } from "@/generated/client";
 import { cn } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { PaperclipIcon, UploadIcon, XIcon } from "lucide-react";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf.mjs";
 import type { RenderParameters } from "pdfjs-dist/types/src/display/api";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
 import { uploadAction } from "../upload-action";
 
@@ -82,24 +80,27 @@ export default function NewRessourceForm({
 }: {
   subject: Prisma.SubjectGetPayload<{ include: { class: true } }>;
 }) {
-  const form = useForm<z.infer<typeof RessourceSchema>>({
-    resolver: zodResolver(RessourceSchema),
-    defaultValues: {
-      title: "",
-      description: "",
-      files: [],
-    },
-  });
-
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [files, setFiles] = useState<File[]>([]);
   const [isUploading, setIsUploading] = useState(false);
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+
+  const clearError = (field: string) => {
+    setFormErrors((prev) => {
+      if (!(field in prev)) {
+        return prev;
+      }
+      const updated = { ...prev };
+      delete updated[field];
+      return updated;
+    });
+  };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (acceptedFiles) => {
       setFiles(acceptedFiles.slice(0, 1));
-      form.setValue("files", acceptedFiles.slice(0, 1), {
-        shouldValidate: true,
-      });
+      clearError("files");
     },
     multiple: false,
     maxFiles: 1,
@@ -108,19 +109,52 @@ export default function NewRessourceForm({
     },
   });
 
-  async function onSubmit(data: z.infer<typeof RessourceSchema>) {
-    setIsUploading(true);
+  const handleRemoveFile = (fileName: string) => {
+    setFiles((prev) => prev.filter((file) => file.name !== fileName));
+    clearError("files");
+  };
 
-    if (files[0].type === "application/pdf") {
-      const thumbnail = await generateThumbnail(files[0]);
-      if (thumbnail) {
-        data.thumbnail = thumbnail;
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setIsUploading(true);
+    setFormErrors({});
+
+    let thumbnail: File | undefined;
+
+    if (files[0]?.type === "application/pdf") {
+      const generatedThumbnail = await generateThumbnail(files[0]);
+      if (generatedThumbnail) {
+        thumbnail = generatedThumbnail;
       }
     }
 
-    await uploadAction(data, subject)
+    const submission = {
+      title: title || undefined,
+      description: description || undefined,
+      files,
+      thumbnail,
+    };
+
+    const parsed = RessourceSchema.safeParse(submission);
+
+    if (!parsed.success) {
+      const issues: Record<string, string> = {};
+      parsed.error.issues.forEach((issue) => {
+        const key = issue.path[0];
+        if (typeof key === "string" && !issues[key]) {
+          issues[key] = issue.message;
+        }
+      });
+      setFormErrors(issues);
+      setIsUploading(false);
+      return;
+    }
+
+    await uploadAction(parsed.data, subject)
       .then(() => {
         setFiles([]);
+        setTitle("");
+        setDescription("");
       })
       .finally(() => setIsUploading(false));
   }
@@ -149,13 +183,7 @@ export default function NewRessourceForm({
         size="icon"
         variant="ghost"
         className="-me-2 size-8 text-muted-foreground/80 hover:bg-transparent hover:text-foreground shrink-0"
-        onClick={() => {
-          const newFiles = files.filter(
-            (prevFile) => prevFile.name !== file.name
-          );
-          form.setValue("files", newFiles, { shouldValidate: true });
-          setFiles(newFiles);
-        }}
+        onClick={() => handleRemoveFile(file.name)}
         aria-label="Remove file"
       >
         <XIcon className="size-4" aria-hidden="true" />
@@ -164,100 +192,90 @@ export default function NewRessourceForm({
   ));
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="p-1">
+    <form onSubmit={onSubmit} className="p-1">
       <FieldGroup>
-        <Controller
-          name="title"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="ressource-title">
-                Titre (facultatif)
-              </FieldLabel>
-              <Input
-                {...field}
-                id="ressource-title"
-                aria-invalid={fieldState.invalid}
-                placeholder="Chapitre 1..."
-                autoComplete="off"
-              />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-            </Field>
+        <Field data-invalid={Boolean(formErrors.title)}>
+          <FieldLabel htmlFor="ressource-title">Titre (facultatif)</FieldLabel>
+          <Input
+            id="ressource-title"
+            aria-invalid={Boolean(formErrors.title)}
+            placeholder="Chapitre 1..."
+            autoComplete="off"
+            value={title}
+            onChange={(event) => {
+              setTitle(event.target.value);
+              clearError("title");
+            }}
+          />
+          {formErrors.title && (
+            <FieldError errors={[{ message: formErrors.title }]} />
           )}
-        />
-        <Controller
-          name="description"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="ressource-description">
-                Description (facultatif)
-              </FieldLabel>
-              <InputGroup>
-                <InputGroupTextarea
-                  {...field}
-                  id="ressource-description"
-                  placeholder="Description de la ressource..."
-                  rows={6}
-                  className="min-h-24 resize-none"
-                  aria-invalid={fieldState.invalid}
-                />
-                <InputGroupAddon align="block-end">
-                  <InputGroupText className="tabular-nums">
-                    {field?.value?.length}/1000 caractères
-                  </InputGroupText>
-                </InputGroupAddon>
-              </InputGroup>
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-            </Field>
+        </Field>
+        <Field data-invalid={Boolean(formErrors.description)}>
+          <FieldLabel htmlFor="ressource-description">
+            Description (facultatif)
+          </FieldLabel>
+          <InputGroup>
+            <InputGroupTextarea
+              id="ressource-description"
+              placeholder="Description de la ressource..."
+              rows={6}
+              className="min-h-24 resize-none"
+              aria-invalid={Boolean(formErrors.description)}
+              value={description}
+              onChange={(event) => {
+                setDescription(event.target.value);
+                clearError("description");
+              }}
+            />
+            <InputGroupAddon align="block-end">
+              <InputGroupText className="tabular-nums">
+                {description.length}/1000 caractères
+              </InputGroupText>
+            </InputGroupAddon>
+          </InputGroup>
+          {formErrors.description && (
+            <FieldError errors={[{ message: formErrors.description }]} />
           )}
-        />
-        <Controller
-          name="files"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="ressource-files">Fichier</FieldLabel>
+        </Field>
+        <Field data-invalid={Boolean(formErrors.files)}>
+          <FieldLabel htmlFor="ressource-files">Fichier</FieldLabel>
+          <div
+            {...getRootProps()}
+            className={cn(
+              isDragActive
+                ? "border-primary bg-primary/10 ring-2 ring-primary/20"
+                : "border-border",
+              "flex justify-center rounded-md border border-dashed px-6 py-12 transition-colors duration-200",
+              files.length >= 1 ? "cursor-not-allowed" : "cursor-pointer"
+            )}
+          >
+            <div className="flex flex-col items-center justify-center text-center">
               <div
-                {...field}
-                {...getRootProps()}
-                className={cn(
-                  isDragActive
-                    ? "border-primary bg-primary/10 ring-2 ring-primary/20"
-                    : "border-border",
-                  "flex justify-center rounded-md border border-dashed px-6 py-12 transition-colors duration-200",
-                  files.length >= 1 ? "cursor-not-allowed" : "cursor-pointer"
-                )}
+                className="mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border bg-background"
+                aria-hidden="true"
               >
-                <div className="flex flex-col items-center justify-center text-center">
-                  <div
-                    className="mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border bg-background"
-                    aria-hidden="true"
-                  >
-                    <UploadIcon className="size-4 opacity-60" />
-                  </div>
-                  <p className="mb-1.5 text-sm font-medium">
-                    Uploader un fichier
-                  </p>
-                  <input
-                    {...getInputProps()}
-                    id="file-upload-dialog"
-                    name="files"
-                    type="file"
-                    className="sr-only"
-                    disabled={files.length >= 1}
-                  />
-                  <p className="text-xs text-muted-foreground">
-                    Glissez & déposez ou cliquez pour sélectionner (max 1
-                    fichier)
-                  </p>
-                </div>
+                <UploadIcon className="size-4 opacity-60" />
               </div>
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-              {files.length > 0 && <>{filesList}</>}
-            </Field>
+              <p className="mb-1.5 text-sm font-medium">Uploader un fichier</p>
+              <input
+                {...getInputProps()}
+                id="file-upload-dialog"
+                name="files"
+                type="file"
+                className="sr-only"
+                disabled={files.length >= 1}
+              />
+              <p className="text-xs text-muted-foreground">
+                Glissez & déposez ou cliquez pour sélectionner (max 1 fichier)
+              </p>
+            </div>
+          </div>
+          {formErrors.files && (
+            <FieldError errors={[{ message: formErrors.files }]} />
           )}
-        />
+          {files.length > 0 && <>{filesList}</>}
+        </Field>
         <Field orientation="horizontal">
           <Button className="w-full cursor-pointer" type="submit">
             {isUploading ? "En cours..." : "Créer"}

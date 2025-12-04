@@ -239,7 +239,7 @@ export default async function SubjectsSelectionPage({
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-blue-600 hover:underline"
+                  className="text-sm text-blue-600 hover:underline break-all"
                 >
                   {link.label}
                 </a>
