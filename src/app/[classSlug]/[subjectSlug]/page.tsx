@@ -59,6 +59,102 @@ export default async function SubjectsSelectionPage({
     },
   });
 
+  type QuickLink = { label: string; url: string };
+
+  const normalizeUrl = (value: string) => {
+    if (!value) return "";
+    if (
+      value.startsWith("http://") ||
+      value.startsWith("https://") ||
+      value.startsWith("/") ||
+      value.startsWith("mailto:") ||
+      value.startsWith("tel:")
+    ) {
+      return value;
+    }
+    return `https://${value}`;
+  };
+
+  const fallbackLabel = (value: string) =>
+    value.replace(/^https?:\/\//, "").replace(/\/$/, "");
+
+  const parseQuickLinks = (rawValue: string | null): QuickLink[] => {
+    if (!rawValue) {
+      return [];
+    }
+
+    const trimmed = rawValue.trim();
+    if (!trimmed) {
+      return [];
+    }
+
+    try {
+      const parsed = JSON.parse(trimmed);
+      if (Array.isArray(parsed)) {
+        return parsed
+          .map((item) => {
+            if (typeof item === "string") {
+              const url = normalizeUrl(item);
+              if (!url) return null;
+              return { label: fallbackLabel(url), url };
+            }
+            if (item && typeof item === "object") {
+              const urlValue =
+                typeof item.url === "string"
+                  ? item.url
+                  : typeof item.href === "string"
+                    ? item.href
+                    : undefined;
+              if (!urlValue) {
+                return null;
+              }
+              const normalizedUrl = normalizeUrl(urlValue);
+              const labelValue =
+                typeof item.label === "string"
+                  ? item.label
+                  : typeof item.title === "string"
+                    ? item.title
+                    : fallbackLabel(normalizedUrl);
+              return {
+                label: labelValue,
+                url: normalizedUrl,
+              };
+            }
+            return null;
+          })
+          .filter((link): link is QuickLink => Boolean(link));
+      }
+    } catch {
+      // Ignore JSON parse errors and fallback to string parsing below
+    }
+
+    return trimmed
+      .split(/\r?\n/)
+      .map((entry) => entry.trim())
+      .filter((entry): entry is string => entry.length > 0)
+      .map((entry) => {
+        const [labelCandidate, urlCandidate] = entry
+          .split("|")
+          .map((part) => part.trim());
+        const urlValue = urlCandidate || labelCandidate;
+        if (!urlValue) {
+          return null;
+        }
+        const normalizedUrl = normalizeUrl(urlValue);
+        const labelValue =
+          urlCandidate && labelCandidate
+            ? labelCandidate
+            : fallbackLabel(normalizedUrl);
+        return {
+          label: labelValue,
+          url: normalizedUrl,
+        };
+      })
+      .filter((link): link is QuickLink => Boolean(link));
+  };
+
+  const quickLinks = parseQuickLinks(selectedSubject.quickLinks);
+
   return (
     <>
       <div className="flex-1">
@@ -125,34 +221,17 @@ export default async function SubjectsSelectionPage({
             <span className="leading-tight text-md font-medium text-muted-foreground">
               Liens rapides
             </span>
-            {selectedSubject.quickLinks ? (
+            {quickLinks.length > 0 ? (
               <div className="mt-3 flex flex-wrap gap-2">
-                {selectedSubject.quickLinks
-                  .split("\n")
-                  .map((entry: string) => entry.trim())
-                  .filter((entry): entry is string => entry.length > 0)
-                  .map((entry) => {
-                    const [labelCandidate, urlCandidate] = entry
-                      .split("|")
-                      .map((part: string) => part.trim());
-                    const href = urlCandidate || labelCandidate;
-                    if (!href) {
-                      return null;
-                    }
-                    const label =
-                      urlCandidate && labelCandidate
-                        ? labelCandidate
-                        : href.replace(/^https?:\/\//, "");
-                    return (
-                      <Link
-                        key={`${href}-${label}`}
-                        href={href}
-                        className="rounded-full border border-border/80 px-3 py-1 text-sm transition-colors hover:bg-background"
-                      >
-                        {label}
-                      </Link>
-                    );
-                  })}
+                {quickLinks.map((link) => (
+                  <Link
+                    key={`${link.url}-${link.label}`}
+                    href={link.url}
+                    className="rounded-full border border-border/80 px-3 py-1 text-sm transition-colors hover:bg-background"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
               </div>
             ) : (
               <p className="mt-2 text-sm text-muted-foreground">
