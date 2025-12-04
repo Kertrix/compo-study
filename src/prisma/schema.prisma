@@ -30,6 +30,7 @@ model Subject {
   classId         String
   examDate        DateTime?
   examDescription String?
+  quickLinks      String?
   examLength      String?
   ressources      Ressource[]
   class           Class       @relation(fields: [classId], references: [id])
