@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PaperclipIcon, UploadIcon, XIcon } from "lucide-react";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf.mjs";
+import type { RenderParameters } from "pdfjs-dist/types/src/display/api";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Controller, useForm } from "react-hook-form";
@@ -46,7 +47,7 @@ const generateThumbnail = async (file: File): Promise<File | null> => {
     canvas.height = viewport.height;
     canvas.width = viewport.width;
 
-    const renderParameters: pdfjs.RenderParameters = {
+    const renderParameters: RenderParameters = {
       canvas,
       viewport,
       canvasContext: context,
