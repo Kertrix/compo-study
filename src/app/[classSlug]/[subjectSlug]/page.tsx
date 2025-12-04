@@ -226,23 +226,25 @@ export default async function SubjectsSelectionPage({
             <span className="leading-tight text-md font-medium text-muted-foreground">
               Liens rapides
             </span>
-            {quickLinks.length > 0 ? (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {quickLinks.map((link) => (
-                  <Link
-                    key={`${link.url}-${link.label}`}
-                    href={link.url}
-                    className="rounded-full border border-border/80 px-3 py-1 text-sm transition-colors hover:bg-background"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <p className="mt-2 text-sm text-muted-foreground">
-                Aucun lien rapide configuré.
-              </p>
-            )}
+            <p className="text-xl font-semibold mt-2">
+              {quickLinks.length} lien{quickLinks.length > 1 ? "s" : ""}
+            </p>
+            <div className="mt-2 flex flex-col gap-1">
+              {quickLinks.length === 0 && (
+                <span className="text-sm">Aucun lien rapide disponible.</span>
+              )}
+              {quickLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-blue-600 hover:underline"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
           
         </section>
