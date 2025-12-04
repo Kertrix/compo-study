@@ -100,6 +100,7 @@ export const SubjectScalarFieldEnum = {
   classId: 'classId',
   examDate: 'examDate',
   examDescription: 'examDescription',
+  quickLinks: 'quickLinks',
   examLength: 'examLength'
 } as const
 

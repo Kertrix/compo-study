@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { Prisma } from "@/generated/client";
 import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
 import { ArrowLeft, PlusCircle } from "lucide-react";
@@ -28,7 +29,11 @@ export default async function SubjectsSelectionPage({
     user?.role === "ADMIN" ||
     cookieStore.get("teacherAccess")?.value === "true";
 
-  let selectedSubject;
+  type SubjectWithRelations = Prisma.SubjectGetPayload<{
+    include: { class: true; ressources: { include: { tags: true } } };
+  }>;
+
+  let selectedSubject: SubjectWithRelations | null = null;
   try {
     selectedSubject = await prisma.subject.findFirst({
       where: {
@@ -124,12 +129,12 @@ export default async function SubjectsSelectionPage({
               <div className="mt-3 flex flex-wrap gap-2">
                 {selectedSubject.quickLinks
                   .split("\n")
-                  .map((entry) => entry.trim())
-                  .filter(Boolean)
+                  .map((entry: string) => entry.trim())
+                  .filter((entry): entry is string => entry.length > 0)
                   .map((entry) => {
                     const [labelCandidate, urlCandidate] = entry
                       .split("|")
-                      .map((part) => part.trim());
+                      .map((part: string) => part.trim());
                     const href = urlCandidate || labelCandidate;
                     if (!href) {
                       return null;
