@@ -207,10 +207,6 @@ export default async function SubjectsSelectionPage({
                 ? selectedSubject.examDate.toLocaleDateString()
                 : "December 15, 2025"}
             </p>
-            <p className="text-sm">
-              {selectedSubject.examDescription ||
-                "Aucune description d'examen disponible."}
-            </p>
           </div>
           <div className="flex flex-col bg-muted/60 border p-5 rounded-lg">
             <span className="leading-tight text-md font-medium text-muted-foreground">
@@ -218,9 +214,6 @@ export default async function SubjectsSelectionPage({
             </span>
             <p className="text-xl font-semibold mt-2">
               {selectedSubject.examLength || "2 heures"}
-            </p>
-            <p className="text-sm">
-              {selectedSubject.examDescription || "Durée totale"}
             </p>
           </div>
           <div className="flex flex-col bg-muted/60 border p-5 rounded-lg">
@@ -248,8 +241,12 @@ export default async function SubjectsSelectionPage({
             </div>
           </div>
         </section>
-        <section>
-          <PlateEditor />
+        <section className="mt-4 bg-muted/60 border p-5 rounded-lg">
+          <h2 className="text-lg font-semibold mb-2">Que réviser ?</h2>
+          <PlateEditor
+            content={selectedSubject.examDescription || ""}
+            subjectId={selectedSubject.id}
+          />
         </section>
         <section className="mt-4">
           <div className="grid grid-cols-1 md:grid-cols-2 mb-6">
