@@ -1,3 +1,4 @@
+import PlateEditor from "@/components/editor/editor";
 import { NavUser } from "@/components/nav-user";
 import {
   Accordion,
@@ -196,7 +197,7 @@ export default async function SubjectsSelectionPage({
             />
           )}
         </header>
-       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="flex flex-col bg-muted/60 border p-5 rounded-lg">
             <span className="leading-tight text-md font-medium text-muted-foreground">
               Date de l&apos;examen
@@ -246,7 +247,9 @@ export default async function SubjectsSelectionPage({
               ))}
             </div>
           </div>
-          
+        </section>
+        <section>
+          <PlateEditor />
         </section>
         <section className="mt-4">
           <div className="grid grid-cols-1 md:grid-cols-2 mb-6">
