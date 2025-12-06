@@ -1,4 +1,5 @@
 import PlateEditor from "@/components/editor/editor";
+import StaticPlate from "@/components/editor/editor-static";
 import { NavUser } from "@/components/nav-user";
 import {
   Accordion,
@@ -243,10 +244,18 @@ export default async function SubjectsSelectionPage({
         </section>
         <section className="mt-4 bg-muted/60 border p-5 rounded-lg">
           <h2 className="text-lg font-semibold mb-2">Que réviser ?</h2>
-          <PlateEditor
-            content={selectedSubject.examDescription || ""}
-            subjectId={selectedSubject.id}
-          />
+          {allowed ? (
+            <PlateEditor
+              content={selectedSubject.examDescription || ""}
+              subjectId={selectedSubject.id}
+            />
+          ) : selectedSubject.examDescription ? (
+            <StaticPlate content={selectedSubject.examDescription} />
+          ) : (
+            <p className="text-center text-muted-foreground">
+              Aucune description disponible.
+            </p>
+          )}
         </section>
         <section className="mt-4">
           <div className="grid grid-cols-1 md:grid-cols-2 mb-6">
