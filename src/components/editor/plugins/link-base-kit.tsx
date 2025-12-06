@@ -1,5 +1,14 @@
-import { BaseLinkPlugin } from '@platejs/link';
+import { BaseLinkPlugin } from "@platejs/link";
 
-import { LinkElementStatic } from '@/components/ui/link-node-static';
+import { LinkElementStatic } from "@/components/ui/link-node-static";
 
-export const BaseLinkKit = [BaseLinkPlugin.withComponent(LinkElementStatic)];
+export const BaseLinkKit = [
+  BaseLinkPlugin.withComponent(LinkElementStatic).configure({
+    options: {
+      defaultLinkAttributes: {
+        target: "_blank",
+        rel: "noopener noreferrer",
+      },
+    },
+  }),
+];
