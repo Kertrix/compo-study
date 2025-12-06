@@ -10,6 +10,7 @@ import { updateSubjectDescription } from "./editor-actions";
 import { AutoformatKit } from "./plugins/autoformat-kit";
 import { BasicBlocksKit } from "./plugins/basic-blocks-kit";
 import { BasicMarksKit } from "./plugins/basic-marks-kit";
+import { CodeBlockKit } from "./plugins/code-block-kit";
 import { FloatingToolbarKit } from "./plugins/floating-toolbar-kit";
 import { LinkKit } from "./plugins/link-kit";
 import { ListKit } from "./plugins/list-kit";
@@ -35,6 +36,7 @@ export default function PlateEditor({
       ...MathKit,
       ...LinkKit,
       ...ListKit,
+      ...CodeBlockKit,
       TrailingBlockPlugin,
 
       // Editing
@@ -53,11 +55,11 @@ export default function PlateEditor({
     <Plate
       editor={editor}
       onChange={({ value }) => {
-        debouncedUpdates(value);
+        // debouncedUpdates(value);
         setSaved(false);
       }}
     >
-      <EditorContainer>
+      <EditorContainer className="bg-white p-2 rounded-md">
         <div className="flex items-center justify-between gap-2">
           <span className="text-xs text-muted-foreground">
             {saved ? "Saved" : "Unsaved changes"}
@@ -77,7 +79,7 @@ export default function PlateEditor({
           </Button>
         </div>
         <Editor
-          className="px-16!"
+          className="px-4! pb-16!"
           placeholder="Write something or type '/' for commands..."
         />
       </EditorContainer>
