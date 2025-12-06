@@ -3,7 +3,6 @@
 import { TrailingBlockPlugin } from "platejs";
 import { Plate, usePlateEditor } from "platejs/react";
 import { useState } from "react";
-import { useDebouncedCallback } from "use-debounce";
 import { Button } from "../ui/button";
 import { Editor, EditorContainer } from "../ui/editor";
 import { updateSubjectDescription } from "./editor-actions";
@@ -25,10 +24,12 @@ export default function PlateEditor({
   subjectId: string;
 }) {
   const [saved, setSaved] = useState(false);
-  const debouncedUpdates = useDebouncedCallback(async (value) => {
-    await updateSubjectDescription(subjectId, JSON.stringify(value));
-    setSaved(true);
-  }, 4000);
+
+  // For saving automatically each 4s
+  // const debouncedUpdates = useDebouncedCallback(async (value) => {
+  //   await updateSubjectDescription(subjectId, JSON.stringify(value));
+  //   setSaved(true);
+  // }, 4000);
 
   const editor = usePlateEditor({
     plugins: [
@@ -56,7 +57,7 @@ export default function PlateEditor({
   return (
     <Plate
       editor={editor}
-      onChange={({ value }) => {
+      onChange={({}) => {
         // debouncedUpdates(value);
         setSaved(false);
       }}
