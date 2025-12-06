@@ -15,6 +15,7 @@ import { FloatingToolbarKit } from "./plugins/floating-toolbar-kit";
 import { LinkKit } from "./plugins/link-kit";
 import { ListKit } from "./plugins/list-kit";
 import { MathKit } from "./plugins/math-kit";
+import { SuggestionKit } from "./plugins/suggestion-kit";
 
 export default function PlateEditor({
   content,
@@ -41,6 +42,7 @@ export default function PlateEditor({
 
       // Editing
       ...AutoformatKit,
+      ...SuggestionKit,
 
       // UI
       ...FloatingToolbarKit,
