@@ -1,4 +1,6 @@
 import Footer from "@/components/footer";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { cookies } from "next/headers";
@@ -34,6 +36,8 @@ export default async function RootLayout({
       >
         <main className="max-w-5xl min-h-screen mx-auto flex flex-col px-4 py-10">
           {children}
+          <SpeedInsights />
+          <Analytics />
           <Footer isGuest={isGuest} isTeacher={isTeacher} />
         </main>
       </body>
