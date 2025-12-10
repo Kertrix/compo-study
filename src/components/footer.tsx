@@ -28,10 +28,10 @@ export default function Footer({
           </p>
         </>
       )}
-      <p className="text-xs text-muted-foreground">
+      {/* <p className="text-xs text-muted-foreground">
         © {new Date().getFullYear()} EJM Compo Study. Créé par Adam Giraud et
         Tristan Kermorvant
-      </p>
+      </p> */}
     </footer>
   );
 }
