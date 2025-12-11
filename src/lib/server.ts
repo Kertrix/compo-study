@@ -40,7 +40,7 @@ export async function logoutAction(): Promise<void> {
 
 export async function anonymousLogoutAction(): Promise<void> {
   const cookie = await cookies();
-  cookie.set("studentAccess", "", { maxAge: 0, path: "/" });
-  cookie.set("teacherAccess", "", { maxAge: 0, path: "/" });
+  cookie.delete("studentAccess");
+  cookie.delete("teacherAccess");
   redirect("/");
 }

@@ -6,7 +6,8 @@ export function proxy(req: NextRequest) {
   const studentAccess = req.cookies.get("studentAccess")?.value === "true";
   const teacherAccess = req.cookies.get("teacherAccess")?.value === "true";
   const sessionCookie = getSessionCookie(req);
-  const isLoginPage = req.nextUrl.pathname === "/";
+  const isLoginPage =
+    req.nextUrl.pathname === "/" || req.nextUrl.pathname === "";
 
   if (!studentAccess && !teacherAccess && !sessionCookie && !isLoginPage) {
     // not logged in → redirect to /

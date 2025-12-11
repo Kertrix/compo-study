@@ -32,11 +32,11 @@ export default function PasswordGate() {
 
     const res = await loginAction(password);
 
-    if (res.success) {
-      router.push("/classes");
-    } else {
+    if (!res.success) {
       setError("Mot de passe incorrect, veuillez réessayer.");
+      return;
     }
+    router.push("/classes");
   };
 
   return (
